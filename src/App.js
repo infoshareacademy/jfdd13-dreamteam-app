@@ -7,6 +7,7 @@ import TripContainer from "./components/TripContainer";
 import Form from "./components/Form";
 import Appbar from "./components/Appbar";
 import 'semantic-ui-css/semantic.min.css'
+import PieChart from './components/PieChart'
 
 function App() {
   return (
