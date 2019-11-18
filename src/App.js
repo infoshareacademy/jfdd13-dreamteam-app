@@ -19,6 +19,7 @@ function App() {
         {/* <Dashboard />
         <TripContainer />
         <Form />         */}
+        <main>
         <Switch>
           <Route exact strict path="/" component={() => <h1>we are the dreamTeam and this is our App!</h1>} />
           <Route exact strict path="/main" component={Dashboard} />
@@ -28,6 +29,7 @@ function App() {
           <Route exact strict path="/form/" component={Form} />
           <Route component={() => <h1>404 - sadface</h1>} />
         </Switch>
+        </main>
       </div>
     </BrowserRouter>
   );
