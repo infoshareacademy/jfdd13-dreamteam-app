@@ -5,13 +5,14 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import TripContainer from "./components/TripContainer";
 import Form from "./components/Form";
+import Appbar from "./components/Appbar";
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
     // <Router>
       <div className="App">
-
+<Appbar />
         <Navbar />
         {/* <Switch>
           <Route exact strict sensitive path="/" component={App} />
