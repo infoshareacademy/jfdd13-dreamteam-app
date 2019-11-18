@@ -7,7 +7,8 @@ function Navbar() {
     height: "100%",
     minHeight: "95vh",
     margin: '0',
-    border: 'none'
+    border: 'none',
+    borderRadius: '0'
   };
   return (
   <Sidebar.Pushable as={Segment} style={navStyle}>
