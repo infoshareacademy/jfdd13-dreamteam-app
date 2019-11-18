@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Header, Icon, Image, Menu, Segment, Sidebar, Button } from 'semantic-ui-react'
+import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
+
 
 function Navbar() {
 
@@ -22,22 +23,30 @@ function Navbar() {
       visible="true"
       width='thin'
     >
+      <Link to="/main" exact>
       <Menu.Item as='a'>
         <Icon name='home' />
-        <Link to="/main" exact>Dashboard</Link>
+        Dashboard
       </Menu.Item>
+    </Link>
+      <Link to="/search" exact>
       <Menu.Item as='a'>
         <Icon name='search' />
-        <Link to="/search" exact>Search</Link>
+        Search
       </Menu.Item>
+      </Link>
+      <Link to="/form/" exact>
       <Menu.Item as='a'>
         <Icon name='add' />
-        <Link to="/form/" exact>Add</Link>
+        Add
       </Menu.Item>
+      </Link>
+      <Link to="/fav" exact>
       <Menu.Item as='a'>
         <Icon name='heart' />
-        <Link to="/fav" exact>Fav</Link>
+        Fav
       </Menu.Item>
+      </Link>
     </Sidebar>
   </Sidebar.Pushable>
   )
