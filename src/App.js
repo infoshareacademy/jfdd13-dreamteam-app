@@ -16,7 +16,7 @@ function App() {
             <div className="App">
                 <Appbar/>
                 <Navbar/>
-                <main>
+                <main className={'main'}>
                     <Switch>
                         <Route exact strict path="/"
                                component={() => <h1>we are the dreamTeam and this is our App!</h1>}/>
