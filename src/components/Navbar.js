@@ -2,8 +2,13 @@ import React from 'react';
 import { Header, Icon, Image, Menu, Segment, Sidebar, Button } from 'semantic-ui-react'
 
 function Navbar() {
+
+  const navStyle = {
+    height: "100%",
+    minHeight: "100vh"
+  }
   return (
-  <Sidebar.Pushable as={Segment}>
+  <Sidebar.Pushable as={Segment} style={navStyle}>
     <Sidebar
       as={Menu}
       animation='overlay'
@@ -15,21 +20,23 @@ function Navbar() {
     >
       <Menu.Item as='a'>
         <Icon name='home' />
-        Home
+        Dashboard
       </Menu.Item>
       <Menu.Item as='a'>
         <Icon name='gamepad' />
-        Games
+        Search
       </Menu.Item>
       <Menu.Item as='a'>
         <Icon name='camera' />
-        Channels
+        Add 
+      </Menu.Item>
+      <Menu.Item as='a'>
+        <Icon name='camera' />
+        Fav
       </Menu.Item>
     </Sidebar>
-
     <Sidebar.Pusher>
       <Segment basic>
-      <Button>Click Here</Button>
         <Header as='h3'>Application Content</Header>
         <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
       </Segment>
