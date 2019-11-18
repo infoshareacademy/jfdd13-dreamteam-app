@@ -25,19 +25,19 @@ function Navbar() {
     >
       <Menu.Item as='a'>
         <Icon name='home' />
-        Dashboard
+        <Link to="/main" exact>Dashboard</Link>
       </Menu.Item>
       <Menu.Item as='a'>
         <Icon name='search' />
-        Search
+        <Link to="/search" exact>Search</Link>
       </Menu.Item>
       <Menu.Item as='a'>
         <Icon name='add' />
-        Add 
+        <Link to="/form/" exact>Add</Link>
       </Menu.Item>
       <Menu.Item as='a'>
         <Icon name='heart' />
-        Fav
+        <Link to="/fav" exact>Fav</Link>
       </Menu.Item>
     </Sidebar>
   </Sidebar.Pushable>
