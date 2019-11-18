@@ -6,7 +6,7 @@ function Navbar() {
   const navStyle = {
     height: "100%",
     minHeight: "100vh"
-  }
+  };
   return (
   <Sidebar.Pushable as={Segment} style={navStyle}>
     <Sidebar
@@ -43,6 +43,6 @@ function Navbar() {
     </Sidebar.Pusher>
   </Sidebar.Pushable>
   )
-};
+}
 
 export default Navbar;
