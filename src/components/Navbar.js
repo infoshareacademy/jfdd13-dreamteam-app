@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Header, Icon, Image, Menu, Segment, Sidebar, Button } from 'semantic-ui-react'
-import { domainToASCII } from 'url';
+import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 
 function Navbar() {
 
