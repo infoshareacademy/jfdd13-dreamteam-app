@@ -11,6 +11,13 @@ const pieChart = ()=> {
                 { title: 'Two', value: 15, color: '#C13C37' },
                 { title: 'Three', value: 20, color: '#6A2135' },
             ]}
+            lineWidth={80}
+            // cx={20}
+            // cy={20}
+            ratio={1}
+            // radius={20}
+            style={{height: '200px', width: '200px'}}
+
         />
     )
 };
