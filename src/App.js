@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, NavLink} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
@@ -10,22 +10,22 @@ import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
-    // <Router>
+    // <BrowserRouter>
       <div className="App">
-<Appbar />
+        <Appbar />
         <Navbar />
         {/* <Switch>
-          <Route exact strict sensitive path="/" component={App} />
-          <Route path="/main" component={Dashboard} />
-          <Route path="/trip" component={TripContainer} />
-          <Route path="/form" component={Form} />
+          <Route exact strict path="/" component={() => <h1>App</h1>} />
+          <Route exact path="/main" component={() => <h1>Dashboard</h1>} />
+          <Route exact path="/trip" component={() => <h1>TripContainer</h1>} />
+          <Route exact path="/form/" component={() => <h1>Form</h1>} />
           <Route component={() => <h1>404 - sadface</h1>} />
         </Switch> */}
         <Dashboard />
         <TripContainer />
         <Form />        
       </div>
-    // </Router>
+    // </BrowserRouter>
   );
 }
 
