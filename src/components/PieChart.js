@@ -16,7 +16,8 @@ const pieChart = ()=> {
             // cy={20}
             ratio={1}
             // radius={20}
-            style={{height: '200px', width: '200px'}}
+            style={{height: '300px', width: '300px'}}
+            label={true}
 
         />
     )
