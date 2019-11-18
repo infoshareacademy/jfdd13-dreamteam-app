@@ -23,15 +23,15 @@ function Navbar() {
         Dashboard
       </Menu.Item>
       <Menu.Item as='a'>
-        <Icon name='gamepad' />
+        <Icon name='search' />
         Search
       </Menu.Item>
       <Menu.Item as='a'>
-        <Icon name='camera' />
+        <Icon name='add' />
         Add 
       </Menu.Item>
       <Menu.Item as='a'>
-        <Icon name='camera' />
+        <Icon name='heart' />
         Fav
       </Menu.Item>
     </Sidebar>
