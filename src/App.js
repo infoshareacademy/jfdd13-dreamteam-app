@@ -10,22 +10,22 @@ import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
-    // <BrowserRouter>
+    <BrowserRouter>
       <div className="App">
         <Appbar />
-        <Navbar />
-        {/* <Switch>
-          <Route exact strict path="/" component={() => <h1>App</h1>} />
-          <Route exact path="/main" component={() => <h1>Dashboard</h1>} />
-          <Route exact path="/trip" component={() => <h1>TripContainer</h1>} />
-          <Route exact path="/form/" component={() => <h1>Form</h1>} />
-          <Route component={() => <h1>404 - sadface</h1>} />
-        </Switch> */}
+        {/* <Navbar />
         <Dashboard />
         <TripContainer />
-        <Form />        
+        <Form />         */}
+        <Switch>
+          <Route exact strict path="/" component={() => <h1>we are the dreamTeam and this is our App!</h1>} />
+          <Route exact strict path="/main" component={Dashboard} />
+          <Route exact strict path="/trip" component={() => <h1>TripContainer</h1>} />
+          <Route exact strict path="/form/" component={Form} />
+          <Route component={() => <h1>404 - sadface</h1>} />
+        </Switch>
       </div>
-    // </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

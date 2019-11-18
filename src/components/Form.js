@@ -4,7 +4,7 @@ function Form () {
   return (
 
     <div className="Form">
-      <h1>Form</h1>
+      <h1>the Form is here, write sth</h1>
       
     </div>
     );

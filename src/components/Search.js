@@ -4,7 +4,7 @@ function Search() {
   return (
   
     <div className="Search">
-      <h1>Search</h1>
+      <h1>what R You looking for?</h1>
 
     </div> 
   );

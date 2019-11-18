@@ -4,7 +4,7 @@ function Favourites() {
   return (
   
     <div className="Favourites">
-      <h1>Favourites</h1>
+      <h1>Here You'll find your favourites stuff... some day</h1>
 
     </div> 
   )
