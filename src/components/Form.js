@@ -13,11 +13,11 @@ class Formularz extends React.Component {
     <Form.Field>
     <h1>Formularz dodawania wycieczki </h1>
       <label>Tytuł wycieczki</label>
-      <input placeholder='Tytuł wycieczki' />
+      <Input placeholder='Tytuł wycieczki' />
     </Form.Field>
     <Form.Field>
       <label>Data wyjazdu</label>
-      <input placeholder='Data wycieczki' />
+      <Input placeholder='Data wycieczki' />
     </Form.Field>
     <Form.Field>
           <b>Typ wycieczki</b>
@@ -53,19 +53,19 @@ class Formularz extends React.Component {
         </div>
     <Form.Field>
       <label>Cena</label>
-      <input placeholder='Cena' />
+      <Input placeholder='Cena' />
     </Form.Field>
     <Form.Field>
       <label>Lokalizacja</label>
-      <input placeholder='Lokalizacja' />
+      <Input placeholder='Lokalizacja' />
     </Form.Field>
-    <Form.TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę jak najdokładniej, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić. ' />
+    <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę jak najdokładniej, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić. ' />
     <Form.Field>
       <label>Twój e-mail</label>
-      <input placeholder='Wpisz e-mail' />
+      <Input placeholder='Wpisz e-mail' />
     </Form.Field>
     <Form.Field>
-      <Checkbox label='Zgadzam się na otrzymywania maili związanych z wprowadzoną przeze mnie ofertą.' />
+      <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.' />
     </Form.Field>
     <Button type='submit'>Submit</Button>
   </Form>
