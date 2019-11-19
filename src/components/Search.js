@@ -23,6 +23,9 @@ class Search extends Component {
     </Grid.Row>
 
     <Grid.Row columns={3}>
+      <Grid.Column>
+        <Input focus icon='search' placeholder='Wyszukaj...' />
+      </Grid.Column>
       <Grid.Column as={Form}>
         <Form.Input
           label={`Ilość dni: ${show}`}
