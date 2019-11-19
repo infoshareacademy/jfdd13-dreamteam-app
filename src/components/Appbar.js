@@ -13,13 +13,13 @@ function Appbar () {
     };
   return (
 
-    <div className="Appbar">
+    <header className="Appbar">
 
       <h1 style={appbarStyles}>
           <Icon name="paper plane outline"/>
           WAY.TO
       </h1>
-    </div>);
+    </header>);
 };
 
 export default Appbar;
