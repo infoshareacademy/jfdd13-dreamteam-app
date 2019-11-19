@@ -4,7 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import TripContainer from "./components/TripContainer";
-import Form from "./components/Form";
+import Formularz from "./components/Form";
 import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import Appbar from "./components/Appbar";
@@ -25,7 +25,7 @@ function App() {
           <Route exact strict path="/trip" component={TripContainer} />
           <Route exact strict path="/search" component={Search} />
           <Route exact strict path="/fav" component={Favourites} />
-          <Route exact strict path="/form/" component={Form} />
+          <Route exact strict path="/form/" component={Formularz} />
           <Route component={() => <h1>404 - sadface</h1>} />
         </Switch>
       </div>

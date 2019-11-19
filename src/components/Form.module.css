@@ -1,0 +1,11 @@
+.formContainer {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.radioButtons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
