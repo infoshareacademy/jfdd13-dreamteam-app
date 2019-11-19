@@ -29,6 +29,7 @@ function App() {
                         <Route component={() => <h1>404 - sadface</h1>}/>
                     </Switch>
                 </main>
+                <FinalPage />
             </div>
         </BrowserRouter>
     );
