@@ -8,6 +8,7 @@ import Form from "./components/Form";
 import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import Appbar from "./components/Appbar";
+import FinalPage from "./components/FinalPage";
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
