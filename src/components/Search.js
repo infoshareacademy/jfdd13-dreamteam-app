@@ -1,29 +1,42 @@
-import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
-import TripContainer from './TripContainer';
+import React, { Component } from 'react'
+import { Form, Grid, Header, Input} from 'semantic-ui-react'
 
-function Search() {
-  return (
+class Search extends Component {
+  state = {show: 7}
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  toggleVisibility = () =>
+    this.setState((prevState) => ({ visible: !prevState.visible }))
+
+  render() {
+    const {show} = this.state
+
+    return (
   
     <div className="Search">
-      <h1>what R You looking for?</h1>
 
-  <Grid>
+  <Grid padded={true}>
     <Grid.Row columns={1}>
       <Grid.Column>
-        <Image src='/images/wireframe/image.png' />
+        <Header>Wskaż kierunek!</Header>
       </Grid.Column>
     </Grid.Row>
 
     <Grid.Row columns={3}>
-      <Grid.Column>
-        <Image src='/images/wireframe/image.png' />
+      <Grid.Column as={Form}>
+        <Form.Input
+          label={`Ilość dni: ${show}`}
+          min={2}
+          max={21}
+          name='show'
+          onChange={this.handleChange}
+          step={1}
+          type='range'
+          value={show}
+        />
+        <Form.Button content='Szukaj' onClick={this.toggleVisibility} />
       </Grid.Column>
       <Grid.Column>
-        <Image src='/images/wireframe/image.png' />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src='/images/wireframe/image.png' />
       </Grid.Column>
 
     </Grid.Row>
@@ -35,6 +48,6 @@ function Search() {
     </div> 
   );
 };
-
+}
 export default Search;
 
