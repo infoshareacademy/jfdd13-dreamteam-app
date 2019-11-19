@@ -3,7 +3,7 @@ import {Button} from "semantic-ui-react";
 import PieChart from "react-minimal-pie-chart";
 
 const pieChart = ()=> {
-    console.log('PieChart message')
+    console.log('PieChart message');
     return (
         <PieChart
             data={[

@@ -8,6 +8,6 @@ function Form () {
       
     </div>
     );
-};
+}
 
 export default Form;
