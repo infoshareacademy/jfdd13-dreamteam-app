@@ -3,12 +3,12 @@ import { Grid, Header, Form, Input, Dropdown } from 'semantic-ui-react'
 import TripContainer from './TripContainer'
 
 const continentsOptions = [
-  {key: 'afr', color: 'black', text: "Afryka"},
-  {key: 'apn', color: 'red', text: "Ameryka Północna"},
-  {key: 'apd', color: 'green', text: "Ameryka Południowa"},
-  {key: 'ant', color: 'white', text: "Antarktyda"},
-  {key: 'aus', color: 'blue', text: "Australia i Oceania"},
-  {key: 'eur', color: 'grey', text: "Europa"}
+  {key: 'afr', label: {color: 'black', empty: true, circular:true}, text: "Afryka"},
+  {key: 'apd', label: {color: 'green', empty: true, circular:true}, text: "Ameryka Południowa"},
+  {key: 'apn', label: {color: 'red', empty: true, circular:true}, text: "Ameryka Północna"},
+  {key: 'ant', label: {color: 'white', empty: true, circular:true}, text: "Antarktyda"},
+  {key: 'aus', label: {color: 'blue', empty: true, circular:true}, text: "Australia i Oceania"},
+  {key: 'eur', label: {color: 'grey', empty: true, circular:true}, text: "Europa"}
 ]
 class Search extends Component {
   state = {show: 999}
@@ -42,7 +42,7 @@ class Search extends Component {
             </Grid.Column>
            <Grid.Column as={Form}>
               <Form.Input
-                label={`Cena: ${show} PLN`}
+                label={`Twój budżet: ${show} PLN`}
                 min={99}
                 max={19999}
                 name="show"
