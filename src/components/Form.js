@@ -66,7 +66,7 @@ class Formularz extends React.Component {
           }) => (
               <Form className={styles.formContainer} onSubmit={handleSubmit}>
                 <Form.Field>
-                  <h1>Formularz dodawania wycieczki </h1>
+                  <h1> Formularz dodawania wycieczki</h1>
                   <label>Tytuł wycieczki</label>
                   <Input placeholder='Tytuł wycieczki'
                     type="text"
@@ -146,7 +146,9 @@ class Formularz extends React.Component {
                     errors={errors} />
                      {errors.place && touched.place && errors.place}
                 </Form.Field>
-                <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę jak najdokładniej, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
+                <Form.Field>
+                <label>Opis wycieczki</label>
+                <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę w kilku zdaniach, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
                   type="text"
                   name="description"
                   onChange={handleChange}
@@ -155,6 +157,7 @@ class Formularz extends React.Component {
                   touched={touched}
                   errors={errors} />
                   {errors.description && touched.description && errors.description}
+                  </Form.Field>
                 <Form.Field>
                   <label>Twój e-mail</label>
                   <Input placeholder='Wpisz e-mail'

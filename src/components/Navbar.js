@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 
-
 function Navbar() {
 
   const navStyle = {
