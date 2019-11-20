@@ -21,7 +21,7 @@ const data = [
 export default class DataBarChart extends PureComponent {
 
     render() {
-        return (
+        return (<div>
             <BarChart
                 width={500}
                 height={300}
@@ -38,6 +38,7 @@ export default class DataBarChart extends PureComponent {
                 <Bar dataKey="pv" fill="#8884d8" />
                 <Bar dataKey="uv" fill="#82ca9d" />
             </BarChart>
+            </div>
         );
     }
 }
