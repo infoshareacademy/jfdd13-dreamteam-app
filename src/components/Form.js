@@ -173,7 +173,7 @@ class Formularz extends React.Component {
                 <Form.Field>
                   <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.' />
                 </Form.Field>
-                <Button type='submit' disabled={isSubmitting}>Submit</Button>
+                <Button type='submit' disabled={isSubmitting}>Dodaj</Button>
               </Form>
             )}
         </Formik>
