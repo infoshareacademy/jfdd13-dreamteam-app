@@ -7,25 +7,25 @@ import { Formik } from "formik";
 const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(20, 'Tytuł za długi, skróć do 20 znaków.')
-    .required("Required!")
-    .matches(new RegExp(/^[A-Za-z]+$/), "Możesz używac tylko liter."),
+    .required("Pole wymagane.")
+    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter."),
   date: Yup.string()
-    .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format daty.')
-    .required("Required!"),
+    .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
+    .required("Pole wymagane."),
   price: Yup.string()
-    .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, użyj cyfr.')
-    .required("Required!"),
+    .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
+    .required("Pole wymagane."),
   place: Yup.string()
-    .matches(new RegExp(/^[A-Za-z]+$/), "Możesz używac tylko liter.")
-    .required("Required!"),
+    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter.")
+    .required("Pole wymagane."),
   description: Yup.string()
     .max(200, "Opis za długi, skróć tekst do 200 znaków.")
-    .required("Required!"),
+    .required("Pole wymagane."),
   email: Yup.string()
-    .required("Required!")
-    .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Podaj e-maila.'),
+    .required("Pole wymagane.")
+    .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
   checkbox: Yup.boolean()
-  .oneOf([true], 'Must Accept Terms and Conditions'),
+  .oneOf([true], 'Zaznacz pole powyzej'),
 });
 
 
