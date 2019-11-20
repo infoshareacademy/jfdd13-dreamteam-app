@@ -10,7 +10,19 @@ const continentsOptions = [
   {key: 'aus', label: {color: 'blue', empty: true, circular:true}, text: "Australia i Oceania"},
   {key: 'eur', label: {color: 'grey', empty: true, circular:true}, text: "Europa"}
 ]
-
+const places = [
+  {value:'Amsterdam'},
+  {value:'Gdańsk'},
+  {value:'Gdynia'},
+  {value:'Innsbruck'},
+  {value:'Johannesburg'},
+  {value:'Londyn'},
+  {value:'Los Angeles'},
+  {value:'Mexico City'},
+  {value:'Sopot' },
+  {value:'Tokio'},
+  {value:'Vancouver'}
+]
 class Search extends Component {
   state = {show: 999}
 
@@ -56,13 +68,7 @@ class Search extends Component {
             <Grid.Column>
             <Input list='places' placeholder='Podaj destynację...' />
               <datalist id='places'>
-                <option value='Amsterdam' />
-                <option value='Gdańsk' />
-                <option value='Gdynia' />
-                <option value='Londyn' />
-                <option value='Los Angeles' />
-                <option value='Sopot' />
-                <option value='Tokio' />
+                {places.map(v => <option> {v.value}</option>)}
               </datalist>
           </Grid.Column>
            </Grid.Row>
