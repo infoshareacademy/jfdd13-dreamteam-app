@@ -53,7 +53,7 @@ class Search extends Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <Input focus icon="search" placeholder="Wyszukaj..." />
+              <Input size={'massive'} focus icon="search" placeholder="Wyszukaj..." />
             </Grid.Column>
            </Grid.Row>
             <Grid.Row columns={1}>
