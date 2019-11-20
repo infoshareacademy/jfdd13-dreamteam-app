@@ -13,12 +13,12 @@ const continentsOptions = [
 class Search extends Component {
   state = {show: 999}
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
   toggleVisibility = () =>
-    this.setState((prevState) => ({ visible: !prevState.visible }))
+    this.setState((prevState) => ({ visible: !prevState.visible }));
 
   render() {
-    const {show} = this.state
+    const {show} = this.state;
 
     return (
       <div className="Search">
