@@ -12,12 +12,12 @@ function Dashboard() {
                         <h2>Ptaki latają kluczem</h2>
                     </Grid.Column>
                 </Grid.Row>
-                <Grid.Row centered={true}>
+                <Grid.Row >
                     <Grid.Column width={8}>
                         <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
                         <PieChart/>
                     </Grid.Column>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={8} verticalAlign={'middle'}>
                         <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
                         <DataBarChart/>
                     </Grid.Column>
