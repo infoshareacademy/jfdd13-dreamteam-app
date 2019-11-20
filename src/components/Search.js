@@ -31,7 +31,7 @@ class Search extends Component {
 
           <Grid.Row columns={3}>
             <Grid.Column>
-              <Dropdown
+              <Dropdown 
                 placeholder='Wybierz kontynent'
                 focus
                 search
@@ -56,11 +56,6 @@ class Search extends Component {
               <Input size={'massive'} focus icon="search" placeholder="Wyszukaj..." />
             </Grid.Column>
            </Grid.Row>
-            <Grid.Row columns={1}>
-              <Grid.Column>
-                <Form.Button content="Szukaj" onClick={this.toggleVisibility} />
-              </Grid.Column>
-            </Grid.Row>
           </Grid>
         <TripContainer />
       </div>
