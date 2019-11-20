@@ -14,15 +14,15 @@ function TripContainer() {
             <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row columns={3}>
+        <Grid.Row columns={3} >
           <Grid.Column>
-            <Image src={imgSrc} />
+            <Image src={imgSrc} centered={true}/>
           </Grid.Column>
           <Grid.Column>
-            <Image src={imgSrc} />
+            <Image src={imgSrc} centered={true}/>
           </Grid.Column>
           <Grid.Column>
-            <Image src={imgSrc} />
+            <Image src={imgSrc} centered={true}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>
