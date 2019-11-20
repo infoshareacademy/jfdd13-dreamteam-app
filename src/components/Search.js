@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Grid, Header, Form, Input, Dropdown } from 'semantic-ui-react'
-import TripContainer from './TripContainer'
+import React, { Component } from 'react';
+import { Grid, Input, Dropdown, Form } from 'semantic-ui-react';
+import TripContainer from './TripContainer';
 
-const continentsOptions = [
-  {key: 'afr', label: {color: 'black', empty: true, circular:true}, text: "Afryka"},
-  {key: 'apd', label: {color: 'green', empty: true, circular:true}, text: "Ameryka Południowa"},
-  {key: 'apn', label: {color: 'red', empty: true, circular:true}, text: "Ameryka Północna"},
-  {key: 'ant', label: {color: 'white', empty: true, circular:true}, text: "Antarktyda"},
-  {key: 'aus', label: {color: 'blue', empty: true, circular:true}, text: "Australia i Oceania"},
-  {key: 'eur', label: {color: 'grey', empty: true, circular:true}, text: "Europa"}
-]
+const continents = [
+  {key: 'afr', value:1, text: "Afryka"},
+  {key: 'apd', value:2, text: "Ameryka Południowa"},
+  {key: 'apn', value:3, text: "Ameryka Północna"},
+  {key: 'ant', value:4, text: "Antarktyda"},
+  {key: 'aus', value:5, text: "Australia i Oceania"},
+  {key: 'eur', value:6, text: "Europa"}
+];
 const places = [
   {value:'Amsterdam'},
   {value:'Gdańsk'},
@@ -22,7 +22,8 @@ const places = [
   {value:'Sopot' },
   {value:'Tokio'},
   {value:'Vancouver'}
-]
+];
+
 class Search extends Component {
   state = {show: 999}
 
@@ -36,47 +37,36 @@ class Search extends Component {
     return (
       <div className="Search">
         <Grid padded={true}>
-          <Grid.Row columns={1}>
-            <Grid.Column>
-              <Header>Wskaż kierunek!</Header>
-            </Grid.Column>
+          <Grid.Row columns={1} centered={true}>
+            <Grid.Column width={12}>
+              <Input list='places' placeholder='Podaj destynację...' fluid  />
+                <datalist id='places'>
+                  {places.map(v => <option> {v.value}</option>)}
+                </datalist>
+          </Grid.Column>
           </Grid.Row>
-
-          <Grid.Row columns={3}>
-            <Grid.Column>
-              <Dropdown 
-                placeholder='Wybierz kontynent'
-                focus
-                search
-                selection
-                options={continentsOptions}
-              >
-              </Dropdown>
+          <Grid.Row columns={2} centered={true}>
+            <Grid.Column width={6} >
+              <Dropdown clearable fluid options={continents} selection placeholder='Wybierz kontynent...'/>
             </Grid.Column>
-           <Grid.Column as={Form}>
-              <Form.Input
+            <Grid.Column as={Form} width={6} >
+              <Form.Input inline
                 label={`Twój budżet: ${show} PLN`}
                 min={99}
                 max={19999}
-                name="show"
-                onChange={this.handleChange}
                 step={100}
                 type="range"
+                onChange={this.handleChange}
+                name="show"
                 value={show}
               />
             </Grid.Column>
-            <Grid.Column>
-            <Input list='places' placeholder='Podaj destynację...' />
-              <datalist id='places'>
-                {places.map(v => <option> {v.value}</option>)}
-              </datalist>
-          </Grid.Column>
-           </Grid.Row>
-          </Grid>
-        <TripContainer />
+          </Grid.Row>
+      </Grid>
+      <TripContainer />
       </div>
     );
-};
+  };
 }
 export default Search;
 
