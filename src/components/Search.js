@@ -49,7 +49,7 @@ class Search extends Component {
             <Grid.Column width={6} >
               <Dropdown clearable fluid options={continents} selection placeholder='Wybierz kontynent...'/>
             </Grid.Column>
-            <Grid.Column as={Form} width={6} >
+            <Grid.Column as={Form} width={6} textAlign={"right"}>
               <Form.Input inline
                 label={`Twój budżet: ${show} PLN`}
                 min={99}
