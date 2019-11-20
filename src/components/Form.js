@@ -23,8 +23,11 @@ const accountFormSchema = Yup.object().shape({
     .required("Required!"),
   email: Yup.string()
     .required("Required!")
-    .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Podaj e-maila.')
+    .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Podaj e-maila.'),
+  checkbox: Yup.boolean()
+  .oneOf([true], 'Must Accept Terms and Conditions'),
 });
+
 
 
 class Formularz extends React.Component {
@@ -188,7 +191,8 @@ class Formularz extends React.Component {
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.' />
+                  <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
+                  name="checkbox" />
                 </Form.Field>
                 <Button type='submit' disabled={isSubmitting}>Dodaj</Button>
               </Form>
