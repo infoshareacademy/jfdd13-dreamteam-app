@@ -1,6 +1,7 @@
 import React from 'react';
 import PieChart from "./PieChart";
 import {Grid, Image} from "semantic-ui-react";
+import DataBarChart from "./DataChart";
 
 function Dashboard() {
     return (
@@ -18,6 +19,7 @@ function Dashboard() {
                     </Grid.Column>
                     <Grid.Column width={8}>
                         <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+                        <DataBarChart/>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered={true}>
