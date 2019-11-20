@@ -29,6 +29,10 @@ const accountFormSchema = Yup.object().shape({
 
 class Formularz extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   state = {}
   handleChange = (e, { value }) =>
     this.setState(
@@ -48,14 +52,14 @@ class Formularz extends React.Component {
             email: ""
           }}
           validationSchema={accountFormSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            setSubmitting(true);
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 2000);
-          }}
-        >
+          onSubmit={(values, actions) => {
+            fetch('https://dreamteam-app.firebaseio.com/trip.json', {
+                method: 'POST',
+                body: JSON.stringify({ ...values, active: true })
+            }).then(() => {
+                actions.setSubmitting(false);
+            });
+        }}>
           {({
             values,
             errors,
@@ -63,7 +67,7 @@ class Formularz extends React.Component {
             handleChange,
             handleBlur,
             handleSubmit,
-            isSubmitting
+            isSubmitting,
           }) => (
               <Form className={styles.formContainer} onSubmit={handleSubmit}>
                 <Form.Field>
