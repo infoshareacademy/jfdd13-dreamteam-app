@@ -14,20 +14,24 @@ function Dashboard() {
                 </Grid.Row>
                 <Grid.Row >
                     <Grid.Column width={8}>
-                        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+                        <h2>fajny ten donat</h2>
                         <PieChart/>
                     </Grid.Column>
                     <Grid.Column width={8} verticalAlign={'middle'}>
-                        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+                    <h2>a słupki śmiesznie skaczą</h2>
                         <DataBarChart/>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered={true}>
-                    <Grid.Column width={8}>
-                        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+                    <Grid.Column width={8} verticalAlign={'middle'}>
+                        <h3>więcej lorem ipsum</h3>
+                        <p>chcemy więcej </p>
+                        <p>więcej lorem ipsum</p>
                     </Grid.Column>
-                    <Grid.Column width={8}>
-                        <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png'/>
+                    <Grid.Column width={8} verticalAlign={'middle'}>
+                        <h3>co mówią nam te słupeczki?</h3>
+                        <p>...a jak pozbędziemy się tych obrazków imitujących paragrafy </p>
+                        <p>i w to miejsce damy prawdziwe paragrafy, takie z krwi i kości?</p>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
