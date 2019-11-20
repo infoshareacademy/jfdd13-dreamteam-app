@@ -53,8 +53,13 @@ class Search extends Component {
               />
             </Grid.Column>
             <Grid.Column>
-              <Input size={'massive'} focus icon="search" placeholder="Wyszukaj..." />
-            </Grid.Column>
+            <Input list='places' placeholder='Podaj destynację...' />
+              <datalist id='places'>
+                <option value='Gdańsk' />
+                <option value='Gdynia' />
+                <option value='Sopot' />
+              </datalist>
+          </Grid.Column>
            </Grid.Row>
           </Grid>
         <TripContainer />
