@@ -68,7 +68,7 @@ class Formularz extends React.Component {
                 <Form.Field>
                   <h1> Formularz dodawania wycieczki</h1>
                   <label>Tytuł wycieczki</label>
-                  <Input placeholder='Tytuł wycieczki'
+                  <Input placeholder='Wpisz zaproponowany tytuł wycieczki'
                     type="text"
                     name="title"
                     onChange={handleChange}
@@ -80,7 +80,7 @@ class Formularz extends React.Component {
                 </Form.Field>
                 <Form.Field>
                   <label>Data wyjazdu</label>
-                  <Input placeholder='Data wycieczki'
+                  <Input placeholder='Wpisz datę wyjazdu'
                     type="text"
                     name="date"
                     onChange={handleChange}
@@ -124,7 +124,7 @@ class Formularz extends React.Component {
                 </div>
                 <Form.Field>
                   <label>Cena</label>
-                  <Input placeholder='Cena'
+                  <Input placeholder='Wpisz cenę za dobę'
                     type="text"
                     name="price"
                     onChange={handleChange}
@@ -136,7 +136,7 @@ class Formularz extends React.Component {
                 </Form.Field>
                 <Form.Field>
                   <label>Lokalizacja</label>
-                  <Input placeholder='Lokalizacja'
+                  <Input placeholder='Wpisz miasto'
                     type="text"
                     name="place"
                     onChange={handleChange}
