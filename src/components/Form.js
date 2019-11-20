@@ -7,15 +7,16 @@ import { Formik } from "formik";
 const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(20, 'Tytuł za długi, skróć do 20 znaków.')
-    .required("Required!"),
+    .required("Required!")
+    .matches(new RegExp(/^[A-Za-z]+$/), "Możesz używac tylko liter."),
   date: Yup.string()
-    .min(8, "Too short! Min 8 chars")
-    .matches(new RegExp(), 'Zły format daty.')
+    .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format daty.')
     .required("Required!"),
   price: Yup.string()
-    .matches(new RegExp(), 'Podaj cenę.')
+    .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, użyj cyfr.')
     .required("Required!"),
   place: Yup.string()
+    .matches(new RegExp(/^[A-Za-z]+$/), "Możesz używac tylko liter.")
     .required("Required!"),
   description: Yup.string()
     .max(200, "Opis za długi, skróć tekst do 200 znaków.")
@@ -76,10 +77,12 @@ class Formularz extends React.Component {
                     value={values.title}
                     touched={touched}
                     errors={errors} />
-                    {errors.title && touched.title && errors.title}
+                    <div className={styles.error}>
+                  {errors.title && touched.title && errors.title}
+                  </div>
                 </Form.Field>
                 <Form.Field>
-                  <label>Data wyjazdu</label>
+                  <label>Data wyjazdu w formacie DD/MM/YYYY</label>
                   <Input placeholder='Wpisz datę wyjazdu'
                     type="text"
                     name="date"
@@ -87,8 +90,11 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.date}
                     touched={touched}
-                    errors={errors} />
-                    {errors.date && touched.date && errors.date}
+                    errors={errors}
+                    />
+                  <div className={styles.error}>
+                  {errors.date && touched.date && errors.date}
+                  </div>
                 </Form.Field>
                 <Form.Field>
                   <b>Typ wycieczki</b>
@@ -101,6 +107,7 @@ class Formularz extends React.Component {
                       value='this'
                       checked={this.state.value === 'this'}
                       onChange={this.handleChange}
+                      checked
                     />
                   </Form.Field>
                   <Form.Field>
@@ -123,7 +130,7 @@ class Formularz extends React.Component {
                   </Form.Field>
                 </div>
                 <Form.Field>
-                  <label>Cena</label>
+                  <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
                     type="text"
                     name="price"
@@ -132,7 +139,9 @@ class Formularz extends React.Component {
                     value={values.price}
                     touched={touched}
                     errors={errors} />
+                    <div className={styles.error}>
                   {errors.price && touched.price && errors.price}
+                  </div>
                 </Form.Field>
                 <Form.Field>
                   <label>Lokalizacja</label>
@@ -144,20 +153,22 @@ class Formularz extends React.Component {
                     value={values.place}
                     touched={touched}
                     errors={errors} />
-                     {errors.place && touched.place && errors.place}
+                    <div className={styles.error}>
+                  {errors.place && touched.place && errors.place}</div>
                 </Form.Field>
                 <Form.Field>
-                <label>Opis wycieczki</label>
-                <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę w kilku zdaniach, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
-                  type="text"
-                  name="description"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.description}
-                  touched={touched}
-                  errors={errors} />
-                  {errors.description && touched.description && errors.description}
-                  </Form.Field>
+                  <label>Opis wycieczki</label>
+                  <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę w kilku zdaniach, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
+                    type="text"
+                    name="description"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.description}
+                    touched={touched}
+                    errors={errors} />
+                    <div className={styles.error}>
+                  {errors.description && touched.description && errors.description}</div>
+                </Form.Field>
                 <Form.Field>
                   <label>Twój e-mail</label>
                   <Input placeholder='Wpisz e-mail'
@@ -168,7 +179,9 @@ class Formularz extends React.Component {
                     value={values.email}
                     touched={touched}
                     errors={errors} />
+                    <div className={styles.error}>
                   {errors.email && touched.email && errors.email}
+                  </div>
                 </Form.Field>
                 <Form.Field>
                   <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.' />
