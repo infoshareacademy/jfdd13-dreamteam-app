@@ -19,8 +19,7 @@ const accountFormSchema = Yup.object().shape({
     .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter.")
     .required("Pole wymagane."),
   description: Yup.string()
-    .max(200, "Opis za długi, skróć tekst do 200 znaków.")
-    .required("Pole wymagane."),
+    .max(200, "Opis za długi, skróć tekst do 200 znaków."),
   email: Yup.string()
     .required("Pole wymagane.")
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
