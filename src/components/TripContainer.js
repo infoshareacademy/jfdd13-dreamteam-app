@@ -4,7 +4,7 @@ function TripContainer() {
   return (
   
     <div className="TripContainer">
-      <h1>we believe all of our amazing trips we'll be here </h1>
+      <h1>we believe all of our amazing trips will render here </h1>
 
     </div> 
   );
