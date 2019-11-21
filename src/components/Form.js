@@ -115,7 +115,7 @@ class Formularz extends React.Component {
                       value='this'
                       checked={this.state.value === 'this'}
                       onChange={this.handleChange}
-                      checked
+                      
                     />
                   </Form.Field>
                   <Form.Field>
