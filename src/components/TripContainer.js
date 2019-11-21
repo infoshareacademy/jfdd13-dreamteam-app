@@ -5,13 +5,11 @@ const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyC
 
 function TripContainer() {
   return (
-  
     <div className="TripContainer">
-
-      <Grid padded={true}>
+  <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>    
+    <Grid padded={true}>
         <Grid.Row columns={1}>
-          <Grid.Column>
-            <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>
+          <Grid.Columnn>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3} >
