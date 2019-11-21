@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 
 function Navbar() {
@@ -22,33 +22,33 @@ function Navbar() {
       icon='labeled'
       inverted
       vertical
-      visible="true"
+      visible={true}
       width='thin'
     >
-      <Link to="/main" exact>
-      <Menu.Item as='a'>
+      <NavLink to="/main" exact>
+      <Menu.Item>
         <Icon name='home' />
         Dashboard
       </Menu.Item>
-    </Link>
-      <Link to="/search" exact>
-      <Menu.Item as='a'>
+    </NavLink>
+      <NavLink to="/search" exact>
+      <Menu.Item>
         <Icon name='search' />
         Search
       </Menu.Item>
-      </Link>
-      <Link to="/form/" exact>
-      <Menu.Item as='a'>
+      </NavLink>
+      <NavLink to="/form/" exact>
+      <Menu.Item>
         <Icon name='add' />
         Add
       </Menu.Item>
-      </Link>
-      <Link to="/fav" exact>
-      <Menu.Item as='a'>
+      </NavLink>
+      <NavLink to="/fav" exact>
+      <Menu.Item>
         <Icon name='heart' />
         Fav
       </Menu.Item>
-      </Link>
+      </NavLink>
     </Sidebar>
   </Sidebar.Pushable>
   )
