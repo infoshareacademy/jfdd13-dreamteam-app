@@ -4,7 +4,7 @@ import {Heart} from './Heart'
 
 class FinalPage extends Component {
   
-  state = { open: false, favourites: false, active: content }
+  state = { open: false, favourites: false }
   
   show = (dimmer) => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
@@ -44,8 +44,8 @@ class FinalPage extends Component {
               positive
               icon={`heart ${this.state.favourites ? '' : 'outline'}`}
               labelPosition='right'
-              content = {this.state.active ? "Ulubione" : "Dodaj do ulubionych"}
-              // content="Ulubione"
+              // content = {this.state.active ? "Ulubione" : "Dodaj do ulubionych"}
+              content="Ulubione"
               onClick={() => {this.setState({favourites : !this.state.favourites})}}
               
               />
