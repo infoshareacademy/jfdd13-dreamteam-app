@@ -24,8 +24,8 @@ const accountFormSchema = Yup.object().shape({
   email: Yup.string()
     .required("Pole wymagane.")
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
-  checkbox: Yup.boolean()
-  .oneOf([true], 'Zaznacz pole powyzej'),
+  terms: Yup.boolean()
+  .oneOf([true], 'Zaznacz pole powyżej.'),
 });
 
 
@@ -52,7 +52,8 @@ class Formularz extends React.Component {
             price: "",
             place: "",
             description: "",
-            email: ""
+            email: "",
+            terms: false
           }}
           validationSchema={accountFormSchema}
           onSubmit={(values, actions) => {
@@ -70,6 +71,7 @@ class Formularz extends React.Component {
             handleChange,
             handleBlur,
             handleSubmit,
+            setFieldValue,
             isSubmitting,
           }) => (
               <Form className={styles.formContainer} onSubmit={handleSubmit}>
@@ -191,8 +193,11 @@ class Formularz extends React.Component {
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <Checkbox label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
-                  name="checkbox" />
+                  <Checkbox checked={values.terms} onChange={() => setFieldValue('terms', !values.terms)} label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
+                  name="terms" />
+                  <div className={styles.error}>
+                  {errors.terms && touched.terms && errors.terms}
+                  </div>
                 </Form.Field>
                 <Button type='submit' disabled={isSubmitting}>Dodaj</Button>
               </Form>
