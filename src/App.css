@@ -27,6 +27,7 @@
 main {
   display: flex !important;
   flex-direction: column;
+  flex: 1;
 }
 
 .search {
