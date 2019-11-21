@@ -15,9 +15,9 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <Appbar/>
                 <Navbar/>
-                <main className={'main'}>
+                <main>
+                    <Appbar/>
                     <Switch>
                         <Route exact strict path="/"
                                component={() => <h1>we are the dreamTeam and this is our App!</h1>}/>

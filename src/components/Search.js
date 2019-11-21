@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Input, Dropdown, Form } from 'semantic-ui-react';
+import { Grid, Input, Dropdown, Form, Container } from 'semantic-ui-react';
 import TripContainer from './TripContainer';
 
 const continents = [
@@ -35,7 +35,7 @@ class Search extends Component {
     const {show} = this.state;
 
     return (
-      <div className="Search">
+      <div className="search">
         <Grid padded={true}>
           <Grid.Row columns={1} centered={true}>
             <Grid.Column width={12}>
@@ -62,8 +62,8 @@ class Search extends Component {
               />
             </Grid.Column>
           </Grid.Row>
-      </Grid>
-      <TripContainer />
+        </Grid>
+        <TripContainer />
       </div>
     );
   };

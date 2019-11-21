@@ -6,14 +6,10 @@ import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 function Navbar() {
 
   const navStyle = {
-    position: 'fixed',
-    left: '0',
-    width: '150px',
-    height: "100%",
-    minHeight: "95vh",
-    margin: '0',
-    border: 'none',
-    borderRadius: '0'
+    width: '30%',
+    height: '100vh',
+    border: 0,
+    borderRadius: 0
   };
   return (
   <Sidebar.Pushable as={Segment} style={navStyle}>
