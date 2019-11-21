@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import {Heart} from './Heart'  
 
 class FinalPage extends Component {
-  state = { open: false }
-
+  
+  state = { open: false, favourites: false, active: content }
+  
   show = (dimmer) => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
@@ -12,43 +14,48 @@ class FinalPage extends Component {
 
     return (
       <div>
-        <Button onClick={this.show(true)}>Default</Button>
-        <Button onClick={this.show('inverted')}>Inverted</Button>
-        <Button onClick={this.show('blurring')}>Blurring</Button>
+        <Button onClick={this.show('blurring')}>Zdjęcie miniaturka</Button>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Select a Photo</Modal.Header>
+          <Modal.Header>Gdynia Główna Osobowa</Modal.Header>
           <Modal.Content image>
             <Image
               wrapped
               size='medium'
-              src='https://react.semantic-ui.com/images/avatar/large/rachel.png'
+              src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Ulica%C5%9Awi%C4%99toja%C5%84ska_Gdynia.jpg/1200px-Ulica%C5%9Awi%C4%99toja%C5%84ska_Gdynia.jpg'
             />
             <Modal.Description>
-              <Header>Default Profile Image</Header>
+              <Header>Gdynia</Header>
               <p>
-                We've found the following gravatar image associated with your
-                e-mail address.
+                <li>Lokalizacja:Gdynia, wygwizdowie</li>
+                <li>Liczba łóżek:1 dla 6 osób</li>
+                <li>Łazienka: brak</li>  
+                <li>Toaleta:500m od lokalizacji</li>                  
+
               </p>
-              <p>Is it okay to use this photo?</p>
+              <p>Możesz polubić</p>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              Nope
+              Wyjdź
             </Button>
             <Button
               positive
-              icon='checkmark'
+              icon={`heart ${this.state.favourites ? '' : 'outline'}`}
               labelPosition='right'
-              content="Yep, that's me"
-              onClick={this.close}
-            />
+              content = {this.state.active ? "Ulubione" : "Dodaj do ulubionych"}
+              // content="Ulubione"
+              onClick={() => {this.setState({favourites : !this.state.favourites})}}
+              
+              />
+    
           </Modal.Actions>
         </Modal>
       </div>
     )
   }
-}
+  
 
+  }
 export default FinalPage;
