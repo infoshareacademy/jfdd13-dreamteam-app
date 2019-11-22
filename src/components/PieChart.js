@@ -30,8 +30,8 @@ const renderCustomizedLabel = ({
 export default class PieChartComponent extends PureComponent {
 
     render() {
-        return (<div style={{display: 'flex', justifyContent: 'center'}}>
-            <PieChart width={400} height={400}>
+        return (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '500px'}}>
+            <PieChart width={400} height={300}>
                 <Pie
                     data={data}
                     cx={200}

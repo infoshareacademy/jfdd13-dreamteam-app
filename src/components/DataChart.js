@@ -21,7 +21,7 @@ const data = [
 export default class DataBarChart extends PureComponent {
 
     render() {
-        return (<div style={{display: 'flex', justifyContent: 'center'}}>
+        return (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end',height: '500px'}}>
             <BarChart
                 width={500}
                 height={300}
