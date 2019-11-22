@@ -24,7 +24,7 @@ function Navbar() {
       width='thin'
     >
       <NavLink to="/main" exact>
-      <Menu.Item style={{marginTop: '5vh'}}>
+      <Menu.Item style={{marginTop: '60px'}}>
         <Icon name='home' />
         Dashboard
       </Menu.Item>
