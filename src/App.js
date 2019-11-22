@@ -10,7 +10,6 @@ import Favourites from "./components/Favourites";
 import Appbar from "./components/Appbar";
 import FinalPage from "./components/FinalPage";
 import 'semantic-ui-css/semantic.min.css'
-import PieChart from './components/PieChart'
 
 function App() {
     return (

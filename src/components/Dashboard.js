@@ -1,5 +1,5 @@
 import React from 'react';
-import PieChart from "./PieChart";
+import PieChartComponent from "./PieChart";
 import {Grid, Image} from "semantic-ui-react";
 import DataBarChart from "./DataChart";
 
@@ -15,7 +15,7 @@ function Dashboard() {
                 <Grid.Row >
                     <Grid.Column width={8}>
                         <h2>fajny ten donat</h2>
-                        <PieChart/>
+                        <PieChartComponent/>
                     </Grid.Column>
                     <Grid.Column width={8} verticalAlign={'middle'}>
                     <h2>a słupki śmiesznie skaczą</h2>

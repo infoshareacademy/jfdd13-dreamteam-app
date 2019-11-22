@@ -1,26 +1,54 @@
-import React from 'react';
-import {Button} from "semantic-ui-react";
-import PieChart from "react-minimal-pie-chart";
+import React, { PureComponent } from 'react';
+import {
+    PieChart, Pie, Sector, Cell,
+} from 'recharts';
 
-const pieChart = ()=> {
-    console.log('PieChart message');
+const data = [
+    { name: 'Group A', value: 400 },
+    { name: 'Group B', value: 300 },
+    { name: 'Group C', value: 300 },
+    { name: 'Group D', value: 200 },
+];
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+                                   cx, cy, midAngle, innerRadius, outerRadius, percent, index,
+                               }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
     return (
-        <PieChart
-            data={[
-                { title: 'One', value: 10, color: '#E38627' },
-                { title: 'Two', value: 15, color: '#C13C37' },
-                { title: 'Three', value: 20, color: '#6A2135' },
-            ]}
-            lineWidth={80}
-            // cx={20}
-            // cy={20}
-            ratio={1}
-            // radius={20}
-            style={{height: '300px', width: '300px', margin: '0 auto'}}
-            label={true}
-
-        />
-    )
+        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            {`${(percent * 100).toFixed(0)}%`}
+        </text>
+    );
 };
 
-export default pieChart
+export default class PieChartComponent extends PureComponent {
+
+    render() {
+        return (<div style={{display: 'flex', justifyContent: 'center'}}>
+            <PieChart width={400} height={400}>
+                <Pie
+                    data={data}
+                    cx={200}
+                    cy={200}
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                    margin={{top: 0, right: 'auto', left: 'auto', bottom: 0}}
+                >
+                    {
+                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                    }
+                </Pie>
+            </PieChart>
+            </div>
+        );
+    }
+}
