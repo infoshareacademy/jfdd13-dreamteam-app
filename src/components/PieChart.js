@@ -40,8 +40,10 @@ export default class PieChartComponent extends PureComponent {
                     label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
+                    viewBox="0 100 300 200"
                     dataKey="value"
                     margin={{top: 0, right: 'auto', left: 'auto', bottom: 0}}
+                    style={{display: 'flex', alignItems: 'center'}}
                 >
                     {
                         data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
