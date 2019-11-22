@@ -45,13 +45,13 @@ function TripContainer() {
         />
         <Modal.Description>
           <Header>Gdynia</Header>
-          <p>
+          <ul style={{padding: '0 0 0 1.5rem'}}>
             <li>Lokalizacja:Gdynia, wygwizdowie</li>
             <li>Liczba łóżek:1 dla 6 osób</li>
             <li>Łazienka: brak</li>
             <li>Toaleta:500m od lokalizacji</li>
 
-          </p>
+          </ul>
           <p>Możesz polubić</p>
         </Modal.Description>
       </Modal.Content>
