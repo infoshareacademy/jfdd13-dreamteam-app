@@ -7,6 +7,7 @@ const data = [
     { name: 'Azja', value: 400 },
     { name: 'Europa', value: 300 },
     { name: 'Ameryka', value: 300 },
+    { name: 'Afryka', value: 150 },
     { name: 'Ameryka Południowa', value: 200 },
     { name: 'Antarktyda', value: 200 },
     { name: 'Australia', value: 200 }
