@@ -8,16 +8,20 @@ const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(40, 'Tytuł za długi, skróć do 40 znaków.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter."),
+    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
     .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
     .required("Pole wymagane."),
   price: Yup.string()
     .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
     .required("Pole wymagane."),
-  place: Yup.string()
+  city: Yup.string()
     .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter.")
     .required("Pole wymagane."),
+  continent: Yup.string()
+    .max(20, 'Tekst za długi.')
+    .required("Pole wymagane.")
+    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
   description: Yup.string()
     .max(200, "Opis za długi, skróć tekst do 200 znaków."),
   email: Yup.string()
@@ -55,7 +59,8 @@ class Formularz extends React.Component {
             title: "",
             date: "",
             price: "",
-            place: "",
+            city: "",
+            continent: "",
             description: "",
             email: "",
             terms: false
@@ -112,30 +117,7 @@ class Formularz extends React.Component {
                     {errors.date && touched.date && errors.date}
                   </div>
                 </Form.Field>
-                <Form.Field>
-                  <b>Typ wycieczki (zaznaczenie opcjonalne) </b>
-                </Form.Field>
-                <div className={styles.radioButtons}>
-                  <Form.Field>
-                    <Radio
-                      label='Dla rodzin'
-                      name='radioGroup'
-                      value='this'
-                      checked={this.state.value === 'this'}
-                      onChange={this.handleChange}
-                      
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <Radio
-                      label='Dla seniorów'
-                      name='radioGroup'
-                      value='that'
-                      checked={this.state.value === 'that'}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                </div>
+ 
                 <Form.Field>
                   <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
@@ -154,14 +136,27 @@ class Formularz extends React.Component {
                   <label>Lokalizacja</label>
                   <Input placeholder='Wpisz miasto'
                     type="text"
-                    name="place"
+                    name="city"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.place}
+                    value={values.city}
                     touched={touched}
                     errors={errors} />
                   <div className={styles.error}>
-                    {errors.place && touched.place && errors.place}</div>
+                    {errors.city && touched.city && errors.city}</div>
+                </Form.Field>
+                <Form.Field>
+                  <label>Kontynent</label>
+                  <Input placeholder='Wpisz kontynent'
+                    type="text"
+                    name="continent"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.continent}
+                    touched={touched}
+                    errors={errors} />
+                  <div className={styles.error}>
+                    {errors.continent && touched.continent && errors.continent}</div>
                 </Form.Field>
                 <Form.Field>
                   <label>Opis wycieczki</label>
