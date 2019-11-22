@@ -8,6 +8,7 @@ function Navbar() {
     // width: '30%',
     minWidth: '150px',
     height: '100vh',
+    position: 'fixed',
     border: 0,
     borderRadius: 0
   };
