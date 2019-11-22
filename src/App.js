@@ -8,6 +8,7 @@ import Form from "./components/Form";
 import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import Appbar from "./components/Appbar";
+import FinalPage from "./components/FinalPage";
 import 'semantic-ui-css/semantic.min.css'
 import PieChart from './components/PieChart'
 
@@ -15,9 +16,9 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <Appbar/>
                 <Navbar/>
-                <main className={'main'}>
+                <main>
+                    <Appbar/>
                     <Switch>
                         <Route exact strict path="/"
                                component={() => <h1>we are the dreamTeam and this is our App!</h1>}/>
