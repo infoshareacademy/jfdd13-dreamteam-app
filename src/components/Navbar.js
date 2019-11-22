@@ -5,7 +5,8 @@ import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 function Navbar() {
 
   const navStyle = {
-    width: '30%',
+    // width: '30%',
+    minWidth: '150px',
     height: '100vh',
     border: 0,
     borderRadius: 0

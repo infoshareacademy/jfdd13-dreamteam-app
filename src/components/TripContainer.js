@@ -4,13 +4,14 @@ import { Grid, Image, Header, Container, Pagination, Modal, Button } from 'seman
 const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
 function TripContainer() {
-  const [open, setOpen] = useState(false)
-  const [favourites, setFavourites] = useState(false) 
-  const trips = [imgSrc, imgSrc, imgSrc]
-  const show = () => setOpen(true)
+  const [open, setOpen] = useState(false);
+  const [favourites, setFavourites] = useState(false);
+  const trips = [imgSrc, imgSrc, imgSrc];
+  const show = () => setOpen(true);
   const close = () => setOpen(false);
   return (
-      <div><Grid padded={true} container style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'column' }}>
+      <div>
+      <Grid container style={{ flex: 1, justifyContent: 'center', flexDirection: 'column', margin:'auto !important' }}>
         <Grid.Row columns={1} style={{flex: 0}}>
           <Grid.Column>
             <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>
@@ -47,8 +48,8 @@ function TripContainer() {
           <p>
             <li>Lokalizacja:Gdynia, wygwizdowie</li>
             <li>Liczba łóżek:1 dla 6 osób</li>
-            <li>Łazienka: brak</li>  
-            <li>Toaleta:500m od lokalizacji</li>                  
+            <li>Łazienka: brak</li>
+            <li>Toaleta:500m od lokalizacji</li>
 
           </p>
           <p>Możesz polubić</p>
@@ -65,13 +66,13 @@ function TripContainer() {
           content = {favourites ? "Ulubione" : "Dodaj do ulubionych"}
           // content="Ulubione"
           onClick={() => {setFavourites(!favourites)}}
-          
+
           />
 
       </Modal.Actions>
     </Modal>
     </div>
   );
-};
+}
 
 export default TripContainer;
