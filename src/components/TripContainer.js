@@ -36,7 +36,7 @@ function TripContainer() {
         </Grid.Row>
       </Grid>
       <Modal dimmer={'blurring'} open={open} onClose={close}>
-      <Modal.Header>Gdynia Główna Osobowa</Modal.Header>
+      <Modal.Header>Tytuł</Modal.Header>
       <Modal.Content image>
         <Image
           wrapped
@@ -44,12 +44,12 @@ function TripContainer() {
           src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
         />
         <Modal.Description>
-          <Header>Gdynia</Header>
+          <Header>Miasto</Header>
           <ul style={{padding: '0 0 0 1.5rem'}}>
-            <li>Lokalizacja:Gdynia, wygwizdowie</li>
-            <li>Liczba łóżek:1 dla 6 osób</li>
-            <li>Łazienka: brak</li>
-            <li>Toaleta:500m od lokalizacji</li>
+            <li>Kontynent</li>
+            <li>Cena za dobę za osobę</li>
+            <li>Data wyjazdu</li>
+            <li>Opis</li>
 
           </ul>
           <p>Możesz polubić</p>
