@@ -12,8 +12,8 @@ const continents = [
 ];
 const places = [
   {value:'Amsterdam'},
-  {value:'Gdańsk'},
-  {value:'Gdynia'},
+  {value:'Trójmiasto'},
+  {value:'Kraków'},
   {value:'Innsbruck'},
   {value:'Johannesburg'},
   {value:'Londyn'},
@@ -21,7 +21,18 @@ const places = [
   {value:'Mexico City'},
   {value:'Sopot' },
   {value:'Tokio'},
-  {value:'Vancouver'}
+  {value:'Vancouver'},
+  {value:'Rzym'},
+  {value:'Neapol'},
+  {value:'Madryt'},
+  {value:'Wiedeń' },
+  {value:'Berlin'},
+  {value:'Monachium'},
+  {value:'Nowy Jork'},
+  {value:'Sydney'},
+  {value:'Bangkok' },
+  {value:'Moskwa'},
+  {value:'Lizbona'}
 ];
 
 class Search extends Component {
@@ -53,7 +64,7 @@ class Search extends Component {
               <Form.Input inline
                 label={`Twój budżet: ${show} PLN`}
                 min={99}
-                max={19999}
+                max={2000}
                 step={100}
                 type="range"
                 onChange={this.handleChange}

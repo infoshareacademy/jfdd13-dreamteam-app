@@ -6,8 +6,7 @@ function Appbar () {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '5vh',
-        minHeight: '57.4px',
+        height: '60px',
         backgroundColor: '#1b1c1d',
         fontSize: '1.5rem',
         color: '#fff'
