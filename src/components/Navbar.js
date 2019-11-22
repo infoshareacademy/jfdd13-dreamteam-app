@@ -8,6 +8,7 @@ function Navbar() {
     // width: '30%',
     minWidth: '150px',
     height: '100vh',
+    position: 'fixed',
     border: 0,
     borderRadius: 0
   };
@@ -23,7 +24,7 @@ function Navbar() {
       width='thin'
     >
       <NavLink to="/main" exact>
-      <Menu.Item>
+      <Menu.Item style={{marginTop: '5vh'}}>
         <Icon name='home' />
         Dashboard
       </Menu.Item>

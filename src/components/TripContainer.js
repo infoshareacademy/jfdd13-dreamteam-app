@@ -5,7 +5,7 @@ const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyC
 
 function TripContainer() {
   return (
-      <Grid container style={{ flex: 1, justifyContent: 'center', flexDirection: 'column', margin:'auto !important' }}>
+      <Grid container style={{ flex: 1, justifyContent: 'center', flexDirection: 'column', margin:'auto !important' }} width={12}>
         <Grid.Row columns={1} style={{flex: 0}}>
           <Grid.Column>
             <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>
