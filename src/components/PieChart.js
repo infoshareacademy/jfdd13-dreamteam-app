@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-    PieChart, Pie, Sector, Cell,
+    PieChart, Pie, Sector, Cell, Tooltip
 } from 'recharts';
 
 const data = [
@@ -39,10 +39,10 @@ export default class PieChartComponent extends PureComponent {
                     cx={200}
                     cy={200}
                     labelLine={false}
-                    label={renderCustomizedLabel}
+                    // label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
-                    viewBox="0 100 300 200"
+                    viewBox="0 100 400 200"
                     dataKey="value"
                     margin={{top: 0, right: 'auto', left: 'auto', bottom: 0}}
                     style={{display: 'flex', alignItems: 'center'}}
@@ -51,6 +51,7 @@ export default class PieChartComponent extends PureComponent {
                         data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                     }
                 </Pie>
+                <Tooltip/>
             </PieChart>
             </div>
         );
