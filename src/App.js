@@ -8,7 +8,7 @@ import Form from "./components/Form";
 import Search from "./components/Search";
 import Favourites from "./components/Favourites";
 import Appbar from "./components/Appbar";
-import FinalPage from "./components/FinalPage";
+// import FinalPage from "./components/FinalPage";
 import 'semantic-ui-css/semantic.min.css'
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
                         <Route component={() => <h1>404 - sadface</h1>}/>
                     </Switch>
                 </main>
-                <FinalPage />>
             </div>
         </BrowserRouter>
     );
