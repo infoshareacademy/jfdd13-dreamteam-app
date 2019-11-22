@@ -1,4 +1,7 @@
 .App {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
   text-align: center;
 }
 
@@ -21,7 +24,14 @@
   color: #09d3ac;
 }
 
-.main {
+main {
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
+}
 
-  padding: 0 0 0 150px;
+.search {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }

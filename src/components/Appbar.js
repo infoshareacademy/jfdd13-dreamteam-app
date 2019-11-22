@@ -7,19 +7,20 @@ function Appbar () {
         alignItems: 'center',
         justifyContent: 'center',
         height: '5vh',
+        minHeight: '57.4px',
         backgroundColor: '#1b1c1d',
         fontSize: '1.5rem',
         color: '#fff'
     };
   return (
 
-    <div className="Appbar">
+    <header className="Appbar">
 
       <h1 style={appbarStyles}>
           <Icon name="paper plane outline"/>
           WAY.TO
       </h1>
-    </div>);
+    </header>);
 };
 
 export default Appbar;
