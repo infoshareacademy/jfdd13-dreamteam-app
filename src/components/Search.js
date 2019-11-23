@@ -8,6 +8,7 @@ const continents = [
   {key: 'apn', value:3, text: "Ameryka Północna"},
   {key: 'ant', value:4, text: "Antarktyda"},
   {key: 'aus', value:5, text: "Australia i Oceania"},
+  {key: 'azj', value:5, text: "Azja"},
   {key: 'eur', value:6, text: "Europa"}
 ];
 const places = [
@@ -52,7 +53,7 @@ class Search extends Component {
             <Grid.Column width={12}>
               <Input list='places' placeholder='Podaj destynację...' fluid  />
                 <datalist id='places'>
-                  {places.map(v => <option> {v.value}</option>)}
+                  {places.map(v => <option> {v.value}</option>).sort}
                 </datalist>
           </Grid.Column>
           </Grid.Row>

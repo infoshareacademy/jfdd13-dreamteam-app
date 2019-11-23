@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Image, Header, Container, Pagination, Modal, Button } from 'semantic-ui-react';
+import {Grid, Image, Header, Pagination, Modal, Button } from 'semantic-ui-react';
 import {data as trips} from '../data'
 
 const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -21,9 +21,18 @@ function TripContainer() {
         <Grid.Row columns={3} style={{ flex: 1 }}>
           {(trips).map(trip => {
             return <Grid.Column key={trip}>
-              <Image onClick={show} src={trip.img} centered={true}/>
+              <Image className="TripImage" onClick={show} src={trip.img} 
+              label={{
+              ribbon: true,
+              color: 'blue',
+              content: `${trip.city}`
+              }}
+              centered={true}
+              />
+              <p>{trip.title}</p>
+
             </Grid.Column>
-          })}
+          }).slice(0,6)}
         </Grid.Row>
         <Grid.Row columns={1} centered={true} style={{ minHeight: '100px' }}>
           <Pagination
