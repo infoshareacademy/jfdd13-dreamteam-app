@@ -7,7 +7,7 @@ const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyC
 function TripContainer() {
   const [open, setOpen] = useState(false);
   const [favourites, setFavourites] = useState(false);
-  const trips = [imgSrc, imgSrc, imgSrc];
+  // const trips = [imgSrc, imgSrc, imgSrc];
   const show = () => setOpen(true);
   const close = () => setOpen(false);
   return (
@@ -19,9 +19,9 @@ function TripContainer() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3} style={{ flex: 1 }}>
-          {trips.map(trip => {
+          {(trips).map(trip => {
             return <Grid.Column key={trip}>
-              <Image onClick={show} src={trip} centered={true}/>
+              <Image onClick={show} src={trip.img} centered={true}/>
             </Grid.Column>
           })}
         </Grid.Row>
