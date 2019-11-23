@@ -32,7 +32,7 @@ function TripContainer() {
               <p>{trip.title}</p>
 
             </Grid.Column>
-          })}
+          }).slice(0,6)}
         </Grid.Row>
         <Grid.Row columns={1} centered={true} style={{ minHeight: '100px' }}>
           <Pagination
