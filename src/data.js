@@ -13,7 +13,7 @@ const data = [
         "price": "800",
         "city": "Bergen",
         "continent": "Europa",
-        "description": "Sprawdź, czy jesteś szczęściarzem i czy uda Ci się trafić na słoneczną pogodę w jednym z norweskich miast, które słynie z deszczowego klimatu. Kup hot-doga z renifera i ruszaj na wycieczk, żeby poznać bliżej piękne norweskie fiordy."
+        "description": "Sprawdź, czy jesteś szczęściarzem i czy uda Ci się trafić na słoneczną pogodę w jednym z norweskich miast, które słynie z deszczowego klimatu. Kup hot-doga z renifera i ruszaj na wycieczkę, żeby bliżej poznać piękne norweskie fiordy."
     },
     {
         "title": "Egipskie leżakowanie pod palmą",
