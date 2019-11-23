@@ -6,40 +6,50 @@ import { Formik } from "formik";
 
 const accountFormSchema = Yup.object().shape({
   title: Yup.string()
-    .max(20, 'Tytuł za długi, skróć do 20 znaków.')
+    .max(40, 'Tytuł za długi, skróć do 40 znaków.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter."),
+    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
     .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
     .required("Pole wymagane."),
   price: Yup.string()
     .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
     .required("Pole wymagane."),
-  place: Yup.string()
+  city: Yup.string()
     .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter.")
     .required("Pole wymagane."),
+  continent: Yup.string()
+    .max(20, 'Tekst za długi.')
+    .required("Pole wymagane.")
+    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
   description: Yup.string()
     .max(200, "Opis za długi, skróć tekst do 200 znaków."),
   email: Yup.string()
     .required("Pole wymagane.")
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
   terms: Yup.boolean()
-  .oneOf([true], 'Zaznacz pole powyżej.'),
+    .oneOf([true], 'Zaznacz pole powyżej.'),
 });
 
 
 
 class Formularz extends React.Component {
 
-  constructor(props) {
-    super(props);
+  state = {
+    thankYouVisible: false
   }
 
-  state = {}
   handleChange = (e, { value }) =>
     this.setState(
       { value }
     )
+
+  handleThankYouVisible() {
+
+    this.setState({
+      thankYouVisible: true
+    })
+  }
 
   render() {
     return (
@@ -49,7 +59,8 @@ class Formularz extends React.Component {
             title: "",
             date: "",
             price: "",
-            place: "",
+            city: "",
+            continent: "",
             description: "",
             email: "",
             terms: false
@@ -57,12 +68,14 @@ class Formularz extends React.Component {
           validationSchema={accountFormSchema}
           onSubmit={(values, actions) => {
             fetch('https://dreamteam-app.firebaseio.com/trip.json', {
-                method: 'POST',
-                body: JSON.stringify({ ...values, active: true })
+              method: 'POST',
+              body: JSON.stringify({ ...values, active: true })
             }).then(() => {
-                actions.setSubmitting(false);
+              actions.setSubmitting(false);
+              actions.resetForm();
+              this.handleThankYouVisible()
             });
-        }}>
+          }}>
           {({
             values,
             errors,
@@ -85,8 +98,8 @@ class Formularz extends React.Component {
                     value={values.title}
                     touched={touched}
                     errors={errors} />
-                    <div className={styles.error}>
-                  {errors.title && touched.title && errors.title}
+                  <div className={styles.error}>
+                    {errors.title && touched.title && errors.title}
                   </div>
                 </Form.Field>
                 <Form.Field>
@@ -99,44 +112,12 @@ class Formularz extends React.Component {
                     value={values.date}
                     touched={touched}
                     errors={errors}
-                    />
+                  />
                   <div className={styles.error}>
-                  {errors.date && touched.date && errors.date}
+                    {errors.date && touched.date && errors.date}
                   </div>
                 </Form.Field>
-                <Form.Field>
-                  <b>Typ wycieczki</b>
-                </Form.Field>
-                <div className={styles.radioButtons}>
-                  <Form.Field>
-                    <Radio
-                      label='Dla rodzin'
-                      name='radioGroup'
-                      value='this'
-                      checked={this.state.value === 'this'}
-                      onChange={this.handleChange}
-                      
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <Radio
-                      label='Dla seniorów'
-                      name='radioGroup'
-                      value='that'
-                      checked={this.state.value === 'that'}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <Radio
-                      label='Dla x'
-                      name='radioGroup'
-                      value='thut'
-                      checked={this.state.value === 'thut'}
-                      onChange={this.handleChange}
-                    />
-                  </Form.Field>
-                </div>
+ 
                 <Form.Field>
                   <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
@@ -147,22 +128,35 @@ class Formularz extends React.Component {
                     value={values.price}
                     touched={touched}
                     errors={errors} />
-                    <div className={styles.error}>
-                  {errors.price && touched.price && errors.price}
+                  <div className={styles.error}>
+                    {errors.price && touched.price && errors.price}
                   </div>
                 </Form.Field>
                 <Form.Field>
                   <label>Lokalizacja</label>
                   <Input placeholder='Wpisz miasto'
                     type="text"
-                    name="place"
+                    name="city"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.place}
+                    value={values.city}
                     touched={touched}
                     errors={errors} />
-                    <div className={styles.error}>
-                  {errors.place && touched.place && errors.place}</div>
+                  <div className={styles.error}>
+                    {errors.city && touched.city && errors.city}</div>
+                </Form.Field>
+                <Form.Field>
+                  <label>Kontynent</label>
+                  <Input placeholder='Wpisz kontynent'
+                    type="text"
+                    name="continent"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.continent}
+                    touched={touched}
+                    errors={errors} />
+                  <div className={styles.error}>
+                    {errors.continent && touched.continent && errors.continent}</div>
                 </Form.Field>
                 <Form.Field>
                   <label>Opis wycieczki</label>
@@ -174,8 +168,8 @@ class Formularz extends React.Component {
                     value={values.description}
                     touched={touched}
                     errors={errors} />
-                    <div className={styles.error}>
-                  {errors.description && touched.description && errors.description}</div>
+                  <div className={styles.error}>
+                    {errors.description && touched.description && errors.description}</div>
                 </Form.Field>
                 <Form.Field>
                   <label>Twój e-mail</label>
@@ -187,18 +181,19 @@ class Formularz extends React.Component {
                     value={values.email}
                     touched={touched}
                     errors={errors} />
-                    <div className={styles.error}>
-                  {errors.email && touched.email && errors.email}
+                  <div className={styles.error}>
+                    {errors.email && touched.email && errors.email}
                   </div>
                 </Form.Field>
                 <Form.Field>
                   <Checkbox checked={values.terms} onChange={() => setFieldValue('terms', !values.terms)} label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
-                  name="terms" />
+                    name="terms" />
                   <div className={styles.error}>
-                  {errors.terms && touched.terms && errors.terms}
+                    {errors.terms && touched.terms && errors.terms}
                   </div>
                 </Form.Field>
                 <Button type='submit' disabled={isSubmitting}>Dodaj</Button>
+                <p className={this.state.thankYouVisible ? styles.information : styles.invisible}>Dziękujemy za przesłanie wycieczki.</p>
               </Form>
             )}
         </Formik>
