@@ -13,27 +13,26 @@ const continents = [
 ];
 const places = [
   {value:'Amsterdam'},
-  {value:'Trójmiasto'},
-  {value:'Kraków'},
+  {value:'Bangkok'},
+  {value:'Berlin'},
   {value:'Innsbruck'},
   {value:'Johannesburg'},
+  {value:'Kraków'},
+  {value:'Lizbona'},
   {value:'Londyn'},
   {value:'Los Angeles'},
-  {value:'Mexico City'},
-  {value:'Sopot' },
-  {value:'Tokio'},
-  {value:'Vancouver'},
-  {value:'Rzym'},
-  {value:'Neapol'},
   {value:'Madryt'},
-  {value:'Wiedeń' },
-  {value:'Berlin'},
+  {value:'Mexico City'},
   {value:'Monachium'},
-  {value:'Nowy Jork'},
-  {value:'Sydney'},
-  {value:'Bangkok' },
   {value:'Moskwa'},
-  {value:'Lizbona'}
+  {value:'Neapol'},
+  {value:'Nowy Jork'},
+  {value:'Rzym'},
+  {value:'Sydney'},
+  {value:'Tokio'},
+  {value:'Trójmiasto'},
+  {value:'Vancouver'},
+  {value:'Wiedeń'},
 ];
 
 class Search extends Component {
@@ -53,7 +52,7 @@ class Search extends Component {
             <Grid.Column width={12}>
               <Input list='places' placeholder='Podaj destynację...' fluid  />
                 <datalist id='places'>
-                  {places.map(v => <option> {v.value}</option>).sort}
+                  {places.map(v => <option> {v.value}</option>)}
                 </datalist>
           </Grid.Column>
           </Grid.Row>
