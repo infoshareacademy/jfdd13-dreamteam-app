@@ -33,15 +33,16 @@ const renderCustomizedLabel = ({
 export default class PieChartComponent extends PureComponent {
 
     render() {
-        return (<div>
-            <PieChart width={500} height={350}>
+        return (<div >
+            <PieChart width={500} height={350} style={{ margin: '0 auto'}}>
                 <Pie
                     data={data}
                     labelLine={false}
                     // label={renderCustomizedLabel}
                     fill="#8884d8"
                     dataKey="value"
-            
+                    
+
                 >
                     {
                         data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
