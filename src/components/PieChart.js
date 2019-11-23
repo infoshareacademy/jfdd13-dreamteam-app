@@ -33,20 +33,16 @@ const renderCustomizedLabel = ({
 export default class PieChartComponent extends PureComponent {
 
     render() {
-        return (<div style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '500px'}}>
-            <PieChart width={400} height={300}>
+        return (<div >
+            <PieChart width={500} height={350} style={{ margin: '0 auto'}}>
                 <Pie
                     data={data}
-                    cx={200}
-                    cy={200}
                     labelLine={false}
                     // label={renderCustomizedLabel}
-                    outerRadius={80}
                     fill="#8884d8"
-                    viewBox="0 100 400 200"
                     dataKey="value"
-                    margin={{top: 0, right: 'auto', left: 'auto', bottom: 0}}
-                    style={{display: 'flex', alignItems: 'center'}}
+                    
+
                 >
                     {
                         data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
