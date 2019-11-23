@@ -1,11 +1,12 @@
-const data = [
+export const data = [
     {
         "title": "Włoska kwietniowa wyprawa",
         "date": "16/04/2020",
         "price": "350",
         "city": "Neapol",
         "continent": "Europa",
-        "description": "Tutaj zjesz najlepszą na świecie, prawdziwą włoską pizzę, będziesz mógł skorzystać z wycieczki na najpiękniejszą europejską wyspę - Capri jedynie godzinę drogi statkiem i poczujesz włoski zapach wywieszonego prania przez okno"
+        "description": "Tutaj zjesz najlepszą na świecie, prawdziwą włoską pizzę, będziesz mógł skorzystać z wycieczki na najpiękniejszą europejską wyspę - Capri jedynie godzinę drogi statkiem i poczujesz włoski zapach wywieszonego prania przez okno",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Deszczowe wycieczki górskie w Bergen",
@@ -13,7 +14,8 @@ const data = [
         "price": "800",
         "city": "Bergen",
         "continent": "Europa",
-        "description": "Sprawdź, czy jesteś szczęściarzem i czy uda Ci się trafić na słoneczną pogodę w jednym z norweskich miast, które słynie z deszczowego klimatu. Kup hot-doga z renifera i ruszaj na wycieczkę, żeby bliżej poznać piękne norweskie fiordy."
+        "description": "Sprawdź, czy jesteś szczęściarzem i czy uda Ci się trafić na słoneczną pogodę w jednym z norweskich miast, które słynie z deszczowego klimatu. Kup hot-doga z renifera i ruszaj na wycieczkę, żeby bliżej poznać piękne norweskie fiordy.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Egipskie leżakowanie pod palmą",
@@ -21,7 +23,8 @@ const data = [
         "price": "400",
         "city": "Hurghada",
         "continent": "Afryka",
-        "description": "Upały Ci nie straszne? Drinki z palemką i nurkowanie, żeby zobaczyć piękną rafę koralową? A może wieczór z shishą? Nie zastanawiaj się, nigdzie nie wypoczniesz jak tutaj."
+        "description": "Upały Ci nie straszne? Drinki z palemką i nurkowanie, żeby zobaczyć piękną rafę koralową? A może wieczór z shishą? Nie zastanawiaj się, nigdzie nie wypoczniesz jak tutaj.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Moje greckie wakacje",
@@ -29,7 +32,8 @@ const data = [
         "price": "450",
         "city": "Santorini",
         "continent": "Europa",
-        "description": "Zjedz na śniadanie prawdziwy jogurt grecki z miodem i owocami, a później wypoczywaj z widokiem na znane, biało-niebieskie domki."
+        "description": "Zjedz na śniadanie prawdziwy jogurt grecki z miodem i owocami, a później wypoczywaj z widokiem na znane, biało-niebieskie domki.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Hola!",
@@ -37,7 +41,8 @@ const data = [
         "price": "380",
         "city": "Madryt",
         "continent": "Europa",
-        "description": "Nie zapomnij po meczu Real Madrytu udać się na pyszną, hiszpańską paellę popijaną sangrią."
+        "description": "Nie zapomnij po meczu Real Madrytu udać się na pyszną, hiszpańską paellę popijaną sangrią.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "A może zdążysz na Weihnachtsmarkt?",
@@ -45,15 +50,16 @@ const data = [
         "price": "500",
         "city": "Berlin",
         "continent": "Europa",
-        "description": "Przenieś się w czasie i zobacz pozostałości muru berlińskiego. Możesz też odwiedzić nowych mieszkańców - niedawno urodziły się dwie małe pandki. :)"
-    },
+        "description": "Przenieś się w czasie i zobacz pozostałości muru berlińskiego. Możesz też odwiedzić nowych mieszkańców - niedawno urodziły się dwie małe pandki. :)",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'},
     {
         "title": "Kalifornijski sen",
         "date": "22/07/2020",
         "price": "600",
         "city": "Los Angeles",
         "continent": "Ameryka Północna",
-        "description": "Kto z nas choć raz w życiu nie zamarzył o rozgrzanych kalifornijskich plażach i obsadzonych wysokimi palmami ulicach Hollywood?"
+        "description": "Kto z nas choć raz w życiu nie zamarzył o rozgrzanych kalifornijskich plażach i obsadzonych wysokimi palmami ulicach Hollywood?",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Miasto mariachi",
@@ -61,7 +67,8 @@ const data = [
         "price": "450",
         "city": "Meksyk",
         "continent": "Ameryka Północna",
-        "description": "Tutaj obowiązkowo trzeba napić się tequilli i spróbować meksykańskich dań przy rytmach dostarczanych przez mariachi."
+        "description": "Tutaj obowiązkowo trzeba napić się tequilli i spróbować meksykańskich dań przy rytmach dostarczanych przez mariachi.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Miasto marzeń na środku pustyni",
@@ -69,7 +76,8 @@ const data = [
         "price": "430",
         "city": "Brasilia",
         "continent": "Ameryka Południowa",
-        "description": "Mekka dla pasjonatów architektury, którzy chcą zobaczyć, jak sprawdza się utopia w rzeczywistości."
+        "description": "Mekka dla pasjonatów architektury, którzy chcą zobaczyć, jak sprawdza się utopia w rzeczywistości.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Miasto aniołów czy dziwaków?",
@@ -77,7 +85,8 @@ const data = [
         "price": "200",
         "city": "Bangkok",
         "continent": "Azja",
-        "description": "Tylko uważaj, żeby nie skończyć jak bohaterowie Kac Vegas II."
+        "description": "Tylko uważaj, żeby nie skończyć jak bohaterowie Kac Vegas II.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "To wcale nie jest stolica Australii!",
@@ -85,7 +94,8 @@ const data = [
         "price": "1100",
         "city": "Sydney",
         "continent": "Australia i Oceania",
-        "description": "A kto powiedział, że święta powinny być pełne śniegu? Spróbuj czegoś nowego i do mikołajowej czapki załóż bikini."
+        "description": "A kto powiedział, że święta powinny być pełne śniegu? Spróbuj czegoś nowego i do mikołajowej czapki załóż bikini.",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
         "title": "Przytul alpakę w jej naturalnym środowisku",
@@ -93,6 +103,7 @@ const data = [
         "price": "190",
         "city": "Lima",
         "continent": "Ameryka Południowa",
-        "description": "W kraju Inków na pewno nie będziesz się nudził. Podróżnicy i archeologie będą wręcz wniebowzięci!"
+        "description": "W kraju Inków na pewno nie będziesz się nudził. Podróżnicy i archeologie będą wręcz wniebowzięci!",
+        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
 ]
