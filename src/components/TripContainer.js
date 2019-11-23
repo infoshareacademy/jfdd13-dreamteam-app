@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Image, Header, Container, Pagination, Modal, Button } from 'semantic-ui-react';
+import {data as trips} from '../data'
 
 const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
