@@ -47,6 +47,7 @@ export default class PieChartComponent extends PureComponent {
                     dataKey="value"
                     margin={{top: 0, right: 'auto', left: 'auto', bottom: 0}}
                     style={{display: 'flex', alignItems: 'center'}}
+                    label
                 >
                     {
                         data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
