@@ -23,14 +23,17 @@ function Dashboard() {
                 <Grid.Row centered={true}>
                     <Grid.Column width={8} verticalAlign={'middle'}>
                         <h3>Z WAY.TO skorzystało już 1529 osób, z czego:</h3>
-                        <div>
+                        <div style={{display: 'flex', justifyContent: 'center'}}>
                             <ul className={'pieUl'}>
                                 <li className={'pieLi pieLi__asia'}>423 osoby były w Azji</li>
                                 <li className={'pieLi pieLi__europe'}>313 poleciało do Europy</li>
-                                <li className={'pieLi pieLi__northamerica'}>241 poznało północną Amerykę</li>
+                                <li className={'pieLi pieLi__northamerica'}>241 poznało Północną Amerykę</li>
                                 <li className={'pieLi pieLi__africa'}>87 wybrało Afrykę</li>
-                                <li className={'pieLi pieLi__southamerica'}>328 poznało południową Amerykę</li>
-                                <li className={'pieLi pieLi__africa'}>56 wróciło z Antarktydy</li>
+                            </ul>
+                            <ul className={'pieUl'}>
+                                <li className={'pieLi pieLi__southamerica'}>328 zwiedziło Amerykę Południową</li>
+                                <li className={'pieLi pieLi__antarctica'}>56 wróciło z Antarktydy</li>
+                                <li className={'pieLi pieLi__australia'}>81 zostało w  Antarktydy</li>
                             </ul>
                         </div>
                     </Grid.Column>
@@ -45,9 +48,6 @@ function Dashboard() {
                         </div>
                     </Grid.Column>
                 </Grid.Row>
-                {/*<Grid.Row>*/}
-                {/*    */}
-                {/*</Grid.Row>*/}
             </Grid>
         </div>
     )
