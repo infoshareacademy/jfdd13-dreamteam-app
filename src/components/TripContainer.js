@@ -26,45 +26,11 @@ const TripContainer = () => {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns={3} style={{flex: 1}}>
-                    <Posts allTrips={currentTrips}/>
-                    <Pagination tripsPerPage={tripsPerPage} totalTrips={trips.length} paginate={paginate}/>
+                  <Posts allTrips={currentTrips}/>
+                  <Pagination tripsPerPage={tripsPerPage} totalTrips={trips.length} paginate={paginate}/>
                 </Grid.Row>
             </Grid>
-            <Modal dimmer={'blurring'} open={open} onClose={close}>
-                <Modal.Header>Tytuł</Modal.Header>
-                <Modal.Content image>
-                    <Image
-                        wrapped
-                        size='medium'
-                        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
-                    />
-                    <Modal.Description>
-                        <Header>Miasto</Header>
-                        <ul style={{padding: '0 0 0 1.5rem'}}>
-                            <li>Kontynent</li>
-                            <li>Cena za dobę za osobę</li>
-                            <li>Data wyjazdu</li>
-                            <li>Opis</li>
-                        </ul>
-                        <p>Możesz polubić</p>
-                    </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button color='black' onClick={close}>
-                        Wyjdź
-                    </Button>
-                    <Button
-                        positive
-                        icon={`heart ${favourites ? '' : 'outline'}`}
-                        labelPosition='right'
-                        content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
-                        // content="Ulubione"
-                        onClick={() => {
-                            setFavourites(!favourites)
-                        }}
-                    />
-                </Modal.Actions>
-            </Modal>
+
         </div>
     );
 }
