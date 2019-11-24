@@ -9,7 +9,7 @@ const Posts = ({allTrips}) => {
 
     return allTrips.map(trip => (
       <div>
-        <Grid.Column key={trip.city} style={{ padding: '0 18px' }}>
+        <Grid.Column key={trip.city} style={{ padding: '0 2rem' }}>
           <Image
             className="TripImage"
             onClick={show}
@@ -28,8 +28,8 @@ const Posts = ({allTrips}) => {
           <Modal.Content image>
             <Image
               wrapped
-              size="medium"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s"
+              size="large"
+              src={trip.img}
             />
             <Modal.Description>
               <Header>{trip.city}</Header>
