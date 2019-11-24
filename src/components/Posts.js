@@ -9,7 +9,7 @@ const Posts = ({allTrips}) => {
 
     return allTrips.map(trip => (
       <div>
-        <Grid.Column key={trip.city}>
+        <Grid.Column key={trip.city} style={{ padding: '0 18px' }}>
           <Image
             className="TripImage"
             onClick={show}
