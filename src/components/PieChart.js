@@ -1,16 +1,16 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import {
     PieChart, Pie, Sector, Cell, Tooltip
 } from 'recharts';
 
 const data = [
-    {name: 'Azja', value: 400},
-    {name: 'Europa', value: 300},
-    {name: 'Ameryka', value: 300},
-    {name: 'Afryka', value: 150},
-    {name: 'Ameryka Południowa', value: 200},
-    {name: 'Antarktyda', value: 200},
-    {name: 'Australia', value: 200}
+    { name: 'Azja', value: 400 },
+    { name: 'Europa', value: 300 },
+    { name: 'Ameryka', value: 300 },
+    { name: 'Afryka', value: 150 },
+    { name: 'Ameryka Południowa', value: 200 },
+    { name: 'Antarktyda', value: 200 },
+    { name: 'Australia', value: 200 }
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -33,31 +33,22 @@ const renderCustomizedLabel = ({
 export default class PieChartComponent extends PureComponent {
 
     render() {
-        return (
-            <div
-                style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '500px'}}>
-                <PieChart width={310} height={310}>
-                    <Pie
-                        data={data}
-                        cx={150}
-                        cy={150}
-                        labelLine={false}
-                        // label={renderCustomizedLabel}
-                        outerRadius={150}
-                        fill='#8884D8'
-                    // viewBox='0 0 300 300'
-                    dataKey='value'
-                    //margin={{top: 0, right: ‘auto’, left: ‘auto’, bottom: 0}}
-                    style={{display: 'flex', alignItems: 'center'}}
+        return (<div >
+            <PieChart width={500} height={350} style={{ margin: '0 auto'}}>
+                <Pie
+                    data={data}
+                    labelLine={false}
+                    // label={renderCustomizedLabel}
+                    fill="#8884d8"
+                    dataKey="value"
                 >
                     {
-                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>)
+                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                     }
                 </Pie>
                 <Tooltip/>
             </PieChart>
-    </div>
-    )
-
+            </div>
+        );
     }
 }
