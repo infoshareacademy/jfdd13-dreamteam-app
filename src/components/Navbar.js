@@ -41,12 +41,12 @@ function Navbar() {
         Add
       </Menu.Item>
       </NavLink>
-      <NavLink to="/fav" exact>
-      <Menu.Item>
-        <Icon name='heart' />
-        Fav
-      </Menu.Item>
-      </NavLink>
+      {/*<NavLink to="/fav" exact>*/}
+      {/*<Menu.Item>*/}
+      {/*  <Icon name='heart' />*/}
+      {/*  Fav*/}
+      {/*</Menu.Item>*/}
+      {/*</NavLink>*/}
     </Sidebar>
   </Sidebar.Pushable>
   )
