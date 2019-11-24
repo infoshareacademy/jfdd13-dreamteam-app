@@ -37,3 +37,7 @@ main {
   flex-direction: column;
   flex: 1;
 }
+
+.TripImage{
+  padding-top: 18px;
+}
