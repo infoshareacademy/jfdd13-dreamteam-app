@@ -4,27 +4,18 @@ import {data as trips} from '../data'
 import Posts from'./Posts'
 import Pagination from'./Pagination'
 
-const imgSrc ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
-
 const TripContainer = () => {
   const [open, setOpen] = useState(false);
   const [favourites, setFavourites] = useState(false);
-  // const trips = [imgSrc, imgSrc, imgSrc];
   const show = () => setOpen(true);
   const close = () => setOpen(false);
-
-
-
   const [posts, setPosts] = useState([]);
   const [currentPage, setPage] = useState(1);
   const [tripsPerPage, setTripsPerPage] = useState(6);
-  
   const paginate = (pageNumber) => setPage(pageNumber);
-
   const indexOfLastTrip = currentPage * tripsPerPage;
-  const indexOfFirstPost = indexOfLastTrip - tripsPerPage;
-  const currentPosts = trips.slice(indexOfFirstPost, indexOfLastTrip);
-
+  const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
+  const currentTrips = trips.slice(indexOfFirstTrip, indexOfLastTrip);
 
   return (
       <div>
@@ -35,9 +26,8 @@ const TripContainer = () => {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns={3} style={{flex: 1 }}>
-          <Posts allTrips={currentPosts}/>
+          <Posts allTrips={currentTrips}/>
           <Pagination tripsPerPage={tripsPerPage} totalTrips={trips.length} paginate={paginate}/>
-
         </Grid.Row>
       </Grid>
       <Modal dimmer={'blurring'} open={open} onClose={close}>
@@ -55,7 +45,6 @@ const TripContainer = () => {
             <li>Cena za dobę za osobę</li>
             <li>Data wyjazdu</li>
             <li>Opis</li>
-
           </ul>
           <p>Możesz polubić</p>
         </Modal.Description>
@@ -71,9 +60,7 @@ const TripContainer = () => {
           content = {favourites ? "Ulubione" : "Dodaj do ulubionych"}
           // content="Ulubione"
           onClick={() => {setFavourites(!favourites)}}
-
           />
-
       </Modal.Actions>
     </Modal>
     </div>

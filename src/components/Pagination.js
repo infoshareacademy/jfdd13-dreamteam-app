@@ -11,7 +11,6 @@ const Pagination = ({ tripsPerPage, totalTrips, paginate }) => {
             {pageNumbers.map(pageNumber => (
                 <li
                     key={pageNumber}
-                    className='page-item'
                     style={{color: '#000', padding: '0 .5rem'}}
                 >
                     <a
