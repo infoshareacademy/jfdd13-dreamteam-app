@@ -27,6 +27,8 @@ const TripContainer = () => {
                 </Grid.Row>
                 <Grid.Row columns={3} style={{flex: 1}}>
                   <Posts allTrips={currentTrips}/>
+                </Grid.Row>
+                <Grid.Row columns={1} style={{flex: 1}}>
                   <Pagination tripsPerPage={tripsPerPage} totalTrips={trips.length} paginate={paginate}/>
                 </Grid.Row>
             </Grid>
