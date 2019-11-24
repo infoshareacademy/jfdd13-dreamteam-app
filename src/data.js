@@ -1,11 +1,11 @@
 export const data = [
     {
-        "title": "Włoska kwietniowa wyprawa",
-        "date": "16/04/2020",
-        "price": "350",
-        "city": "Neapol",
-        "continent": "Europa",
-        "description": "Tutaj zjesz najlepszą na świecie, prawdziwą włoską pizzę, będziesz mógł skorzystać z wycieczki na najpiękniejszą europejską wyspę - Capri jedynie godzinę drogi statkiem i poczujesz włoski zapach wywieszonego prania przez okno",
+        title: "Włoska kwietniowa wyprawa",
+        date: "16/04/2020",
+        price: "350",
+        city: "Neapol",
+        continent: "Europa",
+        description: "Tutaj zjesz najlepszą na świecie, prawdziwą włoską pizzę, będziesz mógł skorzystać z wycieczki na najpiękniejszą europejską wyspę - Capri jedynie godzinę drogi statkiem i poczujesz włoski zapach wywieszonego prania przez okno",
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
