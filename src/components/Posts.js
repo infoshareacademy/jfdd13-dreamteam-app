@@ -24,7 +24,7 @@ const Posts = ({allTrips}) => {
           <p>{trip.title}</p>
         </Grid.Column>
         <Modal dimmer={"blurring"} open={open} onClose={close}>
-          <Modal.Header>Tytuł</Modal.Header>
+          <Modal.Header>{trip.title}</Modal.Header>
           <Modal.Content image>
             <Image
               wrapped
@@ -32,14 +32,14 @@ const Posts = ({allTrips}) => {
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s"
             />
             <Modal.Description>
-              <Header>Miasto</Header>
+              <Header>{trip.city}</Header>
               <ul style={{ padding: "0 0 0 1.5rem" }}>
-                <li>Kontynent</li>
-                <li>Cena za dobę za osobę</li>
-                <li>Data wyjazdu</li>
-                <li>Opis</li>
+                <li>{trip.continent}</li>
+                <li>Cena za dobę za osobę: {trip.price} PLN</li>
+                <li>Data wyjazdu: {trip.date}</li>
+                <li>Opis: {trip.description}</li>
               </ul>
-              <p>Możesz polubić</p>
+              {/* <p>Możesz polubić</p> */}
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
