@@ -17,17 +17,13 @@ const TripContainer = () => {
 
   const [posts, setPosts] = useState([]);
   const [currentPage, setPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
-
-
-          // setPosts(trips);
-          console.log(trips);
-
+  const [tripsPerPage, setTripsPerPage] = useState(6);
+  
   const paginate = (pageNumber) => setPage(pageNumber);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = trips.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastTrip = currentPage * tripsPerPage;
+  const indexOfFirstPost = indexOfLastTrip - tripsPerPage;
+  const currentPosts = trips.slice(indexOfFirstPost, indexOfLastTrip);
 
 
   return (
@@ -38,35 +34,9 @@ const TripContainer = () => {
             <Header>Tutaj znajdziesz wszystkie nasze fantastyczne wycieczki</Header>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row columns={3} style={{ flex: 1 }}>
-          {(trips).map(trip => {
-            return <Grid.Column key={trip.city}>
-              <Image className="TripImage" onClick={show} src={trip.img}
-              label={{
-              ribbon: true,
-              color: 'blue',
-              content: `${trip.city}`
-              }}
-              centered={true}
-              />
-              <p>{trip.title}</p>
-
-            </Grid.Column>
-          }).slice(0,6)}
-        </Grid.Row>
-        <Grid.Row columns={1} centered={true} style={{ minHeight: '100px' }}>
-          {/*//semantic pagination*/}
-          {/*<Pagination*/}
-          {/*    defaultActivePage={1}*/}
-          {/*    firstItem={null}*/}
-          {/*    lastItem={null}*/}
-          {/*    pointing*/}
-          {/*    secondary*/}
-          {/*    totalPages={3}*/}
-          {/*/>*/}
-
-          <Posts posts={currentPosts}/>
-          <Pagination postsPerPage={postsPerPage} totalPosts={trips.length} paginate={paginate}/>
+        <Grid.Row columns={3} style={{flex: 1 }}>
+          <Posts allTrips={currentPosts}/>
+          <Pagination tripsPerPage={tripsPerPage} totalTrips={trips.length} paginate={paginate}/>
 
         </Grid.Row>
       </Grid>
