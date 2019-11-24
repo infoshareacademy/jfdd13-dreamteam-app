@@ -5,16 +5,16 @@ import {
 
 const data = [
     {
-        name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+        name: 'Lipiec', uv: 320, pv: 2400, amt: 2400,
     },
     {
-        name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+        name: 'Sierpień', uv: 526, pv: 1398, amt: 2210,
     },
     {
-        name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+        name: 'Wrzesień', uv: 678, pv: 9800, amt: 2290,
     },
     {
-        name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+        name: 'Październik', uv: 876, pv: 3908, amt: 2000,
     }
 ];
 
@@ -34,7 +34,7 @@ export default class DataBarChart extends PureComponent {
                 <Tooltip />
                 <Legend />
                 {/*<Bar dataKey="pv" fill="#8884d8" />*/}
-                <Bar dataKey="uv" fill="#82ca9d" />
+                <Bar dataKey="uv" fill="#82ca9d" name={'Liczba wyświetleń'} />
             </BarChart>
             </div>
         );
