@@ -22,19 +22,22 @@ function Dashboard() {
                 </Grid.Row>
                 <Grid.Row centered={true}>
                     <Grid.Column width={8} verticalAlign={'middle'}>
-                        <h3>Ustaw swój cel</h3>
+                        <h3>Z WAY.TO skorzystało już 1529 osób, z czego:</h3>
                         <div>
-                            <ul>
-                                <li>Wybierz interesujący Cię kontynent</li>
-                                <li>Oszacuj swój budżet</li>
-                                <li>Przeżyj przygodę swojego życia</li>
+                            <ul className={'pieUl'}>
+                                <li className={'pieLi pieLi__asia'}>423 osoby były w Azji</li>
+                                <li className={'pieLi pieLi__europe'}>313 poleciało do Europy</li>
+                                <li className={'pieLi pieLi__northamerica'}>241 poznało północną Amerykę</li>
+                                <li className={'pieLi pieLi__africa'}>87 wybrało Afrykę</li>
+                                <li className={'pieLi pieLi__southamerica'}>328 poznało południową Amerykę</li>
+                                <li className={'pieLi pieLi__africa'}>56 wróciło z Antarktydy</li>
                             </ul>
                         </div>
                     </Grid.Column>
-                    <Grid.Column width={8} verticalAlign={'middle'}>
+                    <Grid.Column width={8} verticalAlign={'middle'} style={{height: '100%'}}>
                         <h3>Podróż na każdą kieszeń, zawsze.</h3>
                         <div>
-                            <ul>
+                            <ul style={{listStyle: 'none'}}>
                                 <li>Wyjdź z domu i poczuj się turystą we własnym mieście</li>
                                 <li>Skorzystaj z formularza i dodaj swoją wycieczkę</li>
                                 <li>Wracaj do swoich najlepszych lokalizacji z pomocą ulubionych</li>
@@ -42,6 +45,9 @@ function Dashboard() {
                         </div>
                     </Grid.Column>
                 </Grid.Row>
+                {/*<Grid.Row>*/}
+                {/*    */}
+                {/*</Grid.Row>*/}
             </Grid>
         </div>
     )
