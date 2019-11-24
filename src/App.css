@@ -39,6 +39,10 @@ main {
   flex: 1;
 }
 
+.TripImage{
+  padding-top: 18px;
+}
+
 .pieUl {
   list-style-type: none;
 }
@@ -72,4 +76,3 @@ main {
 }
 .pieLi__australia::before {
   color: #764afe;
-}
