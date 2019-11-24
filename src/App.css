@@ -30,6 +30,7 @@ main {
   flex: 1;
   min-height: 100vh;
   margin-left: 150px;
+  font-size: 16px;
 }
 
 .search {
@@ -40,6 +41,9 @@ main {
 
 .pieUl {
   list-style-type: none;
+}
+.pieLi {
+  text-align: left;
 }
 .pieLi::before {
   content: "\2022";
