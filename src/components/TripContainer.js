@@ -9,7 +9,6 @@ const TripContainer = () => {
     const [favourites, setFavourites] = useState(false);
     const show = () => setOpen(true);
     const close = () => setOpen(false);
-    const [posts, setPosts] = useState([]);
     const [currentPage, setPage] = useState(1);
     const [tripsPerPage, setTripsPerPage] = useState(6);
     const paginate = (pageNumber) => setPage(pageNumber);
