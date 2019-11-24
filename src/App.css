@@ -30,6 +30,7 @@ main {
   flex: 1;
   min-height: 100vh;
   margin-left: 150px;
+  font-size: 16px;
 }
 
 .search {
@@ -41,3 +42,37 @@ main {
 .TripImage{
   padding-top: 18px;
 }
+
+.pieUl {
+  list-style-type: none;
+}
+.pieLi {
+  text-align: left;
+}
+.pieLi::before {
+  content: "\2022";
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.pieLi__asia::before {
+  color: #0088FE;
+}
+.pieLi__europe::before {
+  color: #00C49F;
+}
+.pieLi__northamerica::before {
+  color: #FFBB28;
+}
+.pieLi__africa::before {
+  color: #d37736;
+}
+.pieLi__southamerica::before {
+  color: #FF8042;
+}
+.pieLi__antarctica::before {
+  color: #ff3c42;
+}
+.pieLi__australia::before {
+  color: #764afe;
