@@ -33,7 +33,7 @@ function Dashboard() {
                             <ul className={'pieUl'}>
                                 <li className={'pieLi pieLi__southamerica'}>328 zwiedziło Amerykę Południową</li>
                                 <li className={'pieLi pieLi__antarctica'}>56 wróciło z Antarktydy</li>
-                                <li className={'pieLi pieLi__australia'}>81 zostało w  Antarktydy</li>
+                                <li className={'pieLi pieLi__australia'}>81 zostało w  Australii</li>
                             </ul>
                         </div>
                     </Grid.Column>
