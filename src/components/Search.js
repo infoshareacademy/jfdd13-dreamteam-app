@@ -44,7 +44,6 @@ class Search extends Component {
                   list='places'
                   placeholder='Podaj destynację...'
                   fluid
-                  onKeyPress={this.handleSearchResult}
               />
                 <datalist id='places'>
                   {data.map(v => <option> {v.city }</option>)}
