@@ -19,13 +19,12 @@ function App() {
                 <main>
                     <Appbar/>
                     <Switch>
-                        <Route exact strict path="/"
-                               component={() => <h1>we are the dreamTeam and this is our App!</h1>}/>
+                        <Route exact strict path="/" component={Dashboard}/>
                         <Route exact strict path="/main" component={Dashboard}/>
                         <Route exact strict path="/trip" component={TripContainer}/>
                         <Route exact strict path="/search" component={Search}/>
                         <Route exact strict path="/fav" component={Favourites}/>
-                        <Route exact strict path="/form/" component={Form}/>
+                        <Route exact strict path="/form" component={Form}/>
                         <Route component={() => <h1>404 - sadface</h1>}/>
                     </Switch>
                 </main>

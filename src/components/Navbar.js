@@ -35,7 +35,7 @@ function Navbar() {
         Wyszukaj
       </Menu.Item>
       </NavLink>
-      <NavLink to="/form/" exact>
+      <NavLink to="/form" exact>
       <Menu.Item>
         <Icon name='add' />
         Dodaj
