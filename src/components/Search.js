@@ -17,6 +17,7 @@ class Search extends Component {
   state = {
     show: 999,
     searchQuery: '',
+    results: []
   };
   handleSearchQuery (e) {
     this.setState({searchQuery: e.target.value});
@@ -34,7 +35,9 @@ class Search extends Component {
         {
           //search
           (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :
-              JSON.stringify(data.filter(query => query.title.toLowerCase().includes(searchQuery)))
+              JSON.stringify(data.filter(query => query.title.toLowerCase().includes(searchQuery) || query.title.toLowerCase().includes(searchQuery)))
+            //now push it to state results array and display it
+
         }
         <Grid padded={true}>
           <Grid.Row columns={1} centered={true}>
@@ -52,7 +55,13 @@ class Search extends Component {
           </Grid.Row>
           <Grid.Row columns={2} centered={true}>
             <Grid.Column width={6} >
-              <Dropdown clearable fluid options={continents} selection placeholder='Wybierz kontynent...'/>
+              <Dropdown
+                  clearable
+                  fluid
+                  options={continents}
+                  selection placeholder='Wybierz kontynent...'
+                  onChange={event => this.handleSearchQuery(event)}
+              />
             </Grid.Column>
             <Grid.Column as={Form} width={6} textAlign={"right"}>
               <Form.Input inline
