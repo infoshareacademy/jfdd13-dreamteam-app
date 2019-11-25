@@ -1,5 +1,6 @@
 export const data = [
     {
+        id: 0,
         title: "Włoska kwietniowa wyprawa",
         date: "16/04/2020",
         price: "350",
@@ -9,6 +10,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 1,
         "title": "Deszczowe wycieczki górskie w Bergen",
         "date": "12/05/2020",
         "price": "800",
@@ -18,6 +20,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 2,
         "title": "Egipskie leżakowanie pod palmą",
         "date": "20/06/2020",
         "price": "400",
@@ -27,6 +30,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 3,
         "title": "Moje greckie wakacje",
         "date": "19/07/2020",
         "price": "450",
@@ -36,6 +40,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 4,
         "title": "Hola!",
         "date": "20/08/2020",
         "price": "380",
@@ -45,6 +50,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 5,
         "title": "A może zdążysz na Weihnachtsmarkt?",
         "date": "29/12/2019",
         "price": "500",
@@ -53,6 +59,7 @@ export const data = [
         "description": "Przenieś się w czasie i zobacz pozostałości muru berlińskiego. Możesz też odwiedzić nowych mieszkańców - niedawno urodziły się dwie małe pandki. :)",
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'},
     {
+        id: 6,
         "title": "Kalifornijski sen",
         "date": "22/07/2020",
         "price": "600",
@@ -62,6 +69,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 7,
         "title": "Miasto mariachi",
         "date": "15/09/2019",
         "price": "450",
@@ -71,6 +79,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 8,
         "title": "Miasto marzeń na środku pustyni",
         "date": "30/05/209",
         "price": "430",
@@ -80,6 +89,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 9,
         "title": "Miasto aniołów czy dziwaków?",
         "date": "29/11/2019",
         "price": "200",
@@ -89,6 +99,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 10,
         "title": "To wcale nie jest stolica Australii!",
         "date": "22/12/2019",
         "price": "1100",
@@ -98,6 +109,7 @@ export const data = [
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
     },
     {
+        id: 11,
         "title": "Przytul alpakę w jej naturalnym środowisku",
         "date": "22/05/2020",
         "price": "190",
