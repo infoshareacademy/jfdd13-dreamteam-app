@@ -13,29 +13,10 @@ const continents = [
   {key: 'eur', value:6, text: "Europa"}
 ];
 
-const SeachConst = props => {
-  const {searchQuery,
-  onChange,
-  search
-  } = props;
-
-  return (
-      <Fragment>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={onChange}
-        />
-      </Fragment>
-  )
-};
-
-
 class Search extends Component {
   state = {
     show: 999,
     searchQuery: '',
-    results: []
   };
   handleSearchQuery (e) {
     this.setState({searchQuery: e.target.value});
@@ -45,17 +26,16 @@ class Search extends Component {
   toggleVisibility = () =>
     this.setState((prevState) => ({ visible: !prevState.visible }));
 
-  handleSearchResult = (props) => {
-    console.log('dupa');
-    console.log(props);
-  }
-
   render() {
     const {show, searchQuery} = this.state;
 
     return (
       <div className="search">
-        {JSON.stringify(data.filter(query => query.title.toLowerCase().includes(searchQuery)))}
+        {
+          //search
+          (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :
+              JSON.stringify(data.filter(query => query.title.toLowerCase().includes(searchQuery)))
+        }
         <Grid padded={true}>
           <Grid.Row columns={1} centered={true}>
             <Grid.Column width={12}>
