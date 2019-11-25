@@ -8,7 +8,7 @@ const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(40, 'Tytuł za długi, skróć do 40 znaków.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
+    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
     .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
     .required("Pole wymagane."),
@@ -21,7 +21,7 @@ const accountFormSchema = Yup.object().shape({
   continent: Yup.string()
     .max(20, 'Tekst za długi.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
+    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter i spacji."),
   description: Yup.string()
     .max(200, "Opis za długi, skróć tekst do 200 znaków."),
   email: Yup.string()
