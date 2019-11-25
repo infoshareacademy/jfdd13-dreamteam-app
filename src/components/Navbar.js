@@ -25,20 +25,20 @@ function Navbar() {
     >
       <NavLink to="/main" exact>
       <Menu.Item style={{marginTop: '60px'}}>
-        <Icon name='home' />
-        Dashboard
+        <Icon name='chart line' />
+        Statystyki
       </Menu.Item>
     </NavLink>
       <NavLink to="/search" exact>
       <Menu.Item>
         <Icon name='search' />
-        Search
+        Wyszukaj
       </Menu.Item>
       </NavLink>
       <NavLink to="/form/" exact>
       <Menu.Item>
         <Icon name='add' />
-        Add
+        Dodaj
       </Menu.Item>
       </NavLink>
       {/*<NavLink to="/fav" exact>*/}
