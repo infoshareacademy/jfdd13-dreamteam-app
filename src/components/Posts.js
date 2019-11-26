@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import {Grid, Image, Modal, Header, Button} from "semantic-ui-react";
-
+                            
 const Posts = ({allTrips}) => {
     const [openId, setOpenId] = useState(null);
     const show = (openId) => setOpenId(openId);
@@ -56,10 +56,20 @@ const Posts = ({allTrips}) => {
                         icon={`heart ${favourites ? "" : "outline"}`}
                         labelPosition="right"
                         content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
-                        // content="Ulubione"
+                        content="Ulubione"
                         onClick={() => {
-                            setFavourites(!favourites);
+                            if(favourites.find(item => item.id === trip.id)){
+                            setFavourites(favourites.filter(item => item.id !== trip.id ));
+                                //unlike
+                                console.log(favourites)
+                            } else {
+                            setFavourites([...favourites, trip]);
+                            // favourites.push(trip)}
+                            console.log(favourites)
+          
+
                         }}
+                    }
                     />
                 </Modal.Actions>
             </Fragment>}
