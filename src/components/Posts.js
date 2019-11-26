@@ -52,25 +52,20 @@ const Posts = ({allTrips}) => {
                         Wyjdź
                     </Button>
                     <Button
-                        icon={`heart ${favourites ? "" : "outline"}`}
+                        positive
+                        icon={`heart {favourites.includes(trip.id) ? "outline" : ""}`}
                         labelPosition="right"
-                        content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
+                        content={favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}
                         content="Ulubione"
                         onClick={() => {
-                            // if(favourites.find(item => item.id === trip.id)){
                             if(favourites.includes(trip.id)){
                                 favourites.filter(item => item.id !== trip.id );
-                                //unlike
-                                console.log(allTrips, favourites)
-
+                                console.log(favourites)
                             } else {
-                            setFavourites([...favourites, trip]);
-                            // favourites.push(trip)}
-                            console.log(favourites)
-          
-
-                        }}
-                    }
+                                setFavourites([...favourites, trip]);
+                                console.log(favourites)
+                            };
+                      }}
                     />
                 </Modal.Actions>
             </Fragment>}
