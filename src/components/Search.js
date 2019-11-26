@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import { Grid, Input, Dropdown, Form, Container } from 'semantic-ui-react';
+import {Grid, Input, Dropdown, Form, Container, Image} from 'semantic-ui-react';
 import TripContainer from './TripContainer';
 import {data} from '../data'
 
@@ -35,7 +35,10 @@ class Search extends Component {
         {
           //search
           (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :
-              JSON.stringify(data.filter(query => query.title.toLowerCase().includes(searchQuery) || query.title.toLowerCase().includes(searchQuery)))
+              //searching through whole object entries instead of title
+              JSON.stringify(data.filter(query => Object.entries(query).toString().toLowerCase().includes(searchQuery)))
+
+              // ) || query.title.toLowerCase().includes(searchQuery)))
             //now push it to state results array and display it
 
         }
