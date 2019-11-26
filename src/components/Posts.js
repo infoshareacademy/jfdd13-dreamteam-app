@@ -11,7 +11,7 @@ const Posts = ({allTrips}) => {
     return <Fragment>
         {allTrips.map(trip => (
             <div>
-                <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
+                <Grid.Column key={trip.id} style={{padding: '0 2rem'}}>
                     <Image
                         className="TripImage"
                         onClick={() => show(trip.id)}
@@ -19,7 +19,7 @@ const Posts = ({allTrips}) => {
                         label={{
                             ribbon: true,
                             color: "blue",
-                            content: `${trip.city}`
+                            content: `{trip.city}`
                         }}
                         centered={true}
                     />
@@ -52,16 +52,17 @@ const Posts = ({allTrips}) => {
                         Wyjdź
                     </Button>
                     <Button
-                        positive
                         icon={`heart ${favourites ? "" : "outline"}`}
                         labelPosition="right"
                         content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
                         content="Ulubione"
                         onClick={() => {
-                            if(favourites.find(item => item.id === trip.id)){
-                            setFavourites(favourites.filter(item => item.id !== trip.id ));
+                            // if(favourites.find(item => item.id === trip.id)){
+                            if(favourites.includes(trip.id)){
+                                favourites.filter(item => item.id !== trip.id );
                                 //unlike
-                                console.log(favourites)
+                                console.log(allTrips, favourites)
+
                             } else {
                             setFavourites([...favourites, trip]);
                             // favourites.push(trip)}
