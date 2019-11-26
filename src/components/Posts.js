@@ -4,7 +4,7 @@ import {Grid, Image, Modal, Header, Button} from "semantic-ui-react";
 const Posts = ({allTrips}) => {
     const [openId, setOpenId] = useState(null);
     const show = (openId) => setOpenId(openId);
-    const [favourites, setFavourites] = useState(false);
+    const [favourites, setFavourites] = useState([]);
     const close = () => setOpenId(null);
     const trip = allTrips.find(trip => trip.id === openId);
 
