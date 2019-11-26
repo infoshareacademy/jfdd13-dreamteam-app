@@ -17,15 +17,22 @@ class Search extends Component {
   state = {
     show: 999,
     searchQuery: '',
-    results: [this.props.results]
+    results: []
   };
   handleSearchQuery (e) {
     this.setState({searchQuery: e.target.value});
   }
+  // searchResultHandler(result) {
+  //   this.setState({results: result})
+  // }
   queryOutput() {
-    return(
-    data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))
-    )).map(trip => (
+    const filteredData = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))));
+
+    const filteredData2 = (data.filter(item => (Object.values(item.title))));
+
+  // this.searchResultHandler(filteredData);
+
+    return(filteredData.map(trip => (
         <div>
           <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
             <Image
