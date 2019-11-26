@@ -17,10 +17,34 @@ class Search extends Component {
   state = {
     show: 999,
     searchQuery: '',
-    results: []
+    results: [this.props.results]
   };
   handleSearchQuery (e) {
     this.setState({searchQuery: e.target.value});
+  }
+  queryOutput() {
+    return(
+    data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))
+    )).map(trip => (
+        <div>
+          <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
+            <Image
+                className="TripImage"
+                // onClick={() => show(trip.id)}
+                src={trip.img}
+                label={{
+                  ribbon: true,
+                  color: "blue",
+                  content: `${trip.city}`
+                }}
+                centered={true}
+            />
+            <p>{trip.title}</p>
+          </Grid.Column>
+        </div>
+
+    ))
+    )
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -32,16 +56,18 @@ class Search extends Component {
 
     return (
       <div className="search">
-        {
-          //search
-          (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :
-              //searching through whole object entries instead of title
-              JSON.stringify(data.filter(query => Object.entries(query).toString().toLowerCase().includes(searchQuery)))
+        {/*{*/}
+        {/*  //search*/}
+        {/*  (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :*/}
+        {/*      //searching through whole object entries instead of title*/}
+        {/*      JSON.stringify(data.filter(query => Object.entries(query).toString().toLowerCase().includes(searchQuery)))*/}
 
-              // ) || query.title.toLowerCase().includes(searchQuery)))
-            //now push it to state results array and display it
+        {/*      // ) || query.title.toLowerCase().includes(searchQuery)))*/}
+        {/*    //now push it to state results array and display it*/}
 
-        }
+        {/*}*/}
+
+
         <Grid padded={true}>
           <Grid.Row columns={1} centered={true}>
             <Grid.Column width={12}>
@@ -63,7 +89,7 @@ class Search extends Component {
                   fluid
                   options={continents}
                   selection placeholder='Wybierz kontynent...'
-                  onChange={event => this.handleSearchQuery(event)}
+                  onClick={(data) => console.log(data)}
               />
             </Grid.Column>
             <Grid.Column as={Form} width={6} textAlign={"right"}>
@@ -80,7 +106,18 @@ class Search extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <TripContainer />
+        <Grid container
+              style={
+                {flex: 1, justifyContent: 'center', flexDirection: 'column', margin: 'auto !important'}
+              }>
+          <Grid.Row
+              columns={3} style={{flex: 1}}
+          >
+            {this.queryOutput()}
+          </Grid.Row>
+        </Grid>
+
+        {/*<TripContainer />*/}
       </div>
     );
   };
