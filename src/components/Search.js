@@ -23,8 +23,18 @@ class Search extends Component {
   };
   handleSearchQuery (e) {
     // this.setState({searchQuery: e.target.value});
-    this.setState({results:
-          data.filter((query => (Object.entries(query).toString().toLowerCase().includes(e.target.value))))
+      const filteredContinent = continents.filter(item => item.value === this.state.DropdownValue); //get the continent id from continents array
+      const defaultOutput = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(e.target.value))));
+      let dropdownQuery = this.state.results.filter(dropdownItem => dropdownItem.continent === filteredContinent[0].text); //match the continent name to filteredContinent
+      if (this.state.DropdownValue.isNumber){
+
+      }
+      console.log(this.state.DropdownValue);
+      console.log(filteredContinent[0].text);
+      console.log(dropdownQuery)
+
+    this.setState({
+        results: defaultOutput
     })
   }
   queryOutput() {
@@ -97,7 +107,12 @@ class Search extends Component {
                   fluid
                   options={continents}
                   selection placeholder='Wybierz kontynent...'
-                  onClick={(data) => console.log(data)}
+                  onClick={() => console.log()}
+                  onChange={(event, data) => {
+                    this.setState({
+                        DropdownValue: data.value
+                    })
+                  }}
               />
             </Grid.Column>
             <Grid.Column as={Form} width={6} textAlign={"right"}>
