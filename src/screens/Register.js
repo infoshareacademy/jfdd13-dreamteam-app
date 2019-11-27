@@ -9,7 +9,7 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import { login } from "../services/AuthService";
+import { Register } from "../services/AuthService";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -50,7 +50,7 @@ const Register = () => {
               type="password"
             />
 
-            <Button onClick={() => {}} color="teal" fluid size="large">
+            <Button onClick={() => Register(email, password)} color="teal" fluid size="large">
               Register
             </Button>
           </Segment>
