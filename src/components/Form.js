@@ -30,15 +30,14 @@ const accountFormSchema = Yup.object().shape({
     .oneOf([true], 'Zaznacz pole powyżej.'),
 });
 
-
 const continents = [
-  { key: 'afr', value: 1, text: "Afryka" },
-  { key: 'apd', value: 2, text: "Ameryka Południowa" },
-  { key: 'apn', value: 3, text: "Ameryka Północna" },
-  { key: 'ant', value: 4, text: "Antarktyda" },
-  { key: 'aus', value: 5, text: "Australia i Oceania" },
-  { key: 'azj', value: 6, text: "Azja" },
-  { key: 'eur', value: 7, text: "Europa" }
+  { key: 'afr', value: "Afryka", text: "Afryka" },
+  { key: 'apd', value: "Ameryka Południowa", text: "Ameryka Południowa" },
+  { key: 'apn', value: "Ameryka Północna", text: "Ameryka Północna" },
+  { key: 'ant', value: "Antarktyda", text: "Antarktyda" },
+  { key: 'aus', value: "Australia i Oceania", text: "Australia i Oceania" },
+  { key: 'azj', value: "Azja", text: "Azja" },
+  { key: 'eur', value: "Europa", text: "Europa" }
 ];
 
 class Formularz extends React.Component {
