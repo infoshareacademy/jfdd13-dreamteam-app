@@ -42,7 +42,7 @@ const Register = () => {
               type="password"
             />
 
-            <Button onClick={() => Register(email, password, name)} color="teal" fluid size="large">
+            <Button onClick={() => register(email, password, name)} color="teal" fluid size="large">
               Zarejestruj się
             </Button>
           </Segment>
