@@ -1,10 +1,17 @@
 import React from 'react';
+import Home from '../screens/Home';
+import Login from '../screens/Login';
+import Register from "../screens/Register";
+
 
 function Favourites() {
   return (
   
     <div className="Favourites">
-      <h1>Here You'll find your favourites stuff... some day</h1>
+      <h1>man at work... (with firebase)</h1>
+      <Home />
+      <Login />
+      <Register />
 
     </div> 
   )
