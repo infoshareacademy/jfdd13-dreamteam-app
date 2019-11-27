@@ -34,8 +34,8 @@ const Login = props => {
 
             <Button
               onClick={() => login(email, password)
-              // .then(() => {props.history.replace("/profil");
-              // })
+              .then(() => {props.history.replace("/user");
+              })
               }
               color="teal"
               fluid
@@ -46,7 +46,7 @@ const Login = props => {
           </Segment>
         </Form>
         <Message>
-          Chcesz się zarejestrować? - <a href="#">Kliknij</a>
+          Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
         </Message>
       </Grid.Column>
     </Grid>

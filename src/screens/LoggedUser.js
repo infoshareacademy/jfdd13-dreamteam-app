@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Button, Grid, Header, } from "semantic-ui-react";
 
-const LoggedUser = () => {
+const LoggedUser = (props) => {
   const [name, setName] = useState("")
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -10,11 +10,9 @@ const LoggedUser = () => {
           Witaj
         </Header>
         <Button
-          // onClick={() => 
-          //   login(email, password)
-          // .then(() => {props.history.replace("/profil");
-          // })
-          // }
+          onClick={() => 
+          {props.history.replace("/panel");}
+          }
           color="teal"
           fluid
           size="large"

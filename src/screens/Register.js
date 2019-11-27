@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 import { register } from "../services/AuthService";
 
-const Register = () => {
+const Register = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,10 @@ const Register = () => {
               type="password"
             />
 
-            <Button onClick={() => register(email, password, name)} color="teal" fluid size="large">
+            <Button onClick={() => register(email, password, name)
+              .then(() => {props.history.replace("/user");
+              })
+              } color="teal" fluid size="large">
               Zarejestruj się
             </Button>
           </Segment>
