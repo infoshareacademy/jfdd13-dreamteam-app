@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Button, Input, Container, Grid, Header, Menu, Segment } from "semantic-ui-react";
+import {Button, Container,Menu, Segment } from "semantic-ui-react";
 
 class Home extends Component {
   state = {};
