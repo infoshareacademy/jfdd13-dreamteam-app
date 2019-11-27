@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Grid, Input, Dropdown, Form, Container, Image} from 'semantic-ui-react';
+import React, {Component, Fragment, useState} from 'react';
+import {Grid, Input, Dropdown, Form, Container, Image, Modal, Header, Button} from 'semantic-ui-react';
 import TripContainer from './TripContainer';
 import {data} from '../data'
 
@@ -12,28 +12,29 @@ const continents = [
   {key: 'azj', value:5, text: "Azja"},
   {key: 'eur', value:6, text: "Europa"}
 ];
-
 class Search extends Component {
   state = {
-    show: 999,
+    DropdownValue: '',
+    show: '',
     searchQuery: '',
-    results: []
+    drop: '',
+    slider: 0,
+    results: data
   };
   handleSearchQuery (e) {
-    this.setState({searchQuery: e.target.value});
+    // this.setState({searchQuery: e.target.value});
+    this.setState({results:
+          data.filter((query => (Object.entries(query).toString().toLowerCase().includes(e.target.value))))
+    })
   }
-  // searchResultHandler(result) {
-  //   this.setState({results: result})
-  // }
   queryOutput() {
-    const filteredData = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))));
+    // const results = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))));
+    // const results2 = (data.filter(item => (Object.values(item.title))));
 
-    const filteredData2 = (data.filter(item => (Object.values(item.title))));
+  // this.searchResultHandler(results);
 
-  // this.searchResultHandler(filteredData);
-
-    return(filteredData.map(trip => (
-        <div>
+    return(this.state.results.map(trip => (
+        <div key={trip.id}>
           <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
             <Image
                 className="TripImage"
