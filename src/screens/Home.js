@@ -27,8 +27,11 @@ class Home extends Component {
                   onClick={() => {
                     fetch('https://dreamteam-app.firebaseio.com/test.json', {
                       method: 'POST',
-                      body: JSON.stringify({test: 1}).toLowerCase() // added to stndarize recipes i base -JK
-                    })
+                      body: JSON.stringify({
+                        test: 'just onClick test', 
+                        date: new Date().toLocaleString()
+                      }).toLowerCase() 
+                    }); console.log('you have sent a test')
                   }}
                   > 
                     Test database
