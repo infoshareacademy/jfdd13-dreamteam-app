@@ -1,16 +1,8 @@
 import React, {useState} from "react";
 import {login} from "../services/AuthService";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 
-const Login = () => {
+const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,7 +33,10 @@ const Login = () => {
             />
 
             <Button
-              onClick={() => login(email, password)}
+              onClick={() => login(email, password)
+              // .then(() => {props.history.replace("/profil");
+              // })
+              }
               color="teal"
               fluid
               size="large"
