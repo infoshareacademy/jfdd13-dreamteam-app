@@ -8,19 +8,21 @@ const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(40, 'Tytuł za długi, skróć do 40 znaków.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
+    .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
     .required("Pole wymagane."),
   price: Yup.string()
-    .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
+  .min(20, "Minimalna cena za dobę to 20 zł.")
+  .max(2000, "Maksymalna cena za dobę to 2000 zł.")
+    .matches(new RegExp(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/), 'Podaj cenę, używając cyfr.')
     .required("Pole wymagane."),
   city: Yup.string()
-    .matches(new RegExp(/^[A-Za-z]+$/), "Używaj wyłącznie liter.")
+    .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji.")
     .required("Pole wymagane."),
   continent: Yup.string()
     .required("Pole wymagane."),
   description: Yup.string()
-    .max(200, "Opis za długi, skróć tekst do 200 znaków."),
+    .max(400, "Opis za długi, skróć tekst do 400 znaków."),
   email: Yup.string()
     .required("Pole wymagane.")
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
