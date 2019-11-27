@@ -25,6 +25,14 @@ export const register = (email, password, name) => {
         })
         .then(() => {
           console.log("Poprawnie zarejestrowano dane: email, hasło i imię");
+          firebase
+          .database()
+          .ref("/users")
+          .push({
+            id: user.uid,
+            name,
+            email
+          })
         });
     });
 };
