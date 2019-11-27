@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, TextArea, Button, Checkbox, Radio } from 'semantic-ui-react';
+import { Form, Input, TextArea, Button, Checkbox, Select, FormInput } from 'semantic-ui-react';
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -10,7 +10,6 @@ const accountFormSchema = Yup.object().shape({
     .required("Pole wymagane.")
     .matches(new RegExp(/^[a-zA-Z0-9_ ]*$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
-    .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
     .required("Pole wymagane."),
   price: Yup.string()
     .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
@@ -32,6 +31,15 @@ const accountFormSchema = Yup.object().shape({
 });
 
 
+const continents = [
+  { key: 'afr', value: 1, text: "Afryka" },
+  { key: 'apd', value: 2, text: "Ameryka Południowa" },
+  { key: 'apn', value: 3, text: "Ameryka Północna" },
+  { key: 'ant', value: 4, text: "Antarktyda" },
+  { key: 'aus', value: 5, text: "Australia i Oceania" },
+  { key: 'azj', value: 6, text: "Azja" },
+  { key: 'eur', value: 7, text: "Europa" }
+];
 
 class Formularz extends React.Component {
 
@@ -103,10 +111,12 @@ class Formularz extends React.Component {
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <label>Data wyjazdu w formacie DD/MM/YYYY</label>
-                  <Input placeholder='Wpisz datę wyjazdu'
-                    type="text"
+                  <label>Data wyjazdu</label>
+                  <Input
+                    type="date"
                     name="date"
+                    min="2019-12-01"
+                    max="2022-01-01"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.date}
@@ -117,7 +127,6 @@ class Formularz extends React.Component {
                     {errors.date && touched.date && errors.date}
                   </div>
                 </Form.Field>
- 
                 <Form.Field>
                   <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
@@ -147,12 +156,12 @@ class Formularz extends React.Component {
                 </Form.Field>
                 <Form.Field>
                   <label>Kontynent</label>
-                  <Input placeholder='Wpisz kontynent'
-                    type="text"
-                    name="continent"
-                    onChange={handleChange}
+                  <Select placeholder='Wybierz kontynent'
+                   name="continent" 
+                   options={continents}
+                    onChange={(event, data) => setFieldValue('continent', data.value)}
                     onBlur={handleBlur}
-                    value={values.continent}
+                    // value={values.continent}
                     touched={touched}
                     errors={errors} />
                   <div className={styles.error}>
