@@ -50,7 +50,7 @@ const Register = () => {
               type="password"
             />
 
-            <Button onClick={() => Register(email, password)} color="teal" fluid size="large">
+            <Button onClick={() => Register(email, password, name)} color="teal" fluid size="large">
               Register
             </Button>
           </Segment>

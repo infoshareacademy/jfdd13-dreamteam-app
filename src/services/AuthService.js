@@ -16,12 +16,12 @@ export const login = (email, password) => {
 export const register = (email, password) => {
   return firebase
     .auth()
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(email, password, name)
     .then(value => {
       const user = firebase.auth().currentUser;
       user
         .updateProfile({
-          displayName: "Jan Nowak"
+          displayName: "name"
         })
         .then(() => {
           console.log("Poprawnie zarejestrowano dane: email, hasło i imię");
