@@ -13,10 +13,10 @@ export const login = (email, password) => {
     });
 };
 
-export const register = (email, password) => {
+export const register = (email, password, name) => {
   return firebase
     .auth()
-    .createUserWithEmailAndPassword(email, password, name)
+    .createUserWithEmailAndPassword(email, password)
     .then(value => {
       const user = firebase.auth().currentUser;
       user

@@ -9,7 +9,7 @@ import {
   Message,
   Segment
 } from "semantic-ui-react";
-import { Register } from "../services/AuthService";
+import { register } from "../services/AuthService";
 
 const Register = () => {
   const [name, setName] = useState("");
