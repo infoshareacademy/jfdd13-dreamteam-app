@@ -5,18 +5,18 @@ import Register from "../screens/Register";
 import LoggedUser from '../screens/LoggedUser';
 
 
-function Favourites() {
+function UserPanel() {
   return (
   
     <div className="Favourites">
       <h1 style={{backgroundColor:'yellow'}}>man at work... (with firebase)</h1>
       <Home />
-      <Login />
+      {/* <Login />
       <Register />
-      <LoggedUser />
+      <LoggedUser /> */}
 
     </div> 
   )
 }; 
 
-export default Favourites;
+export default UserPanel;

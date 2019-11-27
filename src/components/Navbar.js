@@ -41,7 +41,7 @@ function Navbar() {
         Dodaj
       </Menu.Item>
       </NavLink>
-      <NavLink to="/fav" exact>
+      <NavLink to="/panel" exact>
       <Menu.Item>
         <Icon name='user' />
         Panel
