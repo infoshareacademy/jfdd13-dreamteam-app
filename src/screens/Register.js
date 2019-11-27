@@ -22,7 +22,7 @@ const Register = () => {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="Your name"
+              placeholder="Imię"
             />
             <Form.Input
               value={email}
@@ -30,7 +30,7 @@ const Register = () => {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
+              placeholder="E-mail"
             />
             <Form.Input
               value={password}
@@ -38,7 +38,7 @@ const Register = () => {
               fluid
               icon="lock"
               iconPosition="left"
-              placeholder="Password"
+              placeholder="Hasło"
               type="password"
             />
 
@@ -48,7 +48,7 @@ const Register = () => {
           </Segment>
         </Form>
         <Message>
-          Jesteż zarejestrowany? <Link to="/login">Zaloguj się</Link>
+          Jesteś już zarejestrowany? -  <Link to="/login">Zaloguj się</Link>
         </Message>
       </Grid.Column>
     </Grid>

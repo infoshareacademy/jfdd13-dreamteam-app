@@ -20,7 +20,7 @@ const Login = props => {
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="E-mail address"
+              placeholder="E-mail"
             />
             <Form.Input
               value={password}
@@ -28,7 +28,7 @@ const Login = props => {
               fluid
               icon="lock"
               iconPosition="left"
-              placeholder="Password"
+              placeholder="Hasło"
               type="password"
             />
 
@@ -46,7 +46,7 @@ const Login = props => {
           </Segment>
         </Form>
         <Message>
-          Chcesz się zarejestrować? <a href="#">Kliknij</a>
+          Chcesz się zarejestrować? - <a href="#">Kliknij</a>
         </Message>
       </Grid.Column>
     </Grid>
