@@ -7,6 +7,7 @@ const Posts = ({allTrips}) => {
     const [favourites, setFavourites] = useState([]);
     const close = () => setOpenId(null);
     const trip = allTrips.find(trip => trip.id === openId);
+    console.log(favourites)
 
     return <Fragment>
         {allTrips.map(trip => (
@@ -19,7 +20,7 @@ const Posts = ({allTrips}) => {
                         label={{
                             ribbon: true,
                             color: "blue",
-                            content: `{trip.city}`
+                            content: `${trip.city}`
                         }}
                         centered={true}
                     />
@@ -53,19 +54,16 @@ const Posts = ({allTrips}) => {
                     </Button>
                     <Button
                         positive
-                        icon={`heart {favourites.includes(trip.id) ? "outline" : ""}`}
+                        icon={`heart ${favourites.includes(trip.id) ? "" : "outline"}`}
                         labelPosition="right"
-                        content={favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}
-                        content="Ulubione"
+                        content={`${favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}`}
                         onClick={() => {
                             if(favourites.includes(trip.id)){
-                                favourites.filter(item => item.id !== trip.id );
-                                console.log(favourites)
+                               setFavourites(favourites.filter(id => id !== trip.id))
                             } else {
-                                setFavourites([...favourites, trip]);
-                                console.log(favourites)
+                                setFavourites([...favourites, trip.id]);
                             };
-                      }}
+                        }}
                     />
                 </Modal.Actions>
             </Fragment>}
