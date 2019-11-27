@@ -32,7 +32,7 @@ function Navbar() {
       <NavLink to="/search" exact>
       <Menu.Item>
         <Icon name='search' />
-        Wyszukaj
+        Oferta
       </Menu.Item>
       </NavLink>
       <NavLink to="/form" exact>
@@ -44,7 +44,7 @@ function Navbar() {
       <NavLink to="/fav" exact>
       <Menu.Item>
         <Icon name='heart' />
-        Fav
+        Panel
       </Menu.Item>
       </NavLink>
     </Sidebar>

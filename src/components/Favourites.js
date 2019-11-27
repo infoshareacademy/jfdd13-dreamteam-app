@@ -9,7 +9,7 @@ function Favourites() {
   return (
   
     <div className="Favourites">
-      <h1>man at work... (with firebase)</h1>
+      <h1 style={{backgroundColor:'yellow'}}>man at work... (with firebase)</h1>
       <Home />
       <Login />
       <Register />
@@ -17,6 +17,6 @@ function Favourites() {
 
     </div> 
   )
-};
+}; 
 
 export default Favourites;

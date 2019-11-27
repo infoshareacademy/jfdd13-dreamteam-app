@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 import { register } from "../services/AuthService";
 
 const Register = () => {
@@ -20,7 +12,7 @@ const Register = () => {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          Create your account
+          Utwórz konto
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -51,12 +43,12 @@ const Register = () => {
             />
 
             <Button onClick={() => Register(email, password, name)} color="teal" fluid size="large">
-              Register
+              Zarejestruj się
             </Button>
           </Segment>
         </Form>
         <Message>
-          Already registered? <Link to="/login">Log in</Link>
+          Jesteż zarejestrowany? <Link to="/login">Zaloguj się</Link>
         </Message>
       </Grid.Column>
     </Grid>

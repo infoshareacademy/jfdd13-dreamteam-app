@@ -10,7 +10,7 @@ const Login = props => {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          Log-in to your account
+          Zaloguj się 
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -41,12 +41,12 @@ const Login = props => {
               fluid
               size="large"
             >
-              Login
+              Zaloguj się
             </Button>
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="#">Sign Up</a>
+          Chcesz się zarejestrować? <a href="#">Kliknij</a>
         </Message>
       </Grid.Column>
     </Grid>
