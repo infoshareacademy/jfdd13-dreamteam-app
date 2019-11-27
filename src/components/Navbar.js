@@ -35,7 +35,7 @@ function Navbar() {
         Oferta
       </Menu.Item>
       </NavLink>
-      <NavLink to="/form" exact>
+      <NavLink to="/form/" exact>
       <Menu.Item>
         <Icon name='add' />
         Dodaj
@@ -43,7 +43,7 @@ function Navbar() {
       </NavLink>
       <NavLink to="/fav" exact>
       <Menu.Item>
-        <Icon name='heart' />
+        <Icon name='user' />
         Panel
       </Menu.Item>
       </NavLink>
