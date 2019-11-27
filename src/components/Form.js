@@ -12,8 +12,8 @@ const accountFormSchema = Yup.object().shape({
   date: Yup.string()
     .required("Pole wymagane."),
   price: Yup.string()
-  .min(20, "Minimalna cena za dobę to 20 zł.")
-  .max(2000, "Maksymalna cena za dobę to 2000 zł.")
+  .moreThan(20, "Minimalna cena za dobę to 20 zł.")
+  .lessThan(2000, "Maksymalna cena za dobę to 2000 zł.")
     .matches(new RegExp(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/), 'Podaj cenę, używając cyfr.')
     .required("Pole wymagane."),
   city: Yup.string()
@@ -129,7 +129,7 @@ class Formularz extends React.Component {
                 <Form.Field>
                   <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
-                    type="text"
+                    type="number"
                     name="price"
                     onChange={handleChange}
                     onBlur={handleBlur}
