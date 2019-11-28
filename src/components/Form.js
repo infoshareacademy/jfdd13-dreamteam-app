@@ -11,10 +11,10 @@ const accountFormSchema = Yup.object().shape({
     .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
     .required("Pole wymagane."),
-  price: Yup.string()
-  .moreThan(20, "Minimalna cena za dobę to 20 zł.")
-  .lessThan(2000, "Maksymalna cena za dobę to 2000 zł.")
-    .matches(new RegExp(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/), 'Podaj cenę, używając cyfr.')
+  price: Yup.number()
+    .moreThan(20, "Minimalna cena za dobę to 20 zł.")
+    .lessThan(2000, "Maksymalna cena za dobę to 2000 zł.")
+    .positive("Cena musi być liczba dodatnia")
     .required("Pole wymagane."),
   city: Yup.string()
     .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji.")
@@ -39,6 +39,14 @@ const continents = [
   { key: 'azj', value: "Azja", text: "Azja" },
   { key: 'eur', value: "Europa", text: "Europa" }
 ];
+
+const truncateDecimals = function (value, digits) {
+  const number = parseFloat(value)
+  var multiplier = Math.pow(10, digits),
+      adjustedNum = number * multiplier,
+      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+  return truncatedNum / multiplier;
+};
 
 class Formularz extends React.Component {
 
@@ -131,7 +139,11 @@ class Formularz extends React.Component {
                   <Input placeholder='Wpisz cenę za dobę'
                     type="number"
                     name="price"
-                    onChange={handleChange}
+                    onChange={(e)=>{
+                      const {value} = e.target 
+                      const price = truncateDecimals(value, 2)
+                      setFieldValue('price', price)
+                    }}
                     onBlur={handleBlur}
                     value={values.price}
                     touched={touched}
