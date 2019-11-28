@@ -75,9 +75,8 @@ function Home () {
       direction='top'
       visible={true}
       width='thin'
-      
     >
-      <NavLink to="/" exact>
+      <NavLink to="#" exact>
       <Menu.Item
            onClick={() => {
             fetch('https://dreamteam-app.firebaseio.com/test.json', {
