@@ -11,32 +11,24 @@ const continents = [
   {key: 'azj', value:5, text: "Azja"},
   {key: 'eur', value:6, text: "Europa"}
 ];
+const initialRange = 1999;
 class Search extends Component {
   state = {
     DropdownValue: '',
-    show: '',
+    show: initialRange,
     searchQuery: '',
     drop: '',
-    slider: 0,
     results: data
   };
   clearSearchResult() {
       this.setState({results: data})
 }
+
   handleSearchQuery (e = '') {
 
       let inputVal = ''; //error handling
-
       let dropdownContinent = '';
-
-    //   const dropdownWatcher = () => {
-    //       if (this.state.DropdownValue !== "")
-    //       {
-    //           dropdownContinent = continents.filter(item => item.value === this.state.DropdownValue) //get the continent id from continents array
-    //       }
-    //   };
-    //
-    // dropdownWatcher()
+      let inputRange = '';
 
       if (e.hasOwnProperty('target')) {
           inputVal = e.target.value
@@ -46,18 +38,21 @@ class Search extends Component {
               .entries(query).toString()
               .toLowerCase()
               .includes(
-                  dropdownContinent && inputVal || inputVal
-              )));
+                  inputRange && dropdownContinent && inputVal || inputRange && dropdownContinent || inputRange && inputVal
+                  || dropdownContinent && inputVal || inputRange || dropdownContinent || inputVal
+  )));
+
+      if (inputRange < initialRange) {
+          inputRange = this.state.show
+      }
+
       // let dropdownQuery = this.state.results.filter(dropdownItem => dropdownItem.continent === filteredContinent[0].text); //match the continent name to filteredContinent
       const dropdownQuery = (q) => q.filter(dropdownItem => dropdownItem.continent === filteredContinent[0].text); //match the continent name
       // this.setState({searchQuery: e.target.value});
-
       let filteredContinent = '';
       if (this.state.DropdownValue !== ''){
           filteredContinent = continents.filter(item => item.value === this.state.DropdownValue); //get the continent id from continents array
-
           this.setState( {results: dropdownQuery(defaultOutput)})
-
       } else {
           this.setState({
               results: defaultOutput
@@ -68,8 +63,6 @@ class Search extends Component {
       // console.log(dropdownQuery(defaultOutput));
       console.log('now state:');
       console.log(this.state)
-
-
   }
   queryOutput() {
     // const results = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))));
@@ -108,18 +101,6 @@ class Search extends Component {
 
     return (
       <div className="search">
-        {/*{*/}
-        {/*  //search*/}
-        {/*  (this.state.searchQuery === '')? 'uważaj, tu się chowa znajomy JSON' :*/}
-        {/*      //searching through whole object entries instead of title*/}
-        {/*      JSON.stringify(data.filter(query => Object.entries(query).toString().toLowerCase().includes(searchQuery)))*/}
-
-        {/*      // ) || query.title.toLowerCase().includes(searchQuery)))*/}
-        {/*    //now push it to state results array and display it*/}
-
-        {/*}*/}
-
-
         <Grid padded={true}>
           <Grid.Row columns={1} centered={true}>
             <Grid.Column width={12}>
