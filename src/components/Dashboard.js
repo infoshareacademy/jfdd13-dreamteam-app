@@ -43,7 +43,7 @@ function Dashboard() {
                             <ul style={{listStyle: 'none'}}>
                                 <li>Wyjdź z domu i poczuj się turystą we własnym mieście</li>
                                 <li>Skorzystaj z formularza i dodaj swoją wycieczkę</li>
-                                {/*<li>Wracaj do swoich najlepszych lokalizacji z pomocą ulubionych</li>*/}
+                                <li>Wracaj do swoich najlepszych lokalizacji z pomocą ulubionych</li>
                             </ul>
                         </div>
                     </Grid.Column>
