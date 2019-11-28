@@ -92,24 +92,37 @@ function Home () {
         Test database
       </Menu.Item>
       </NavLink>
-
+      <NavLink to="#" exact>
+      <Menu.Item
+           onClick={() => {
+            fetch('https://dreamteam-app.firebaseio.com/test.json', {
+              method: 'GET',
+              body: JSON.stringify({
+                test: 'just onClick test', 
+                date: new Date().toLocaleString()
+              }).toLowerCase() 
+            }); console.log('you have sent a test')
+          }}
+      >
+        <Icon name='text cursor' />
+        Test database
+      </Menu.Item>
+      </NavLink>
       <NavLink to="/login" exact>
       <Menu.Item>
         <Icon name='user secret' />
         Zaloguj
       </Menu.Item>
       </NavLink>
-      
+
       <NavLink to="/register" exact>
       <Menu.Item>
         <Icon name='registered' />
         Zarejestruj
       </Menu.Item>
       </NavLink>
-     
     </Sidebar>
   </Sidebar.Pushable>
-
   )
 }
 
