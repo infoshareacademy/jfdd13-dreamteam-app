@@ -1,5 +1,5 @@
-import React, {Component, Fragment, useState} from 'react';
-import {Grid, Input, Dropdown, Form, Container, Image, Modal, Header, Button} from 'semantic-ui-react';
+import React, {Component} from 'react';
+import {Grid, Input, Dropdown, Form, Image} from 'semantic-ui-react';
 import TripContainer from './TripContainer';
 import {data} from '../data'
 
@@ -24,15 +24,7 @@ class Search extends Component {
         selectedContinent: 1
     };
 
-    clearSearchResult() {
-        this.setState({results: this.state.searchQuery || data})
-    }
-
     queryOutput() {
-        // const results = data.filter((query => (Object.entries(query).toString().toLowerCase().includes(this.state.searchQuery))));
-        // const results2 = (data.filter(item => (Object.values(item.title))));
-
-        // this.searchResultHandler(results);
 
         return (this.filteredResults.map(trip => (
                 <div key={trip.id}>
@@ -51,7 +43,6 @@ class Search extends Component {
                         <p>{trip.title}</p>
                     </Grid.Column>
                 </div>
-
             ))
         )
     }
@@ -60,20 +51,20 @@ class Search extends Component {
         this.setState({
             selectedContinent: data.value
         })
-    }
+    };
 
     handleInputChange = e => {
         this.setState({
             searchQuery: e.target.value
         })
-    }
+    };
 
     get filteredResults () {
-        const {searchQuery, selectedContinent} = this.state
+        const {searchQuery, selectedContinent} = this.state;
         const continent = continents.find(continent => {
             return continent.value === selectedContinent
-        })
-        const continentText = continent ? continent.text : ''
+        });
+        const continentText = continent ? continent.text : '';
         return this.state.results.filter(trip => {
             return (
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
@@ -83,7 +74,6 @@ class Search extends Component {
             )
         })
     }
-
     handleChange = (e, {name, value}) => this.setState({[name]: value});
     toggleVisibility = () =>
         this.setState((prevState) => ({visible: !prevState.visible}));
@@ -144,7 +134,6 @@ class Search extends Component {
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
-
                 {/*<TripContainer />*/}
             </div>
         );
