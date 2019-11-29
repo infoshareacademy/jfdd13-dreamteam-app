@@ -105,7 +105,6 @@ class Search extends Component {
                                 fluid
                                 options={continents}
                                 selection placeholder='Wybierz kontynent...'
-                                onClick={() => console.log()}
                                 onChange={this.handleSelect}
                                 value={this.state.selectedContinent}
                             />
