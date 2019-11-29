@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from 'react-router-dom';
-import {Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import {Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
+import Test, {testLocalStorageOnClick} from './Test'
 
 function Home () {
 
@@ -11,7 +12,7 @@ function Home () {
     border: 0,
     borderRadius: 0
   };
-  return (
+  return (<div>
   <Sidebar.Pushable as={Segment} style={navStyle}>
     <Sidebar 
       as={Menu}
@@ -50,6 +51,28 @@ function Home () {
       </Menu.Item>
       </NavLink>
 
+      <NavLink to="#" exact>
+      <Menu.Item
+           onClick={() => {
+            localStorage.setItem('click', JSON.stringify('just simple text'))
+          }}
+      >
+        <Icon name='save outline' />
+        Zapisz
+      </Menu.Item>
+      </NavLink>
+      
+      <NavLink to="#" exact>
+      <Menu.Item
+           onClick={() => {
+            testLocalStorageOnClick();
+          }}          
+      >
+        <Icon name='check square outline' />
+        Sprawdź
+      </Menu.Item>
+      </NavLink>
+
       <NavLink to="/login" exact>
       <Menu.Item>
         <Icon name='sign in' />
@@ -65,6 +88,14 @@ function Home () {
       </NavLink>
     </Sidebar>
   </Sidebar.Pushable>
+  <Grid>
+    <Grid.Row>
+      <Grid.Column>
+        <Test />
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+  </div>
   )
 }
 
