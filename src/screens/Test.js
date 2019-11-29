@@ -1,11 +1,12 @@
 import React from 'react';
-import {Grid, Image} from 'semantic-ui-react';
+import {Grid, Header, Image} from 'semantic-ui-react';
 
 const dataFromLocalStorage = JSON.parse(localStorage.getItem('form'));
 
 const Test = () => {
   return (
     <div>
+      <Header>tu renderujemy dane z wypełnionego Formularza (zapis do localStorage) </Header>
       {[dataFromLocalStorage].map(trip => (
       <Grid.Column  style={{ padding: "0 2rem" }}>
         <Image
