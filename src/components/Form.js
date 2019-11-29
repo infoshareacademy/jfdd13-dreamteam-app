@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, TextArea, Button, Checkbox, Select, FormInput } from 'semantic-ui-react';
+import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-react';
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -54,11 +54,6 @@ class Formularz extends React.Component {
     thankYouVisible: false
   }
 
-  handleChange = (e, { value }) =>
-    this.setState(
-      { value }
-    )
-
   handleThankYouVisible() {
 
     this.setState({
@@ -112,7 +107,7 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.title}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.title && touched.title && errors.title}
                   </div>
@@ -128,7 +123,6 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.date}
                     touched={touched}
-                    errors={errors}
                   />
                   <div className={styles.error}>
                     {errors.date && touched.date && errors.date}
@@ -140,14 +134,14 @@ class Formularz extends React.Component {
                     type="number"
                     name="price"
                     onChange={(e)=>{
-                      const {value} = e.target 
+                      const {value} = e.target
                       const price = truncateDecimals(value, 2)
                       setFieldValue('price', price)
                     }}
                     onBlur={handleBlur}
                     value={values.price}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.price && touched.price && errors.price}
                   </div>
@@ -168,13 +162,12 @@ class Formularz extends React.Component {
                 <Form.Field>
                   <label>Kontynent</label>
                   <Select placeholder='Wybierz kontynent'
-                   name="continent" 
+                   name="continent"
                    options={continents}
                     onChange={(event, data) => setFieldValue('continent', data.value)}
                     onBlur={handleBlur}
-                    // value={values.continent}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.continent && touched.continent && errors.continent}</div>
                 </Form.Field>
@@ -200,7 +193,7 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.email}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.email && touched.email && errors.email}
                   </div>
