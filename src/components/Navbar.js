@@ -32,19 +32,19 @@ function Navbar() {
       <NavLink to="/search" exact>
       <Menu.Item>
         <Icon name='search' />
-        Wyszukaj
+        Oferta
       </Menu.Item>
       </NavLink>
-      <NavLink to="/form" exact>
+      <NavLink to="/form/" exact>
       <Menu.Item>
         <Icon name='add' />
         Dodaj
       </Menu.Item>
       </NavLink>
-      <NavLink to="/fav" exact>
+      <NavLink to="/panel" exact>
       <Menu.Item>
-        <Icon name='heart' />
-        Fav
+        <Icon name='user' />
+        Panel
       </Menu.Item>
       </NavLink>
     </Sidebar>

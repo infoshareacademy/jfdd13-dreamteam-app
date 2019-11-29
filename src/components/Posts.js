@@ -1,17 +1,18 @@
 import React, {Fragment, useState} from 'react'
 import {Grid, Image, Modal, Header, Button} from "semantic-ui-react";
-
+                            
 const Posts = ({allTrips}) => {
     const [openId, setOpenId] = useState(null);
     const show = (openId) => setOpenId(openId);
-    const [favourites, setFavourites] = useState(false);
+    const [favourites, setFavourites] = useState([]);
     const close = () => setOpenId(null);
     const trip = allTrips.find(trip => trip.id === openId);
+    console.log(favourites)
 
     return <Fragment>
         {allTrips.map(trip => (
             <div>
-                <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
+                <Grid.Column key={trip.id} style={{padding: '0 2rem'}}>
                     <Image
                         className="TripImage"
                         onClick={() => show(trip.id)}
@@ -53,12 +54,15 @@ const Posts = ({allTrips}) => {
                     </Button>
                     <Button
                         positive
-                        icon={`heart ${favourites ? "" : "outline"}`}
+                        icon={`heart ${favourites.includes(trip.id) ? "" : "outline"}`}
                         labelPosition="right"
-                        content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
-                        // content="Ulubione"
+                        content={`${favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}`}
                         onClick={() => {
-                            setFavourites(!favourites);
+                            if(favourites.includes(trip.id)){
+                               setFavourites(favourites.filter(id => id !== trip.id))
+                            } else {
+                                setFavourites([...favourites, trip.id]);
+                            };
                         }}
                     />
                 </Modal.Actions>
