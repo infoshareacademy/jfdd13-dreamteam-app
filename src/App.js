@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
-import TripContainer from "./components/TripContainer";
 import Form from "./components/Form";
 import Search from "./components/Search";
 import Appbar from "./components/Appbar";
@@ -24,7 +23,6 @@ function App() {
                     <Switch>
                         <Route exact strict path="/" component={Dashboard}/>
                         <Route exact strict path="/main" component={Dashboard}/>
-                        <Route exact strict path="/trip" component={TripContainer}/>
                         <Route exact strict path="/search" component={Search}/>
                         <Route exact strict path="/panel" component={UserPanel}/>
                         <Route exact strict path="/register" component={Register}/>
