@@ -16,7 +16,7 @@ const initialRange = 1999;
 class Search extends Component {
     state = {
         DropdownValue: '',
-        show: initialRange,
+        rangeValue: initialRange,
         searchQuery: '',
         drop: '',
         results: data,
@@ -31,7 +31,7 @@ class Search extends Component {
                     <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
                         <Image
                             className="TripImage"
-                            // onClick={() => show(trip.id)}
+                            // onClick={() => rangeValue(trip.id)}
                             src={trip.img}
                             label={{
                                 ribbon: true,
@@ -48,7 +48,7 @@ class Search extends Component {
     }
     handleRange = (e, data) => {
       this.setState({
-        show: e.target.value
+        rangeValue: Number(e.target.value)
       })
     };
 
@@ -65,7 +65,7 @@ class Search extends Component {
     };
 
     get filteredResults () {
-        const {searchQuery, selectedContinent} = this.state;
+        const {searchQuery, selectedContinent, rangeValue} = this.state;
         const continent = continents.find(continent => {
             return continent.value === selectedContinent
         });
@@ -73,10 +73,10 @@ class Search extends Component {
         return this.state.results.filter(trip => {
             return (
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                (trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                parseInt(trip.price) < parseInt(this.state.show) ||
+                trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    (Number(trip.price) < rangeValue ||
                 trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                    parseInt(trip.price) < parseInt(this.state.show)
+                    Number(trip.price) < rangeValue
                 )
             )
         })
@@ -86,7 +86,7 @@ class Search extends Component {
         this.setState((prevState) => ({visible: !prevState.visible}));
 
     render() {
-        const {show, searchQuery} = this.state;
+        const {rangeValue, searchQuery} = this.state;
 
         return (
             <div className="search">
@@ -117,24 +117,13 @@ class Search extends Component {
                             />
                         </Grid.Column>
                         <Grid.Column as={Form} width={6} textAlign={"right"} style={{verticalAlign: 'middle'}}>
-                            {/*<Form.Input inline*/}
-                            {/*            label={`Twój budżet: ${show} PLN`}*/}
-                            {/*            min={99}*/}
-                            {/*            max={2000}*/}
-                            {/*            step={100}*/}
-                            {/*            type="range"*/}
-                            {/*            onChange={this.handleRange}*/}
-                            {/*            name="show"*/}
-                            {/*            value={show}*/}
-                            {/*            style={{padding: 0}}*/}
-                            {/*/>*/}
                             <input type={'range'}
                                    min={0}
                                    max={2000}
                                    step={100}
                                    onChange={this.handleRange}
                                    name={'show'}
-                                   value={this.state.show}
+                                   value={this.state.rangeValue}
                                    style={{padding: 0, minHeight: '40px'}}
                             />
                         </Grid.Column>
