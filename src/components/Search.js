@@ -21,7 +21,7 @@ class Search extends Component {
         drop: '',
         results: data,
         searchTargetValue: '',
-        selectedContinent: 1
+        selectedContinent: ''
     };
 
     queryOutput() {
@@ -46,6 +46,11 @@ class Search extends Component {
             ))
         )
     }
+    handleRange = (e, data) => {
+      this.setState({
+        show: data.value
+      })
+    };
 
     handleSelect = (e, data) => {
         this.setState({
@@ -68,8 +73,10 @@ class Search extends Component {
         return this.state.results.filter(trip => {
             return (
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                (trip.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                trip.city.toLowerCase().includes(searchQuery.toLowerCase())
+                (trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                parseInt(trip.price) < parseInt(this.state.show) ||
+                trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    parseInt(trip.price) < parseInt(this.state.show)
                 )
             )
         })
@@ -116,7 +123,7 @@ class Search extends Component {
                                         max={2000}
                                         step={100}
                                         type="range"
-                                        onChange={this.handleChange}
+                                        onChange={this.handleRange}
                                         name="show"
                                         value={show}
                             />
