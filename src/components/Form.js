@@ -13,7 +13,7 @@ const accountFormSchema = Yup.object().shape({
     .required("Pole wymagane."),
   price: Yup.number()
     .moreThan(20, "Minimalna cena za dobę to 20 zł.")
-    .lessThan(2000, "Maksymalna cena za dobę to 2000 zł.")
+    .lessThan(2001, "Maksymalna cena za dobę to 2000 zł.")
     .positive("Cena musi być liczba dodatnia")
     .required("Pole wymagane."),
   city: Yup.string()
