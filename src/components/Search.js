@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Grid, Input, Dropdown, Form, Image} from 'semantic-ui-react';
-import TripContainer from './TripContainer';
 import {data} from '../data'
 
 const continents = [
@@ -82,11 +81,8 @@ class Search extends Component {
         })
     }
     handleChange = (e, {name, value}) => this.setState({[name]: value});
-    toggleVisibility = () =>
-        this.setState((prevState) => ({visible: !prevState.visible}));
 
     render() {
-        const {rangeValue, searchQuery} = this.state;
 
         return (
             <div className="search">
@@ -139,7 +135,6 @@ class Search extends Component {
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
-                {/*<TripContainer />*/}
             </div>
         );
     };
