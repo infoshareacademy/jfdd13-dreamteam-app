@@ -48,7 +48,7 @@ class Search extends Component {
     }
     handleRange = (e, data) => {
       this.setState({
-        show: data.value
+        show: e.target.value
       })
     };
 
@@ -116,16 +116,26 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} textAlign={"right"}>
-                            <Form.Input inline
-                                        label={`Twój budżet: ${show} PLN`}
-                                        min={99}
-                                        max={2000}
-                                        step={100}
-                                        type="range"
-                                        onChange={this.handleRange}
-                                        name="show"
-                                        value={show}
+                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{verticalAlign: 'middle'}}>
+                            {/*<Form.Input inline*/}
+                            {/*            label={`Twój budżet: ${show} PLN`}*/}
+                            {/*            min={99}*/}
+                            {/*            max={2000}*/}
+                            {/*            step={100}*/}
+                            {/*            type="range"*/}
+                            {/*            onChange={this.handleRange}*/}
+                            {/*            name="show"*/}
+                            {/*            value={show}*/}
+                            {/*            style={{padding: 0}}*/}
+                            {/*/>*/}
+                            <input type={'range'}
+                                   min={0}
+                                   max={2000}
+                                   step={100}
+                                   onChange={this.handleRange}
+                                   name={'show'}
+                                   value={this.state.show}
+                                   style={{padding: 0, minHeight: '40px'}}
                             />
                         </Grid.Column>
                     </Grid.Row>
