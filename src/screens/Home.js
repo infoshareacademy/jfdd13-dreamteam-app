@@ -1,14 +1,13 @@
 import React from "react";
 import {NavLink} from 'react-router-dom';
 import {Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
-import Test, {testLocalStorageOnClick} from './Test'
+import Test from './Test'
 
 function Home () {
 
   const navStyle = {
     width: '100vw',
     minHeight: '100px',
-    position: 'right',
     border: 0,
     borderRadius: 0
   };
@@ -25,51 +24,27 @@ function Home () {
     >
       <NavLink to="#" exact>
       <Menu.Item
-           onClick={() => {
-            fetch('https://dreamteam-app.firebaseio.com/test.json', {
-              method: 'POST',
-              body: JSON.stringify({
-                test: 'just onClick test', 
-                date: new Date().toLocaleString()
-              }).toLowerCase() 
-            });
-          }}          
-      >
+        onClick={() => {
+        fetch('https://dreamteam-app.firebaseio.com/test.json', {
+          method: 'POST',
+          body: JSON.stringify({
+            test: 'just onClick test', 
+            date: new Date().toLocaleString()
+            }).toLowerCase() 
+          });
+        }}>
         <Icon name='upload' />
         Test database
       </Menu.Item>
       </NavLink>
       <NavLink to="#" exact>
       <Menu.Item
-           onClick={() => {
+          onClick={() => {
             fetch('https://dreamteam-app.firebaseio.com/test.json'); 
             console.log('getting news')
-          }}
-      >
+          }}>
         <Icon name='download' />
         GET from database
-      </Menu.Item>
-      </NavLink>
-
-      <NavLink to="#" exact>
-      <Menu.Item
-           onClick={() => {
-            localStorage.setItem('click', JSON.stringify('just simple text'))
-          }}
-      >
-        <Icon name='save outline' />
-        Zapisz
-      </Menu.Item>
-      </NavLink>
-      
-      <NavLink to="#" exact>
-      <Menu.Item
-           onClick={() => {
-            testLocalStorageOnClick();
-          }}          
-      >
-        <Icon name='check square outline' />
-        Sprawdź
       </Menu.Item>
       </NavLink>
 
