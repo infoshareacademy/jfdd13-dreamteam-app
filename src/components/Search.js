@@ -92,7 +92,7 @@ class Search extends Component {
                             <Input
                                 onChange={this.handleInputChange}
                                 list='places'
-                                placeholder='Podaj destynację...'
+                                placeholder='Gdzie chesz pojechać?'
                                 fluid
                                 value={this.state.searchQuery}
                             />
