@@ -1,7 +1,6 @@
 import firebase from "../firebase";
 
 export const login = (email, password) => {
-  
   return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -12,10 +11,6 @@ export const login = (email, password) => {
         throw Error(err);
       }
     });
-
-  // .catch(() => {
-  //   console.log("Spróbuj jeszcze raz!");
-  // });
 };
 
 export const register = (email, password, name) => {
@@ -29,7 +24,7 @@ export const register = (email, password, name) => {
           displayName: "name"
         })
         .then(() => {
-          console.log("Poprawnie zarejestrowano dane: email, hasło i imię");
+          console.log("Poprawnie zarejestrowano");
           firebase
             .database()
             .ref("/users")
