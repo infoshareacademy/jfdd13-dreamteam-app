@@ -27,7 +27,7 @@ class Search extends Component {
 
         return (this.filteredResults.map(trip => (
                 <div key={trip.id}>
-                    <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
+                    <Grid.Column style={{padding: '0 2rem'}}>
                         <Image
                             className="TripImage"
                             // onClick={() => rangeValue(trip.id)}
