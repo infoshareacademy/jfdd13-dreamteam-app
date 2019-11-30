@@ -1,6 +1,8 @@
 import React from 'react';
 
-const testData = JSON.parse(localStorage.getItem('form'));
+const dataCheck = JSON.parse(localStorage.getItem('form'));
+const testDataImport = (dataCheck) || []
+
 
 export const testLocalStorageOnClick = () => {
   return (<p> 
@@ -15,12 +17,13 @@ const Test = () => {
     return (
     <div>
       <ul>
-        {testData.map(item => {
-      
-      <li>{item.price}</li>
-      <li>{item.description}</li>}
-          
-          )}
+          {
+              testDataImport.map((item, index) => (
+
+                  <li key={index}>{item.price}</li>
+                  // <li>{item.description}</li>
+              ))
+              }
          </ul>
     </div>
     )
