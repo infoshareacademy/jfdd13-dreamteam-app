@@ -1,16 +1,21 @@
 import firebase from "../firebase";
 
 export const login = (email, password) => {
+  
   return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(value => {
-      console.log("Zalogowany!");
-      console.log(value);
-    })
-    .catch(() => {
-      console.log("Spróbuj jeszcze raz!");
+    .then(user => {
+      try {
+        this.setUser(user);
+      } catch (err) {
+        throw Error(err);
+      }
     });
+
+  // .catch(() => {
+  //   console.log("Spróbuj jeszcze raz!");
+  // });
 };
 
 export const register = (email, password, name) => {
@@ -26,13 +31,13 @@ export const register = (email, password, name) => {
         .then(() => {
           console.log("Poprawnie zarejestrowano dane: email, hasło i imię");
           firebase
-          .database()
-          .ref("/users")
-          .push({
-            id: user.uid,
-            name,
-            email
-          })
+            .database()
+            .ref("/users")
+            .push({
+              id: user.uid,
+              name,
+              email
+            });
         });
     });
 };
