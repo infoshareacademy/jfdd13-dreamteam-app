@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
 import firebase from './firebase';
 import Secure from './components/Secure';
+import Login from './screens/Login';
 
 ReactDOM.render(
   <Secure>
-    <App />
+    <Login />
   </Secure>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
