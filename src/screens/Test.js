@@ -1,7 +1,8 @@
 import React from 'react';
 import {Grid, Header, Image} from 'semantic-ui-react';
 
-const dataFromLocalStorage = JSON.parse(localStorage.getItem('form'));
+const localSdata = JSON.parse(localStorage.getItem('form'));
+const dataFromLocalStorage = (localSdata)? localSdata : [];
 
 const Test = () => {
   return (
