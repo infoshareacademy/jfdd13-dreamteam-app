@@ -5,7 +5,7 @@ import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react"
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -33,9 +33,9 @@ const Login = props => {
             />
 
             <Button
-              onClick={() => login(email, password)
-              .then(() => {props.history.replace("/user");
-              })
+              onClick={(props) => login(email, password)
+                // .then(() => {props.history.replace("/search");
+              // })
               }
               color="teal"
               fluid
@@ -52,6 +52,5 @@ const Login = props => {
     </Grid>
   );
 };
-
 
 export default Login;
