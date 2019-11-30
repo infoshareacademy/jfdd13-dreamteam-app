@@ -112,7 +112,8 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{verticalAlign: 'middle'}}>
+                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <span style={{display: 'inline-flex', padding: '0 8px', height: '100%'}}>Twój budżet: {this.state.rangeValue || initialRange}</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
@@ -120,7 +121,7 @@ class Search extends Component {
                                    onChange={this.handleRange}
                                    name={'show'}
                                    value={this.state.rangeValue}
-                                   style={{padding: 0, minHeight: '40px'}}
+                                   style={{minHeight: '40px'}}
                             />
                         </Grid.Column>
                     </Grid.Row>
