@@ -47,20 +47,6 @@ function Home () {
         GET from database
       </Menu.Item>
       </NavLink>
-
-      <NavLink to="/login" exact>
-      <Menu.Item>
-        <Icon name='sign in' />
-        Zaloguj
-      </Menu.Item>
-      </NavLink>
-
-      <NavLink to="/register" exact>
-      <Menu.Item>
-        <Icon name='signup' />
-        Zarejestruj
-      </Menu.Item>
-      </NavLink>
     </Sidebar>
   </Sidebar.Pushable>
   <Grid>
