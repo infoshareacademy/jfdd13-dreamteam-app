@@ -34,8 +34,6 @@ const Login = props => {
 
             <Button
               onClick={(props) => login(email, password)
-                // .then(() => {props.history.replace("/search");
-              // })
               }
               color="teal"
               fluid
