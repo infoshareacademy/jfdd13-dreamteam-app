@@ -16,6 +16,16 @@ export const login = (email, password) => {
     });
 };
 
+export const signout = () => {
+  return firebase
+    .auth()
+    .signOut()
+    .then(value => {
+      console.log("Zalogowano!");
+      console.log(value);
+    });
+};
+
 export const register = (email, password, name) => {
   return firebase
     .auth()

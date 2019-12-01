@@ -1,5 +1,6 @@
-import React, {useState} from "react";
-import { Button, Grid, Header, } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Grid, Header } from "semantic-ui-react";
+import { signout } from '../services/AuthService'
 
 const LoggedUser = (props) => {
   const [name, setName] = useState("")
@@ -10,9 +11,8 @@ const LoggedUser = (props) => {
           Witaj
         </Header>
         <Button
-          onClick={() => 
-          {props.history.replace("/panel");}
-          }
+          onClick={(props) => signout()
+        }
           color="teal"
           fluid
           size="large"
