@@ -5,7 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import firebase from './firebase';
 import Secure from './components/Secure';
-import Home from './screens/Home';
 
 ReactDOM.render(
   <Secure>
