@@ -4,12 +4,15 @@ export const login = (email, password) => {
   return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
-    .then(user => {
-      try {
-        this.setUser(user);
-      } catch (err) {
-        throw Error(err);
-      }
+    .then(value => {
+      console.log("Zalogowano!");
+      console.log(value);
+    })
+    .then(value => {
+      const user = firebase.auth().currentUser;
+    })
+    .catch(() => {
+      console.log("Spróbuj jeszcze raz!");
     });
 };
 
