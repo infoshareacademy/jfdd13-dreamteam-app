@@ -1,0 +1,179 @@
+{"trip" : {
+  "-LuY6kl56k0suVtdhglk" : {
+    "active" : true,
+    "city" : "sfdad",
+    "continent" : "dwewa",
+    "date" : "30/02/1991",
+    "description" : "",
+    "email" : "werd@sda.sd",
+    "price" : "1231321",
+    "terms" : true,
+    "title" : "sdafsad"
+  },
+  "-LuhW4ocGE-Cw29k7szD" : {
+    "active" : true,
+    "city" : "Gdynia",
+    "continent" : 2,
+    "date" : "2019-12-25",
+    "description" : "",
+    "email" : "mjjmichno@gmail.com",
+    "price" : "432",
+    "terms" : true,
+    "title" : "najlepsza wycieczka pod sloncem "
+  },
+  "-Luoc91gBju9tnu1aehl" : {
+    "active" : true,
+    "city" : "tu",
+    "continent" : "tu",
+    "date" : "01/01/2021",
+    "description" : "test localStorage",
+    "email" : "zupa@example.com",
+    "price" : "1",
+    "terms" : true,
+    "title" : "test localStorage"
+  },
+  "-LurbfEAaFcrRvTXrD4s" : {
+    "active" : true,
+    "city" : "Neapol",
+    "continent" : "Europa",
+    "date" : "2020-03-27",
+    "description" : "Tutaj zjesz najlepszą na świecie, prawdziwą włoską pizzę, będziesz mógł skorzystać z wycieczki na najpiękniejszą europejską wyspę - Capri jedynie godzinę drogi statkiem i poczujesz włoski zapach wywieszonego prania przez okno.",
+    "email" : "mjjmichno@gmail.com",
+    "price" : 350,
+    "terms" : true,
+    "title" : "Włoska kwietniowa wyprawa"
+  },
+  "-Lurc81QgUO8qDRLZc67" : {
+    "active" : true,
+    "city" : "Bergen",
+    "continent" : "Europa",
+    "date" : "2020-05-15",
+    "description" : "Sprawdź, czy jesteś szczęściarzem i czy uda Ci się trafić na słoneczną pogodę w jednym z norweskich miast, które słynie z deszczowego klimatu. Kup hot-doga z renifera i ruszaj na wycieczkę, żeby bliżej poznać piękne norweskie fiordy.",
+    "email" : "razdwatrzy@wp.pl",
+    "price" : 800,
+    "terms" : true,
+    "title" : "Deszczowe wycieczki górskie w Bergen"
+  },
+  "-LurcLSPMnojz_doomEb" : {
+    "active" : true,
+    "city" : "Hurghada",
+    "continent" : "Afryka",
+    "date" : "2020-06-20",
+    "description" : "Upały Ci nie straszne? Drinki z palemką i nurkowanie, żeby zobaczyć piękną rafę koralową? A może wieczór z shishą? Nie zastanawiaj się, nigdzie nie wypoczniesz jak tutaj.",
+    "email" : "blabla@wp.pl",
+    "price" : 400,
+    "terms" : true,
+    "title" : "Egipskie leżakowanie pod palmą"
+  },
+  "-LurcblsBOqm6Re5kRSI" : {
+    "active" : true,
+    "city" : "Santorini",
+    "continent" : "Europa",
+    "date" : "2020-05-02",
+    "description" : "Zjedz na śniadanie prawdziwy jogurt grecki z miodem i owocami, a później wypoczywaj z widokiem na znane, biało-niebieskie domki.",
+    "email" : "dfmsfd@wp.pl",
+    "price" : 500,
+    "terms" : true,
+    "title" : "Moje greckie wakacje"
+  },
+  "-Lurd10POXI355Qn5l_5" : {
+    "active" : true,
+    "city" : "Madryt",
+    "continent" : "Europa",
+    "date" : "2020-07-23",
+    "description" : "Nie zapomnij po meczu Real Madrytu udać się na pyszną, hiszpańską paellę popijaną sangrią.",
+    "email" : "dkjnfjnksdf@gmail.com",
+    "price" : 500,
+    "terms" : true,
+    "title" : "Hoooola"
+  },
+  "-LurdHTqe4UjFUjfI5VB" : {
+    "active" : true,
+    "city" : "Berlin",
+    "continent" : "Europa",
+    "date" : "2019-12-21",
+    "description" : "Przenieś się w czasie i zobacz pozostałości muru berlińskiego. Możesz też odwiedzić nowych mieszkańców - niedawno urodziły się dwie małe pandki. :)",
+    "email" : "duasfs@wp.pl",
+    "price" : 500,
+    "terms" : true,
+    "title" : "Wybierz się na  Weihnachtsmarkt"
+  },
+  "-LurdV2ONUBg1r62ox_P" : {
+    "active" : true,
+    "city" : "Los Angeles",
+    "continent" : "Ameryka Północna",
+    "date" : "2020-07-09",
+    "description" : "Kto z nas choć raz w życiu nie zamarzył o rozgrzanych kalifornijskich plażach i obsadzonych wysokimi palmami ulicach Hollywood?",
+    "email" : "3242@wp.pl",
+    "price" : 432,
+    "terms" : true,
+    "title" : "Kalifornijski sen"
+  },
+  "-LurdgtTWOw4-fHs8keG" : {
+    "active" : true,
+    "city" : "Meksyk",
+    "continent" : "Ameryka Północna",
+    "date" : "2020-02-28",
+    "description" : "Tutaj obowiązkowo trzeba napić się tequilli i spróbować meksykańskich dań przy rytmach dostarczanych przez mariachi.",
+    "email" : "dnjsf@wp.pl",
+    "price" : 390,
+    "terms" : true,
+    "title" : "Miasto mariachi"
+  },
+  "-LurdtaPuEKMDELy6gaI" : {
+    "active" : true,
+    "city" : "Brasilia",
+    "continent" : "Ameryka Południowa",
+    "date" : "2020-05-30",
+    "description" : "Mekka dla pasjonatów architektury, którzy chcą zobaczyć, jak sprawdza się utopia w rzeczywistości.",
+    "email" : "jhdhfs@wp.pl",
+    "price" : 309,
+    "terms" : true,
+    "title" : "Miasto marzeń na środku pustyni"
+  },
+  "-Lure4a1GOGSca97VNGw" : {
+    "active" : true,
+    "city" : "Bangkok",
+    "continent" : "Azja",
+    "date" : "2020-03-13",
+    "description" : "Tylko uważaj, żeby nie skończyć jak bohaterowie Kac Vegas II.",
+    "email" : "djbhfajhd@wp.pl",
+    "price" : 200,
+    "terms" : true,
+    "title" : "Miasto aniołów i dziwaków"
+  },
+  "-LureF409YBIo-fBb0V4" : {
+    "active" : true,
+    "city" : "Sydney",
+    "continent" : "Australia i Oceania",
+    "date" : "2019-12-23",
+    "description" : "A kto powiedział, że święta powinny być pełne śniegu? Spróbuj czegoś nowego i do mikołajowej czapki załóż bikini.",
+    "email" : "sfjbsd@wp.pl",
+    "price" : 1100,
+    "terms" : true,
+    "title" : "To wcale nie jest stolica Australii"
+  },
+  "-LureWj2gwYIZgCauSH4" : {
+    "active" : true,
+    "city" : "Lima",
+    "continent" : "Ameryka Południowa",
+    "date" : "2020-04-10",
+    "description" : "W kraju Inków na pewno nie będziesz się nudził. Podróżnicy i archeologie będą wręcz wniebowzięci!",
+    "email" : "dhjksd@jwp.pl",
+    "price" : 280,
+    "terms" : true,
+    "title" : "Przytul alpakę"
+  },
+  "-Lus7Ng6avTkNZV_xDzi" : {
+    "active" : true,
+    "city" : "Kreta",
+    "continent" : "Europa",
+    "date" : "01/01/2021",
+    "description" : "woda na pewno cieplejsza niż w Bałtyku",
+    "email" : "test22@example.com",
+    "price" : "1000",
+    "terms" : true,
+    "title" : "moja propozycja"
+  }
+}
+}
