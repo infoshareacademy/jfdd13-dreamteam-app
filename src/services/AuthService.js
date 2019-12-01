@@ -16,14 +16,13 @@ export const login = (email, password) => {
     });
 };
 
-export const signout = () => {
+export const signout = (user) => {
   return firebase
     .auth()
     .signOut()
-    .then(value => {
-      console.log("Zalogowano!");
-      console.log(value);
-    });
+    .then(() => {
+      console.log("Wylogowano!");
+      });
 };
 
 export const register = (email, password, name) => {
