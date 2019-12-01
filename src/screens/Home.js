@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from 'react-router-dom';
 import {Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
-import Test from './Test'
+import MapFirebase from "./MapFirebase";
 
 function Home () {
 
@@ -66,7 +66,7 @@ function Home () {
   <Grid>
     <Grid.Row>
       <Grid.Column>
-        <Test />
+        <MapFirebase />
       </Grid.Column>
     </Grid.Row>
   </Grid>
