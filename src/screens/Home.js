@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
 import MapFirebase from "./MapFirebase";
@@ -7,6 +7,8 @@ import { sendTest } from "../services/TestService";
 import { signout } from "../services/AuthService";
 
 function Home () {
+
+  const [trips, setTrips] = useState([]);
 
   const navStyle = {
     width: '100vw',
@@ -36,8 +38,10 @@ function Home () {
       </NavLink>
       <NavLink to="#" exact>
       <Menu.Item
-          onClick={() => fetchTrips()
-          }>
+          onClick={async () => {
+            const trips = await fetchTrips()
+            setTrips(trips)
+          }}>
         <Icon name='download' />
         fetchTrips
       </Menu.Item>
@@ -57,7 +61,7 @@ function Home () {
   <Grid>
     <Grid.Row>
       <Grid.Column>
-        <MapFirebase />
+        <MapFirebase trips={trips}/>
       </Grid.Column>
     </Grid.Row>
   </Grid>
