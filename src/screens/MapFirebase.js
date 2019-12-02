@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Header, Image } from 'semantic-ui-react';
+import firebase from '../firebase';
 
 const MapFirebase = (props) => {
   return (
     <div>
-      <Header>tu renderujemy dane z firebase </Header>
+      <Header>tu renderujemy dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
       {props.trips.map(trip => (
         <Grid.Column  style={{ padding: "0 2rem" }}>
           <Image
