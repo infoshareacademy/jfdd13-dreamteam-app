@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
 import MapFirebase from "./MapFirebase";
@@ -6,9 +6,15 @@ import { fetchTrips } from "../services/TripService";
 import { sendTest } from "../services/TestService";
 import { signout } from "../services/AuthService";
 
-function Home () {
+const Home = ()=> {
 
   const [trips, setTrips] = useState([]);
+  
+  useEffect (() =>{
+    fetchTrips().then(trips => {
+      setTrips(trips)
+    })
+  },[])
 
   const navStyle = {
     width: '100vw',
