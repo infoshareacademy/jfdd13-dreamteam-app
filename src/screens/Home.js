@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
 import MapFirebase from "./MapFirebase";
-import { fetchTrips, addToFavorites } from "../services/TripService";
+import { fetchTrips, addToFavorites, fetchFromFavorites } from "../services/TripService";
 import { sendTest } from "../services/TestService";
 import { signout } from "../services/AuthService";
 
@@ -10,11 +10,11 @@ const Home = ()=> {
 
   const [trips, setTrips] = useState([]);
   
-  useEffect (() =>{
-    fetchTrips().then(trips => {
-      setTrips(trips)
-    })
-  },[])
+  // useEffect (() =>{
+  //   fetchTrips().then(trips => {
+  //     setTrips(trips)
+  //   })
+  // },[])
 
   const navStyle = {
     width: '100vw',
@@ -45,7 +45,7 @@ const Home = ()=> {
       <NavLink to="#" exact>
       <Menu.Item
           onClick={async () => {
-            const trips = await fetchTrips()
+            const trips = await fetchFromFavorites()
             setTrips(trips)
           }}>
         <Icon name='download' />
