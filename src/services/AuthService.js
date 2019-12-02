@@ -25,26 +25,16 @@ export const signout = (user) => {
       });
 };
 
-export const register = (email, password, name) => {
-  return firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(value => {
-      const user = firebase.auth().currentUser;
-      user
-        .updateProfile({
-          displayName: "name"
-        })
-        .then(() => {
-          console.log("Poprawnie zarejestrowano");
-          firebase
-            .database()
-            .ref("/users")
-            .push({
-              id: user.uid,
-              name,
-              email
-            });
-        });
-    });
-};
+export async function register (email, password, name) => {
+  try{
+    const userCredential = await firebase.auth.createUserWithEmailAndPassword(email, password)
+
+    const id = userCredential.user.uid
+    console.log("Poprawnie zarejestrowano");
+
+    await firebase.database().ref(`/users/${id}`).set({email, password, name})
+ 
+  } catch (error) {
+    console.log("Spróbuj jeszcze raz!");
+  }
+}  
