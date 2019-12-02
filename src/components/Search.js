@@ -27,7 +27,7 @@ class Search extends Component {
 
         return (this.filteredResults.map(trip => (
                 <div key={trip.id}>
-                    <Grid.Column key={trip.city} style={{padding: '0 2rem'}}>
+                    <Grid.Column style={{padding: '0 2rem'}}>
                         <Image
                             className="TripImage"
                             // onClick={() => rangeValue(trip.id)}
@@ -73,10 +73,10 @@ class Search extends Component {
             return (
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                    (Number(trip.price) < rangeValue ||
+                    Number(trip.price) < rangeValue ||
                 trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                    Number(trip.price) < rangeValue
-                )
+                trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                Number(trip.price) < rangeValue
             )
         })
     }
@@ -91,13 +91,12 @@ class Search extends Component {
                         <Grid.Column width={12}>
                             <Input
                                 onChange={this.handleInputChange}
-                                list='places'
-                                placeholder='Podaj destynację...'
+                                placeholder='Gdzie chesz pojechać?'
                                 fluid
                                 value={this.state.searchQuery}
                             />
                             <datalist id='places'>
-                                {data.map(v => <option> {v.city}</option>)}
+                                {data.map(v => <option key={v.id}> {v.city}</option>)}
                             </datalist>
                         </Grid.Column>
                     </Grid.Row>
@@ -112,7 +111,8 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{verticalAlign: 'middle'}}>
+                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <span style={{display: 'inline-flex', padding: '0 8px', height: '100%'}}>Twój budżet: {this.state.rangeValue || initialRange}</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
@@ -120,7 +120,7 @@ class Search extends Component {
                                    onChange={this.handleRange}
                                    name={'show'}
                                    value={this.state.rangeValue}
-                                   style={{padding: 0, minHeight: '40px'}}
+                                   style={{minHeight: '40px'}}
                             />
                         </Grid.Column>
                     </Grid.Row>
