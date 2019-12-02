@@ -18,13 +18,3 @@ const prepareTrips = data => {
     };
   });
 };
-
-export const watchTrips = onSuccess => {
-  return firebase
-    .database()
-    .ref("/trip")
-    .on("value", dataSnapshot => {
-      const trips = dataSnapshot.val();
-      onSuccess(prepareTrips(trips));
-    });
-};
