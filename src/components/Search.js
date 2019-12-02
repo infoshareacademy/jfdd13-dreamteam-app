@@ -96,7 +96,7 @@ class Search extends Component {
                                 value={this.state.searchQuery}
                             />
                             <datalist id='places'>
-                                {data.map(v => <option> {v.city}</option>)}
+                                {data.map(v => <option key={v.id}> {v.city}</option>)}
                             </datalist>
                         </Grid.Column>
                     </Grid.Row>
