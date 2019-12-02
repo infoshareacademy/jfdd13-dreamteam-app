@@ -133,10 +133,13 @@ class Formularz extends React.Component {
                   <Input placeholder='Wpisz cenę za dobę'
                     type="number"
                     name="price"
-                    onChange={(e)=>{
-                      const {value} = e.target
-                      const price = truncateDecimals(value, 2)
-                      setFieldValue('price', price)
+                    onChange={event => {
+                      const value = event.target.value
+                      const regex = /^[0-9]*([\.|\,][0-9]{0,2})?$/
+                      const isValid = value.match(regex)
+                      if (isValid) {
+                        setFieldValue('price', value)
+                      }
                     }}
                     onBlur={handleBlur}
                     value={values.price}
