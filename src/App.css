@@ -40,6 +40,7 @@ main {
 }
 
 .TripImage{
+  position: relative;
   padding-top: 18px;
 }
 
@@ -76,4 +77,15 @@ main {
 }
 .pieLi__australia::before {
   color: #764afe;
+}
+
+.favouriteContainer {
+  position: relative !important;
+}
+.iconFavourites {
+  position: absolute !important;
+  padding: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  color: #fff;
 }

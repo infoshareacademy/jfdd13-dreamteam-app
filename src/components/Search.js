@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Input, Dropdown, Form, Image} from 'semantic-ui-react';
+import {Grid, Input, Dropdown, Form, Image, Icon} from 'semantic-ui-react';
 import {data} from '../data'
 
 const continents = [
@@ -28,27 +28,32 @@ class Search extends Component {
         return (this.filteredResults.map(trip => (
                 <div key={trip.id}>
                     <Grid.Column style={{padding: '0 2rem'}}>
-                        <Image
-                            className="TripImage"
-                            // onClick={() => rangeValue(trip.id)}
-                            src={trip.img}
-                            label={{
-                                ribbon: true,
-                                color: "blue",
-                                content: `${trip.city}`
-                            }}
-                            centered={true}
-                        />
+                        <div style={{position: 'relative'}}>
+                            <Image
+                                className="TripImage"
+                                // onClick={() => rangeValue(trip.id)}
+                                src={trip.img}
+                                label={{
+                                    ribbon: true,
+                                    color: "blue",
+                                    content: `${trip.city}`
+                                }}
+                                centered={true}
+                            >
+                            </Image>
+                            <Icon className={'iconFavourites'} size={'large'} name={'heart outline'} onClick={() => console.log('dupa')}/>
+                        </div>
                         <p>{trip.title}</p>
                     </Grid.Column>
                 </div>
             ))
         )
     }
+
     handleRange = (e, data) => {
-      this.setState({
-        rangeValue: Number(e.target.value)
-      })
+        this.setState({
+            rangeValue: Number(e.target.value)
+        })
     };
 
     handleSelect = (e, data) => {
@@ -63,7 +68,7 @@ class Search extends Component {
         })
     };
 
-    get filteredResults () {
+    get filteredResults() {
         const {searchQuery, selectedContinent, rangeValue} = this.state;
         const continent = continents.find(continent => {
             return continent.value === selectedContinent
@@ -73,13 +78,14 @@ class Search extends Component {
             return (
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                    Number(trip.price) < rangeValue ||
+                Number(trip.price) < rangeValue ||
                 trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 Number(trip.price) < rangeValue
             )
         })
     }
+
     handleChange = (e, {name, value}) => this.setState({[name]: value});
 
     render() {
@@ -111,8 +117,13 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} textAlign={"right"} style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}>
-                            <span style={{display: 'inline-flex', padding: '0 8px', height: '100%'}}>Twój budżet: {this.state.rangeValue || initialRange}</span>
+                        <Grid.Column as={Form} width={6} textAlign={"right"}
+                                     style={{display: 'inline-flex', alignItems: 'center', justifyContent: 'center'}}>
+                            <span style={{
+                                display: 'inline-flex',
+                                padding: '0 8px',
+                                height: '100%'
+                            }}>Twój budżet: {this.state.rangeValue || initialRange}</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
