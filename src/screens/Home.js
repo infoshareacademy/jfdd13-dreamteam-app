@@ -1,7 +1,10 @@
 import React from "react";
-import {NavLink} from 'react-router-dom';
-import {Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
+import { NavLink } from 'react-router-dom';
+import { Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
 import MapFirebase from "./MapFirebase";
+import { fetchTrips } from "../services/TripService";
+import { sendTest } from "../services/TestService";
+import { signout } from "../services/AuthService";
 
 function Home () {
 
@@ -25,13 +28,7 @@ function Home () {
       <NavLink to="#" exact>
       <Menu.Item
         onClick={() => {
-        fetch('https://dreamteam-app.firebaseio.com/test.json', {
-          method: 'POST',
-          body: JSON.stringify({
-            test: 'just onClick test', 
-            date: new Date().toLocaleString()
-            }).toLowerCase() 
-          });
+          sendTest()
         }}>
         <Icon name='upload' />
         Test database
@@ -39,14 +36,22 @@ function Home () {
       </NavLink>
       <NavLink to="#" exact>
       <Menu.Item
-          onClick={() => {
-            fetch('https://dreamteam-app.firebaseio.com/test.json'); 
-            console.log('getting news')
-          }}>
+          onClick={() => fetchTrips()
+          }>
         <Icon name='download' />
-        GET from database
+        fetchTrips
       </Menu.Item>
       </NavLink>
+
+      <NavLink to="#" exact>
+      <Menu.Item
+          onClick={() => signout()
+          }>
+        <Icon name='sign out' />
+        Wyloguj
+      </Menu.Item>
+      </NavLink>
+
     </Sidebar>
   </Sidebar.Pushable>
   <Grid>
