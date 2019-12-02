@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Header, Image } from 'semantic-ui-react';
-import { watchTrips, stopTrips, watchUsers, stopUsers } from '../services/TestService';
 
 const MapFirebase = (props) => {
   return (
