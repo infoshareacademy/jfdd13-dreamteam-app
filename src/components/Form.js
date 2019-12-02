@@ -84,6 +84,9 @@ class Formularz extends React.Component {
               actions.setSubmitting(false);
               actions.resetForm();
               this.handleThankYouVisible()
+            })
+            .then(()=>{
+              localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
             });
           }}>
           {({
