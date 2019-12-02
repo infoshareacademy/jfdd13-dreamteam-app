@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Segment, Sidebar, Grid } from "semantic-ui-react";
 import MapFirebase from "./MapFirebase";
-import { fetchTrips } from "../services/TripService";
+import { fetchTrips, addToFavorites } from "../services/TripService";
 import { sendTest } from "../services/TestService";
 import { signout } from "../services/AuthService";
 
@@ -36,7 +36,7 @@ const Home = ()=> {
       <NavLink to="#" exact>
       <Menu.Item
         onClick={() => {
-          sendTest()
+          addToFavorites()
         }}>
         <Icon name='upload' />
         Test database

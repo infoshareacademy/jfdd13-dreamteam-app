@@ -12,3 +12,11 @@ export async function fetchTrips() {
   })
   return trips
 }
+
+export async function addToFavorites(test) {
+ const id =  await firebase.auth().currentUser.uid
+ await firebase.database().ref(`/favorites/${id}`).push({
+    test: 'come on'
+ 
+  })
+}
