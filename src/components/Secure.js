@@ -5,41 +5,37 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 
 const Secure = props => {
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        setIsLoggedIn(true);
+        setUser(true);
       } else {
-        setIsLoggedIn(false);
+        setUser(false);
       }
     });
   }, []);
 
-  if (isLoggedIn == null) {
+  if (user == null) {
     return <h1>Poczekaj, sprawdzam!</h1>;
   }
 
-  if (isLoggedIn === false) {
+  if (user === false) {
     return (
       <div>
         <BrowserRouter>
-        <Switch>
-          <Route exact path="/login" component={Login}>
-            <Login />
-          </Route>
-          <Route exact path="/register" component={Register}>
-            <Register />
-          </Route>  
-          <Redirect to="/login"/>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Redirect to="/login" />
           </Switch>
         </BrowserRouter>
       </div>
     );
   }
 
-  if (isLoggedIn === true) {
+  if (user === true) {
     return props.children;
   }
 };
