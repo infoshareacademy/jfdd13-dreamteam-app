@@ -5,7 +5,7 @@ import firebase from '../firebase';
 const MapFirebase = (props) => {
   return (
     <div>
-      <Header>tu renderujemy dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
+      <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
       {props.trips.map(trip => (
         <Grid.Column  style={{ padding: "0 2rem" }}>
           <Image
@@ -22,11 +22,6 @@ const MapFirebase = (props) => {
           <ul style={{'listStyleType':'none'}}>
             <li>{trip.title}</li>
             <li>miasto: {trip.city}</li>
-            {/* <li>kontynent: {trip.continent}</li>
-            <li>data: {trip.date}</li>
-            <li>cena: {trip.price} PLN</li> */}
-            {/* <li>opis: {trip.description}</li> */}
-            {/* <li>kontakt: {trip.email}</li> */}
           </ul>
         </Grid.Column>))}
       </div>

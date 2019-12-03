@@ -13,10 +13,9 @@ export async function fetchTrips() {
   return trips
 }
 
-export async function addToFavorites(test, city, title) {
+export async function addToFavorites(city, title) {
  const id =  await firebase.auth().currentUser.uid
  await firebase.database().ref(`/favorites/${id}`).push({
-    test: 'come on',
     city: 'tututu',
     title: 'testujemy'
   })
