@@ -6,7 +6,6 @@ import Dashboard from "./components/Dashboard";
 import Form from "./components/Form";
 import Search from "./components/Search";
 import Appbar from "./components/Appbar";
-// import FinalPage from "./components/FinalPage";
 import 'semantic-ui-css/semantic.min.css'
 import UserPanel from './components/UserPanel';
 import Register from './screens/Register';
