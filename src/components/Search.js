@@ -27,17 +27,34 @@ class Search extends Component {
         favorites: []
     };
 
+    componentDidMount() {
+        // 1. get user favorites from firebase
+        // 2. set current state to that data
+
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        this.setState({
+            favorites
+        })
+    }
+
     handleFavIcon(tripId) {
         const {favorites: prevFavorites} = this.state
         if (prevFavorites.includes(tripId)) {
             const nextFavorites = prevFavorites.filter(id => id !== tripId);
             this.setState({
                 favorites: nextFavorites
+            }, () => {
+                // 1. get current logged in user (firebase.auth().currentUser)
+                // 2. get his id (currentUser.uid)
+                // 3. upload favorites to firebase to that user
+                localStorage.setItem('favorites', JSON.stringify(this.state.favorites))
             })
         } else {
             const nextFavorites = [...prevFavorites, tripId];
             this.setState({
                 favorites: nextFavorites
+            }, () => {
+                localStorage.setItem('favorites', JSON.stringify(this.state.favorites))
             })
         }
     }
