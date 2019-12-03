@@ -83,10 +83,10 @@ class Search extends Component {
                             <Icon
                                 className={'iconFavourites'}
                                 size={'large'}
-                                name={'heart outline'}
-                                color={this.state.favorites.includes(trip.id) ? 'red' : 'white'}
+                                name={this.state.favorites.includes(trip.id) ? 'heart' : 'heart outline'}
+                                color={'white'}
                                 onClick={(e) => {
-                                    e.stopPropagation()
+                                    e.stopPropagation();
                                     this.handleFavIcon(trip.id)
                                 }}/>
                         </div>
