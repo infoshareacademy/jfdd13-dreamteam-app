@@ -1,13 +1,18 @@
 import firebase from "../firebase";
 
-export async function sendTest (test) {  
+export async function sendTest(test, city, title) {
   try{
-    await firebase.database().ref("/test").set({test})
-    console.log("test wysłany!");  
+    const id =  await firebase.auth().currentUser.uid
+    await firebase.database().ref(`/test/${id}`).push({
+     test: 'come on',
+     city: 'tututu',
+     title: 'testujemy'
+   })
+   console.log("test wysłany!")
   } catch (error) {
     console.log("test nie został wysłany");
   }
- };
+ }
   
 const prepareTrips = data => {
   return Object.entries(data).map(arr => {

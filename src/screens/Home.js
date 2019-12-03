@@ -39,9 +39,20 @@ const Home = ()=> {
           addToFavorites()
         }}>
         <Icon name='upload' />
+        add to favs
+      </Menu.Item>
+      </NavLink>
+
+      <NavLink to="#" exact>
+      <Menu.Item
+        onClick={() => {
+          sendTest()
+        }}>
+        <Icon name='upload' />
         Test database
       </Menu.Item>
       </NavLink>
+
       <NavLink to="#" exact>
       <Menu.Item
           onClick={async () => {

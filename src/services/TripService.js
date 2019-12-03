@@ -19,7 +19,6 @@ export async function addToFavorites(test, city, title) {
     test: 'come on',
     city: 'tututu',
     title: 'testujemy'
- 
   })
 }
 
