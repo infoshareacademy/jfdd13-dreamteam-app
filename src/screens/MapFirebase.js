@@ -21,13 +21,12 @@ const MapFirebase = (props) => {
           />
           <ul style={{'listStyleType':'none'}}>
             <li>{trip.title}</li>
-            <li>{trip.title}</li>
             <li>miasto: {trip.city}</li>
-            <li>kontynent: {trip.continent}</li>
+            {/* <li>kontynent: {trip.continent}</li>
             <li>data: {trip.date}</li>
-            <li>cena: {trip.price} PLN</li>
-            <li>opis: {trip.description}</li>
-            <li>kontakt: {trip.email}</li>
+            <li>cena: {trip.price} PLN</li> */}
+            {/* <li>opis: {trip.description}</li> */}
+            {/* <li>kontakt: {trip.email}</li> */}
           </ul>
         </Grid.Column>))}
       </div>
