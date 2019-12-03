@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Grid, Input, Dropdown, Form, Image, Icon} from 'semantic-ui-react';
+import React, {Component, Fragment} from 'react';
+import {Grid, Input, Dropdown, Form, Image, Icon , Modal, Header, Button} from 'semantic-ui-react';
 import {data} from '../data'
 
 const continents = [
@@ -12,6 +12,8 @@ const continents = [
 ];
 const initialRange = 1999;
 
+
+
 class Search extends Component {
     state = {
         DropdownValue: '',
@@ -20,14 +22,34 @@ class Search extends Component {
         drop: '',
         results: data,
         searchTargetValue: '',
-        selectedContinent: ''
+        selectedContinent: '',
+        selectedTrip: null,
+        favorites: []
     };
 
-    queryOutput() {
+    handleFavIcon(tripId) {
+        const {favorites: prevFavorites} = this.state
+        if (prevFavorites.includes(tripId)) {
+            const nextFavorites = prevFavorites.filter(id => id !== tripId);
+            this.setState({
+                favorites: nextFavorites
+            })
+        } else {
+            const nextFavorites = [...prevFavorites, tripId];
+            this.setState({
+                favorites: nextFavorites
+            })
+        }
+    }
 
+    queryOutput() {
         return (this.filteredResults.map(trip => (
                 <div key={trip.id}>
-                    <Grid.Column style={{padding: '0 2rem'}}>
+                    <Grid.Column style={{padding: '0 2rem'}} onClick={() => {
+                        this.setState({
+                            selectedTrip: trip
+                        })
+                    }}>
                         <div style={{position: 'relative'}}>
                             <Image
                                 className="TripImage"
@@ -41,7 +63,15 @@ class Search extends Component {
                                 centered={true}
                             >
                             </Image>
-                            <Icon className={'iconFavourites'} size={'large'} name={'heart outline'} onClick={() => console.log('dupa')}/>
+                            <Icon
+                                className={'iconFavourites'}
+                                size={'large'}
+                                name={'heart outline'}
+                                color={this.state.favorites.includes(trip.id) ? 'red' : 'white'}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    this.handleFavIcon(trip.id)
+                                }}/>
                         </div>
                         <p>{trip.title}</p>
                     </Grid.Column>
@@ -89,6 +119,7 @@ class Search extends Component {
     handleChange = (e, {name, value}) => this.setState({[name]: value});
 
     render() {
+        const {selectedTrip} = this.state
 
         return (
             <div className="search">
@@ -146,6 +177,53 @@ class Search extends Component {
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
+                <Modal dimmer={"blurring"} open={this.state.selectedTrip != null}
+                    // onClose={close}
+                >
+                    {selectedTrip != null && <Fragment>
+                        <Modal.Header>{selectedTrip.title}</Modal.Header>
+                        <Modal.Content image>
+                            <Image
+                                wrapped
+                                size="large"
+                                src={selectedTrip.img}
+                            />
+                            <Modal.Description>
+                                <Header>{selectedTrip.city}</Header>
+                                <ul style={{padding: "0 0 0 1.5rem"}}>
+                                    <li>{selectedTrip.continent}</li>
+                                    <li>Cena za dobę za osobę: {selectedTrip.price} PLN</li>
+                                    <li>Data wyjazdu: {selectedTrip.date}</li>
+                                    <li>Opis: {selectedTrip.description}</li>
+                                </ul>
+                            </Modal.Description>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button color="black"
+                                    onClick={() => {
+                                        this.setState({
+                                            selectedTrip: null
+                                        })
+                                    }}
+                            >
+                                Wyjdź
+                            </Button>
+                            <Button
+                                positive
+                                // icon={`heart ${favourites.includes(trip.id) ? "" : "outline"}`}
+                                labelPosition="right"
+                                // content={`${favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}`}
+                                onClick={() => {
+                                    // if(favourites.includes(trip.id)){
+                                    //     setFavourites(favourites.filter(id => id !== trip.id))
+                                    // } else {
+                                    //     setFavourites([...favourites, trip.id]);
+                                    // };
+                                }}
+                            />
+                        </Modal.Actions>
+                    </Fragment>}
+                </Modal>
             </div>
         );
     };
