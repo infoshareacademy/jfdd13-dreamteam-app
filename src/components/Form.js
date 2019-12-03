@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, TextArea, Button, Checkbox, Radio } from 'semantic-ui-react';
+import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-react';
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
@@ -8,22 +8,21 @@ const accountFormSchema = Yup.object().shape({
   title: Yup.string()
     .max(40, 'Tytuł za długi, skróć do 40 znaków.')
     .required("Pole wymagane.")
-    .matches(new RegExp(/^[A-Za-z\s]+$/), "Używaj wyłącznie liter i spacji."),
+    .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji."),
   date: Yup.string()
-    .matches(new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/), 'Zły format   daty.')
     .required("Pole wymagane."),
-  price: Yup.string()
-    .matches(new RegExp(/^[0-9]*$/), 'Podaj cenę, używając cyfr.')
+  price: Yup.number()
+    .moreThan(20, "Minimalna cena za dobę to 20 zł.")
+    .lessThan(2001, "Maksymalna cena za dobę to 2000 zł.")
+    .positive("Cena musi być liczba dodatnia")
     .required("Pole wymagane."),
   city: Yup.string()
-    .matches(new RegExp(/^[A-Za-z\s]+$/), "Używaj wyłącznie liter.")
+    .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji.")
     .required("Pole wymagane."),
   continent: Yup.string()
-    .max(20, 'Tekst za długi.')
-    .required("Pole wymagane.")
-    .matches(new RegExp(/^[A-Za-z\s]+$/), "Używaj wyłącznie liter i spacji."),
+    .required("Pole wymagane."),
   description: Yup.string()
-    .max(200, "Opis za długi, skróć tekst do 200 znaków."),
+    .max(400, "Opis za długi, skróć tekst do 400 znaków."),
   email: Yup.string()
     .required("Pole wymagane.")
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
@@ -31,18 +30,29 @@ const accountFormSchema = Yup.object().shape({
     .oneOf([true], 'Zaznacz pole powyżej.'),
 });
 
+const continents = [
+  { key: 'afr', value: "Afryka", text: "Afryka" },
+  { key: 'apd', value: "Ameryka Południowa", text: "Ameryka Południowa" },
+  { key: 'apn', value: "Ameryka Północna", text: "Ameryka Północna" },
+  { key: 'ant', value: "Antarktyda", text: "Antarktyda" },
+  { key: 'aus', value: "Australia i Oceania", text: "Australia i Oceania" },
+  { key: 'azj', value: "Azja", text: "Azja" },
+  { key: 'eur', value: "Europa", text: "Europa" }
+];
 
+const truncateDecimals = function (value, digits) {
+  const number = parseFloat(value)
+  var multiplier = Math.pow(10, digits),
+      adjustedNum = number * multiplier,
+      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+  return truncatedNum / multiplier;
+};
 
 class Formularz extends React.Component {
 
   state = {
     thankYouVisible: false
   }
-
-  handleChange = (e, { value }) =>
-    this.setState(
-      { value }
-    )
 
   handleThankYouVisible() {
 
@@ -97,37 +107,41 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.title}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.title && touched.title && errors.title}
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <label>Data wyjazdu w formacie DD/MM/YYYY</label>
-                  <Input placeholder='Wpisz datę wyjazdu'
-                    type="text"
+                  <label>Data wyjazdu</label>
+                  <Input
+                    type="date"
                     name="date"
+                    min="2019-12-01"
+                    max="2022-01-01"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.date}
                     touched={touched}
-                    errors={errors}
                   />
                   <div className={styles.error}>
                     {errors.date && touched.date && errors.date}
                   </div>
                 </Form.Field>
- 
                 <Form.Field>
                   <label>Cena w złotówkach za dobę</label>
                   <Input placeholder='Wpisz cenę za dobę'
-                    type="text"
+                    type="number"
                     name="price"
-                    onChange={handleChange}
+                    onChange={(e)=>{
+                      const {value} = e.target
+                      const price = truncateDecimals(value, 2)
+                      setFieldValue('price', price)
+                    }}
                     onBlur={handleBlur}
                     value={values.price}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.price && touched.price && errors.price}
                   </div>
@@ -147,14 +161,13 @@ class Formularz extends React.Component {
                 </Form.Field>
                 <Form.Field>
                   <label>Kontynent</label>
-                  <Input placeholder='Wpisz kontynent'
-                    type="text"
-                    name="continent"
-                    onChange={handleChange}
+                  <Select placeholder='Wybierz kontynent'
+                   name="continent"
+                   options={continents}
+                    onChange={(event, data) => setFieldValue('continent', data.value)}
                     onBlur={handleBlur}
-                    value={values.continent}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.continent && touched.continent && errors.continent}</div>
                 </Form.Field>
@@ -180,7 +193,7 @@ class Formularz extends React.Component {
                     onBlur={handleBlur}
                     value={values.email}
                     touched={touched}
-                    errors={errors} />
+                  />
                   <div className={styles.error}>
                     {errors.email && touched.email && errors.email}
                   </div>
