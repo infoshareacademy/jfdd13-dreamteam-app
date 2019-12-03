@@ -5,6 +5,7 @@ export async function sendTest(test, city, title) {
     const id =  await firebase.auth().currentUser.uid
     await firebase.database().ref(`/test/${id}`).push({
      test: 'on-click test',
+     date: new Date().toLocaleString(),
      title: 'testujemy'
    })
    console.log("test wysłany!")
