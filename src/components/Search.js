@@ -123,7 +123,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Twój budżet: {this.state.rangeValue || initialRange}</span>
+                            }}>Cena za dobę: {this.state.rangeValue || '0' }</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
