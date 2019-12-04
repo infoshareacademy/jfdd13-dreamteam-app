@@ -1,12 +1,13 @@
 import React from 'react';
-import Home from '../screens/Home';
+import {Header} from "semantic-ui-react";
+import firebase from "../firebase";
 
 function UserPanel() {
-  return (
-    <div>
-        <Home />
-    </div> 
-  )
-}; 
+    return (
+        <div>
+            <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
+        </div>
+    )
+};
 
 export default UserPanel;
