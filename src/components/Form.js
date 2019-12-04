@@ -81,7 +81,7 @@ class Formularz extends React.Component {
           }}
           validationSchema={accountFormSchema}
           onSubmit={(values, actions) => {
-            fetch('https://dreamteam-app.firebaseio.com/trip.json', {
+            fetch('https://dreamteam-app.firebaseio.com/trips.json', {
               method: 'POST',
               body: JSON.stringify({ ...values, active: true })
             }).then(() => {
