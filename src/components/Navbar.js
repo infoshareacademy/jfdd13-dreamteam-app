@@ -27,37 +27,37 @@ function Navbar() {
       width='thin'
     >
       <NavLink to="/main" exact>
-      <Menu.Item style={{marginTop: '60px'}}>
+      <Menu.Item as={'div'} style={{marginTop: '60px'}}>
         <Icon name='chart line' />
         Statystyki
       </Menu.Item>
     </NavLink>
       <NavLink to="/search" exact>
-      <Menu.Item>
+      <Menu.Item as={'div'}>
         <Icon name='search' />
         Oferta
       </Menu.Item>
       </NavLink>
       <NavLink to="/form/" exact>
-      <Menu.Item>
+      <Menu.Item as={'div'}>
         <Icon name='add' />
         Dodaj
       </Menu.Item>
       </NavLink>
       <NavLink to="/panel" exact>
-      <Menu.Item>
+      <Menu.Item as={'div'}>
         <Icon name='user' />
         Panel
       </Menu.Item>
       </NavLink>
       <NavLink to="/favs" exact>
-      <Menu.Item>
+      <Menu.Item as={'div'}>
         <Icon name='heart' />
         Ulubione
       </Menu.Item>
       </NavLink>
       <NavLink to="#" exact>
-        <Menu.Item onClick={() => signout()}>
+        <Menu.Item as={'div'} onClick={() => signout()}>
           <Icon name="sign out" />
           Wyloguj
         </Menu.Item>
