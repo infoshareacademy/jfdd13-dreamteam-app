@@ -1,22 +1,13 @@
 import React from 'react';
-import Home from '../screens/Home';
-import Login from '../screens/Login';
-import Register from "../screens/Register";
-import LoggedUser from '../screens/LoggedUser';
-
+import {Header} from "semantic-ui-react";
+import firebase from "../firebase";
 
 function UserPanel() {
-  return (
-  
-    <div className="Favourites">
-      <h1 style={{backgroundColor:'yellow'}}>man at work... (with firebase)</h1>
-      <Home />
-      {/* <Login />
-      <Register />
-      <LoggedUser /> */}
-
-    </div> 
-  )
-}; 
+    return (
+        <div>
+            <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
+        </div>
+    )
+};
 
 export default UserPanel;

@@ -117,5 +117,4 @@ export const data = [
         continent: "Ameryka Południowa",
         description: "W kraju Inków na pewno nie będziesz się nudził. Podróżnicy i archeologie będą wręcz wniebowzięci!",
         img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'
-    },
-]
+    }]

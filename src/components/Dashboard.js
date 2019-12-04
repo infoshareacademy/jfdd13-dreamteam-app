@@ -1,6 +1,6 @@
 import React from 'react';
 import PieChartComponent from "./PieChart";
-import {Grid, Image} from "semantic-ui-react";
+import {Grid} from "semantic-ui-react";
 import DataBarChart from "./DataChart";
 
 function Dashboard() {

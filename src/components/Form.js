@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from "../firebase";
 import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-react';
 import styles from './Form.module.css';
 import * as Yup from "yup";
@@ -28,6 +29,8 @@ const accountFormSchema = Yup.object().shape({
     .matches(new RegExp(/^\S+@\S+\.\S+$/), 'Nieprawidłowy format e-maila.'),
   terms: Yup.boolean()
     .oneOf([true], 'Zaznacz pole powyżej.'),
+  tripImageUrl: Yup.string()
+    .required("Zdjecie wycieczki jest wymagane")
 });
 
 const continents = [
@@ -73,17 +76,21 @@ class Formularz extends React.Component {
             continent: "",
             description: "",
             email: "",
-            terms: false
+            terms: false,
+            tripImageUrl: ""
           }}
           validationSchema={accountFormSchema}
           onSubmit={(values, actions) => {
-            fetch('https://dreamteam-app.firebaseio.com/trip.json', {
+            fetch('https://dreamteam-app.firebaseio.com/trips.json', {
               method: 'POST',
               body: JSON.stringify({ ...values, active: true })
             }).then(() => {
               actions.setSubmitting(false);
               actions.resetForm();
               this.handleThankYouVisible()
+            })
+            .then(()=>{
+              localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
             });
           }}>
           {({
@@ -196,6 +203,37 @@ class Formularz extends React.Component {
                   />
                   <div className={styles.error}>
                     {errors.email && touched.email && errors.email}
+                  </div>
+                </Form.Field>
+                <Form.Field>
+                  <label>Zdjecie wycieczki</label>
+                  <Input
+                    type="file"
+                    name="tripImageUrl"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={event => {
+                      const firstFile = event.target.files[0]
+
+                      const storageRef = firebase.storage().ref('trips')
+                      const fileName = 'trip-' + new Date().toISOString()
+                      const fileRef = storageRef.child(fileName + '.jpg')
+
+                      const uploadTask = fileRef.put(firstFile)
+
+                      uploadTask.on(
+                          'state_changed',
+                          () => {},
+                          () => {},
+                          () => {
+                            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                              console.log('File available at', downloadURL);
+                              setFieldValue('tripImageUrl', downloadURL)
+                            });
+                          })
+                      }}
+                  />
+                  <div className={styles.error}>
+                    {errors.tripImageUrl}
                   </div>
                 </Form.Field>
                 <Form.Field>
