@@ -1,38 +1,34 @@
 import firebase from "../firebase";
 
-export const login = (email, password) => {
+export async function login (email, password) {
+  try{
+  const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password)
+  const id = userCredential.user.uid
+  console.log("Zalogowano!");
+ 
+  } catch (error) {
+    console.log("Spróbuj jeszcze raz!");
+  }
+} 
+
+export const signout = (user) => {
   return firebase
     .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(value => {
-      console.log("Zalogowany!");
-      console.log(value);
-    })
-    .catch(() => {
-      console.log("Spróbuj jeszcze raz!");
-    });
+    .signOut()
+    .then(() => {
+      console.log("Wylogowano!");
+      });
 };
 
-export const register = (email, password, name) => {
-  return firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(value => {
-      const user = firebase.auth().currentUser;
-      user
-        .updateProfile({
-          displayName: "name"
-        })
-        .then(() => {
-          console.log("Poprawnie zarejestrowano dane: email, hasło i imię");
-          firebase
-          .database()
-          .ref("/users")
-          .push({
-            id: user.uid,
-            name,
-            email
-          })
-        });
-    });
-};
+export async function register (email, password, name) {
+  
+  try{
+    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password)
+    console.log("Poprawnie zarejestrowano")
+    const id = userCredential.user.uid
+    await firebase.database().ref(`/users/${id}`).set({email, password, name})
+    console.log("Dodano do bazy");
+  } catch (error) {
+    console.log("Spróbuj jeszcze raz")
+  }
+}

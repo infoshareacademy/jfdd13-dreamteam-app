@@ -1,6 +1,9 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import Heart from './FavouritesList';
 import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
+import { signout } from "../services/AuthService";
+
 
 function Navbar() {
 
@@ -49,9 +52,15 @@ function Navbar() {
       </NavLink>
       <NavLink to="/panel" exact>
       <Menu.Item>
-         <Icon name='heart' />
+        <Heart />
         Ulubione
       </Menu.Item>
+      </NavLink>
+      <NavLink to="#" exact>
+        <Menu.Item onClick={() => signout()}>
+          <Icon name="sign out" />
+          Wyloguj
+        </Menu.Item>
       </NavLink>
     </Sidebar>
   </Sidebar.Pushable>

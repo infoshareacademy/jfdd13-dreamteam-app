@@ -43,9 +43,8 @@ const Register = (props) => {
             />
 
             <Button onClick={() => register(email, password, name)
-              .then(() => {props.history.replace("/user");
-              })
-              } color="teal" fluid size="large">
+              }
+              color="teal" fluid size="large">
               Zarejestruj się
             </Button>
           </Segment>
