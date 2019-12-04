@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Header, Grid, Image } from "semantic-ui-react";
 import { fetchTrips } from "../services/TripService";
+import firebase from "../firebase";
 
 const Favourites = (props) => {
   const [trips, setTrips] = useState([]);
@@ -12,7 +13,8 @@ const Favourites = (props) => {
   },[])
 
   return (<div trips={trips}>
-      {/* <Header>tu renderujemy dane z firebase </Header> */}
+        <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
+      {console.log(trips)}
       {trips.map(trip => (
         <Grid.Column  style={{ padding: "0 2rem" }}>
           <Image
