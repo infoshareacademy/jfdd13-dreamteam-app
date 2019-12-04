@@ -2,16 +2,14 @@ import firebase from "../firebase";
 
 export async function login (email, password) {
   try{
-  const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password)
-  const id = userCredential.user.uid
-  console.log("Zalogowano!");
- 
+   await firebase.auth().signInWithEmailAndPassword(email, password)
+
   } catch (error) {
-    console.log("Spróbuj jeszcze raz!");
+    throw Error(error)
   }
 } 
 
-export const signout = (user) => {
+export const signout = () => {
   return firebase
     .auth()
     .signOut()

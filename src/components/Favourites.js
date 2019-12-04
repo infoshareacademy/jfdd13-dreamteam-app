@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Header, Grid, Image } from "semantic-ui-react";
+import { Grid, Image } from "semantic-ui-react";
 import { fetchTrips } from "../services/TripService";
 
-const Favourites = (props) => {
+const Favourites = () => {
   const [trips, setTrips] = useState([]);
 
   useEffect (() =>{
     fetchTrips().then(trips => {
       setTrips(trips)
     })
-  },[])
+  },[]);
 
   return (<div>
-      {console.log(trips)}
       {trips.map(trip => (
-        <Grid.Column  style={{ padding: "0 2rem" }}>
+        <Grid.Column key={trip.city} style={{ padding: "0 2rem" }}>
           <Image
             className="TripImage"
-            // onClick={() => show(trip.id)}
             src={trip.tripImageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'}
             label={{
               ribbon: true,

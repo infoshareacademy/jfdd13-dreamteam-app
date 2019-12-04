@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Grid, Header } from "semantic-ui-react";
 import { signout } from '../services/AuthService'
 
-const LoggedUser = (props) => {
-  const [name, setName] = useState("")
+const LoggedUser = () => {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -11,7 +10,7 @@ const LoggedUser = (props) => {
           Witaj
         </Header>
         <Button
-          onClick={(props) => signout()
+          onClick={() => signout()
         }
           color="teal"
           fluid

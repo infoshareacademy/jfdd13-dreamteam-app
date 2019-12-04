@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import Heart from './FavouritesList';
 import { Icon, Menu, Segment, Sidebar} from 'semantic-ui-react'
 import { signout } from "../services/AuthService";
 
@@ -8,7 +7,6 @@ import { signout } from "../services/AuthService";
 function Navbar() {
 
   const navStyle = {
-    // width: '30%',
     minWidth: '150px',
     height: '100vh',
     position: 'fixed',
