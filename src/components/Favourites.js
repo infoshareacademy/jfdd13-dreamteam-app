@@ -11,7 +11,7 @@ const Favourites = (props) => {
     })
   },[])
 
-  return (<div trips={trips}>
+  return (<div>
       {console.log(trips)}
       {trips.map(trip => (
         <Grid.Column  style={{ padding: "0 2rem" }}>
