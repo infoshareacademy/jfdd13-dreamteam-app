@@ -50,9 +50,9 @@ function Navbar() {
         Panel
       </Menu.Item>
       </NavLink>
-      <NavLink to="/panel" exact>
+      <NavLink to="/favs" exact>
       <Menu.Item>
-        <Heart />
+        <Icon name='heart' />
         Ulubione
       </Menu.Item>
       </NavLink>
