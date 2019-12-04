@@ -47,6 +47,12 @@ function Navbar() {
         Panel
       </Menu.Item>
       </NavLink>
+      <NavLink to="/panel" exact>
+      <Menu.Item>
+         <Icon name='heart' />
+        Ulubione
+      </Menu.Item>
+      </NavLink>
     </Sidebar>
   </Sidebar.Pushable>
   )

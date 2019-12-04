@@ -24,37 +24,37 @@ class Search extends Component {
         searchTargetValue: '',
         selectedContinent: '',
         selectedTrip: null,
-        favorites: []
+        favourites: []
     };
 
     componentDidMount() {
-        // 1. get user favorites from firebase
+        // 1. get user favourites from firebase
         // 2. set current state to that data
 
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        const favourites = JSON.parse(localStorage.getItem('favourites')) || []
         this.setState({
-            favorites
+            favourites
         })
     }
 
     handleFavIcon(tripId) {
-        const {favorites: prevFavorites} = this.state
-        if (prevFavorites.includes(tripId)) {
-            const nextFavorites = prevFavorites.filter(id => id !== tripId);
+        const {favourites: prevfavourites} = this.state
+        if (prevfavourites.includes(tripId)) {
+            const nextfavourites = prevfavourites.filter(id => id !== tripId);
             this.setState({
-                favorites: nextFavorites
+                favourites: nextfavourites
             }, () => {
                 // 1. get current logged in user (firebase.auth().currentUser)
                 // 2. get his id (currentUser.uid)
-                // 3. upload favorites to firebase to that user
-                localStorage.setItem('favorites', JSON.stringify(this.state.favorites))
+                // 3. upload favourites to firebase to that user
+                localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
             })
         } else {
-            const nextFavorites = [...prevFavorites, tripId];
+            const nextfavourites = [...prevfavourites, tripId];
             this.setState({
-                favorites: nextFavorites
+                favourites: nextfavourites
             }, () => {
-                localStorage.setItem('favorites', JSON.stringify(this.state.favorites))
+                localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
             })
         }
     }
@@ -83,10 +83,10 @@ class Search extends Component {
                             <Icon
                                 className={'iconFavourites'}
                                 size={'large'}
-                                name={'heart outline'}
-                                color={this.state.favorites.includes(trip.id) ? 'red' : 'white'}
+                                name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                                color={this.state.favourites.includes(trip.id) ?'red' : 'white'}
                                 onClick={(e) => {
-                                    e.stopPropagation()
+                                    e.stopPropagation();
                                     this.handleFavIcon(trip.id)
                                 }}/>
                         </div>
@@ -97,7 +97,7 @@ class Search extends Component {
         )
     }
 
-    handleRange = (e, data) => {
+    handleRange = (e) => {
         this.setState({
             rangeValue: Number(e.target.value)
         })
