@@ -33,7 +33,7 @@ const Login = props => {
             />
 
             <Button
-              onClick={(props) => login(email, password)
+              onClick={() => login(email, password)
               }
               color="teal"
               fluid

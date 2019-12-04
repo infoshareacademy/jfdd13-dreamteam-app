@@ -5,7 +5,7 @@ export async function login (email, password) {
    await firebase.auth().signInWithEmailAndPassword(email, password)
 
   } catch (error) {
-    throw Error(error)
+    return null
   }
 } 
 
