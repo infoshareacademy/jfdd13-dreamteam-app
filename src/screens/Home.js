@@ -44,7 +44,7 @@ const Home = () => {
             </Menu.Item>
           </NavLink>
 
-          <NavLink to="#" exact>
+          {/* <NavLink to="#" exact>
             <Menu.Item
               onClick={() => {
                 addToFavorites();
@@ -53,7 +53,7 @@ const Home = () => {
               <Icon name="upload" />
               add to favs
             </Menu.Item>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to="#" exact>
             <Menu.Item
