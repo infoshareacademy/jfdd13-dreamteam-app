@@ -1,6 +1,13 @@
-import React, {useState} from "react";
-import {login} from "../services/AuthService";
-import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
+import React, { useState } from "react";
+import { login } from "../services/AuthService";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment
+} from "semantic-ui-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,18 +16,17 @@ const Login = () => {
 
   const loginError = async () => {
     try {
-      await login(email, password)
+      await login(email, password);
     } catch (e) {
-      console.log(e.code)
-      setLoginErrorMsg(e.code)
+      setLoginErrorMsg(e.code);
     }
   };
-  
+
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          Zaloguj się 
+          Zaloguj się
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -43,24 +49,20 @@ const Login = () => {
             />
 
             <Button
-              onClick={() => loginError()
-              }
+              onClick={() => loginError()}
               color="teal"
               fluid
               size="large"
             >
               Zaloguj się
             </Button>
-            {loginFailed ?
-            <Message error={true} > 
-              Nieudana próba logowania 
-            </Message> : ''}
-              
           </Segment>
         </Form>
-        {(loginErrorMsg) ?
-            <Message>Failed</Message>
-            : ''}
+        {loginErrorMsg ? (
+          <Message error={true}>Nieudana próba logowania</Message>
+        ) : (
+          ""
+        )}
         <Message>
           Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
         </Message>
