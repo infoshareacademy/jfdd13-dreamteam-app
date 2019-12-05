@@ -22,7 +22,7 @@ class Search extends Component {
         rangeValue: initialRange,
         searchQuery: '',
         drop: '',
-        results: data,
+        results: [],
         searchTargetValue: '',
         selectedContinent: '',
         selectedTrip: null,
@@ -34,14 +34,15 @@ class Search extends Component {
         // 2. set current state to that data
 
         const favourites = JSON.parse(localStorage.getItem('favourites')) || []
+        //tu bedzie loader
         this.setState({
             favourites
         })
-        fetchTrips().then(results => {
-            this.setState({
-                results
+            fetchTrips().then(results => {
+                    this.setState({
+                        results
+                    })
             })
-        })
     }
 
     handleFavIcon(tripId) {
@@ -218,7 +219,7 @@ class Search extends Component {
                             <Image
                                 wrapped
                                 size="large"
-                                src={selectedTrip.img}
+                                src={selectedTrip.tripImageUrl || defaultImg}
                             />
                             <Modal.Description>
                                 <Header>{selectedTrip.city}</Header>
