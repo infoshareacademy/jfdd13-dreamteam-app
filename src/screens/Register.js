@@ -7,6 +7,15 @@ const Register = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerErrorMsg, setRegisterErrorMsg] = useState("");
+
+  const registerError = async () => {
+    try {
+      await register(email, password);
+    } catch (e) {
+      setRegisterErrorMsg(e.code);
+    }
+  };
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -42,13 +51,18 @@ const Register = (props) => {
               type="password"
             />
 
-            <Button onClick={() => register(email, password, name)
+            <Button onClick={() => registerError()
               }
               color="teal" fluid size="large">
               Zarejestruj się
             </Button>
           </Segment>
         </Form>
+        {registerErrorMsg ? (
+          <Message error={true}>Podaj poprawny E-mail oraz Hasło</Message>
+        ) : (
+          ""
+        )}
         <Message>
           Jesteś już zarejestrowany? -  <Link to="/login">Zaloguj się</Link>
         </Message>
