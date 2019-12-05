@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button} from 'semantic-ui-react';
 import {data} from '../data'
+import { fetchTrips } from "../services/TripService";
+
 
 const continents = [
     {key: 'afr', value: 1, text: "Afryka"},
@@ -11,6 +13,7 @@ const continents = [
     {key: 'eur', value: 6, text: "Europa"}
 ];
 const initialRange = 1999;
+const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
 
 class Search extends Component {
@@ -33,6 +36,11 @@ class Search extends Component {
         const favourites = JSON.parse(localStorage.getItem('favourites')) || []
         this.setState({
             favourites
+        })
+        fetchTrips().then(results => {
+            this.setState({
+                results
+            })
         })
     }
 
@@ -70,7 +78,7 @@ class Search extends Component {
                             <Image
                                 className="TripImage"
                                 // onClick={() => rangeValue(trip.id)}
-                                src={trip.img}
+                                src={trip.tripImageUrl || defaultImg}
                                 label={{
                                     ribbon: true,
                                     color: "blue",
