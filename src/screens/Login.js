@@ -58,10 +58,8 @@ const Login = () => {
             </Button>
           </Segment>
         </Form>
-        {loginErrorMsg ? (
+        {loginErrorMsg && (
           <Message error={true}>Nieudana próba logowania</Message>
-        ) : (
-          ""
         )}
         <Message>
           Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
