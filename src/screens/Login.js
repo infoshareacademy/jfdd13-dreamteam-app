@@ -2,9 +2,19 @@ import React, {useState} from "react";
 import {login} from "../services/AuthService";
 import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 
-const Login = props => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
+  const loginError = async () => {
+    try {
+      await login(email, password)
+    } catch (e) {
+      console.log(e.code)
+      setLoginErrorMsg(e.code)
+    }
+  };
   
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -33,7 +43,7 @@ const Login = props => {
             />
 
             <Button
-              onClick={() => login(email, password)
+              onClick={() => loginError()
               }
               color="teal"
               fluid
@@ -43,6 +53,9 @@ const Login = props => {
             </Button>
           </Segment>
         </Form>
+        {(loginErrorMsg) ?
+            <Message>Failed</Message>
+            : ''}
         <Message>
           Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
         </Message>
