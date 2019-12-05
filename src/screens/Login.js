@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {login, MessageExampleWarning} from "../services/AuthService";
+import {login} from "../services/AuthService";
 import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 
 const Login = props => {
@@ -46,11 +46,11 @@ const Login = props => {
             >
               Zaloguj się
             </Button>
-            {loginFailed 
-            // <Message error={true} > 
-            //   Nieudana próba logowania 
-            //   </Message>
-              }
+            {(loginFailed) &&
+            <Message error={true} > 
+              Nieudana próba logowania 
+            </Message> }
+              
           </Segment>
         </Form>
         <Message>
