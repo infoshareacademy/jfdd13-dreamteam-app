@@ -95,6 +95,7 @@ main {
   flex-direction: column;
   justify-content: center;
   max-height: 298px;
+  margin: 0 auto;
 }
 .iconFavourites {
   position: absolute !important;

@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Grid, Input, Dropdown, Form, Image, Icon , Modal, Header, Button} from 'semantic-ui-react';
+import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button} from 'semantic-ui-react';
 import {data} from '../data'
 
 const continents = [
@@ -11,7 +11,6 @@ const continents = [
     {key: 'eur', value: 6, text: "Europa"}
 ];
 const initialRange = 1999;
-
 
 
 class Search extends Component {
@@ -172,7 +171,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Cena za dobę: {this.state.rangeValue || '0' }</span>
+                            }}>Cena za dobę: {this.state.rangeValue || '0'}</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
@@ -187,16 +186,23 @@ class Search extends Component {
                 </Grid>
                 <Grid container
                       style={
-                          {flex: 1, justifyContent: 'center', flexDirection: 'column', margin: 'auto !important'}
+                          {
+                              display: 'flex',
+                              justifyContent: 'flex-start',
+                              flexDirection: 'column',
+                              height: '100%',
+                              margin: 'auto !important'
+                          }
                       }>
                     <Grid.Row
-                        columns={3} style={{flex: 1}}
+                        columns={3} style={{display: 'flex', height: '100%'}}
                     >
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
-                <Modal dimmer={"blurring"} open={this.state.selectedTrip != null}
-                    // onClose={close}
+                <Modal
+                    dimmer={"blurring"}
+                    open={this.state.selectedTrip != null}
                 >
                     {selectedTrip != null && <Fragment>
                         <Modal.Header>{selectedTrip.title}</Modal.Header>
