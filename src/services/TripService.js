@@ -34,3 +34,22 @@ export async function fetchFromFavorites() {
   })
   return favs
 }
+
+const prepareFavorites = data => Object.values(data);
+  
+export const watchFavorites = onSuccess => {
+  return firebase
+    .database()
+    .ref('/favorites')
+    .on("value", dataSnapshot => {
+      const favorites = dataSnapshot.val();
+      onSuccess(prepareFavorites(favorites));
+    });
+};
+
+export const stopFavorites = () => {
+  firebase
+    .database()
+    .ref('/favorites')
+    .off();
+};
