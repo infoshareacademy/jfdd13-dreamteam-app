@@ -61,13 +61,13 @@ class Search extends Component {
 
     queryOutput() {
         return (this.filteredResults.map(trip => (
-                <div key={trip.id}>
+                <div key={trip.id} className={'tripContainer'}>
                     <Grid.Column style={{padding: '0 2rem'}} onClick={() => {
                         this.setState({
                             selectedTrip: trip
                         })
                     }}>
-                        <div style={{position: 'relative', height: '168px', width: '299px'}}>
+                        <div style={{position: 'relative'}}>
                             <Image
                                 className="TripImage"
                                 // onClick={() => rangeValue(trip.id)}
@@ -78,7 +78,7 @@ class Search extends Component {
                                     content: `${trip.city}`
                                 }}
                                 centered={true}
-                                fluid
+                                style={{cursor: 'pointer'}}
                             >
                             </Image>
                             <Icon
