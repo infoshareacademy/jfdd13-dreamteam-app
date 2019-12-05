@@ -46,10 +46,10 @@ const Login = props => {
             >
               Zaloguj się
             </Button>
-            {(loginFailed) &&
+            {loginFailed ?
             <Message error={true} > 
               Nieudana próba logowania 
-            </Message> }
+            </Message> : ''}
               
           </Segment>
         </Form>
