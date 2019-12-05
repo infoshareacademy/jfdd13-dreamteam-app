@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "../firebase";
 
 export async function fetchTrips() {
   const dataSnapshot = await firebase.database().ref('/trips').once('value')
