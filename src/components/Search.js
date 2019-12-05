@@ -67,7 +67,7 @@ class Search extends Component {
                             selectedTrip: trip
                         })
                     }}>
-                        <div style={{position: 'relative'}}>
+                        <div style={{position: 'relative', height: '168px', width: '299px'}}>
                             <Image
                                 className="TripImage"
                                 // onClick={() => rangeValue(trip.id)}
@@ -78,6 +78,7 @@ class Search extends Component {
                                     content: `${trip.city}`
                                 }}
                                 centered={true}
+                                fluid
                             >
                             </Image>
                             <Icon
