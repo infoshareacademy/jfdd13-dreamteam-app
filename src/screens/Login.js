@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {login} from "../services/AuthService";
+import {login, MessageExampleWarning} from "../services/AuthService";
 import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
 
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginFailed, setLoginFailed] = useState(false);
   
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -33,14 +34,23 @@ const Login = props => {
             />
 
             <Button
-              onClick={(props) => login(email, password)
-              }
+              onClick={async(props) => {
+                try {
+                  await login(email, password)
+              } catch {
+                setLoginFailed(true)
+              }}}
               color="teal"
               fluid
               size="large"
             >
               Zaloguj się
             </Button>
+            {loginFailed 
+            // <Message error={true} > 
+            //   Nieudana próba logowania 
+            //   </Message>
+              }
           </Segment>
         </Form>
         <Message>
