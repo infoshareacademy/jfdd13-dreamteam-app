@@ -23,11 +23,9 @@ export async function register (email, password, name) {
   
   try{
     const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    console.log("Poprawnie zarejestrowano")
     const id = userCredential.user.uid
     await firebase.database().ref(`/users/${id}`).set({email, password, name})
-    console.log("Dodano do bazy");
   } catch (error) {
-    console.log("Spróbuj jeszcze raz")
+    throw error
   }
 }

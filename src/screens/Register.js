@@ -1,12 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment
+} from "semantic-ui-react";
 import { register } from "../services/AuthService";
 
-const Register = (props) => {
+const Register = props => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerErrorMsg, setRegisterErrorMsg] = useState("");
+
+  const registerError = async () => {
+    try {
+      await register(email, password);
+    } catch (e) {
+      setRegisterErrorMsg(e.code);
+    }
+  };
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -42,15 +58,21 @@ const Register = (props) => {
               type="password"
             />
 
-            <Button onClick={() => register(email, password, name)
-              }
-              color="teal" fluid size="large">
+            <Button
+              onClick={() => registerError()}
+              color="teal"
+              fluid
+              size="large"
+            >
               Zarejestruj się
             </Button>
           </Segment>
         </Form>
+        {registerErrorMsg && (
+          <Message error={true}>Podaj poprawny E-mail oraz Hasło</Message>
+        )}
         <Message>
-          Jesteś już zarejestrowany? -  <Link to="/login">Zaloguj się</Link>
+          Jesteś już zarejestrowany? - <Link to="/login">Zaloguj się</Link>
         </Message>
       </Grid.Column>
     </Grid>
