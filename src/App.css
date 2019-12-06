@@ -39,10 +39,6 @@ main {
   flex: 1;
 }
 
-.TripImage{
-  position: relative;
-  padding-top: 18px;
-}
 
 .pieUl {
   list-style-type: none;
@@ -81,6 +77,25 @@ main {
 
 .favouriteContainer {
   position: relative !important;
+}
+
+.TripImage{
+  position: relative;
+  padding-top: 18px;
+  height: auto;
+  min-height: 168px;
+  width: 299px;
+}
+/*
+.TripImage{
+  height: '168px', width: '299px'
+}*/
+.tripContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 298px;
+  margin: 0 auto;
 }
 .iconFavourites {
   position: absolute !important;

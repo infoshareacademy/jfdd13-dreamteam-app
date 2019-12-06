@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {Grid, Input, Dropdown, Form, Image, Icon , Modal, Header, Button} from 'semantic-ui-react';
+import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button} from 'semantic-ui-react';
 import {data} from '../data'
+import { fetchTrips } from "../services/TripService";
+
 
 const continents = [
     {key: 'afr', value: 1, text: "Afryka"},
@@ -11,7 +13,7 @@ const continents = [
     {key: 'eur', value: 6, text: "Europa"}
 ];
 const initialRange = 1999;
-
+const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
 
 class Search extends Component {
@@ -20,7 +22,7 @@ class Search extends Component {
         rangeValue: initialRange,
         searchQuery: '',
         drop: '',
-        results: data,
+        results: [],
         searchTargetValue: '',
         selectedContinent: '',
         selectedTrip: null,
@@ -32,9 +34,15 @@ class Search extends Component {
         // 2. set current state to that data
 
         const favourites = JSON.parse(localStorage.getItem('favourites')) || []
+        //tu bedzie loader
         this.setState({
             favourites
         })
+            fetchTrips().then(results => {
+                    this.setState({
+                        results
+                    })
+            })
     }
 
     handleFavIcon(tripId) {
@@ -61,7 +69,7 @@ class Search extends Component {
 
     queryOutput() {
         return (this.filteredResults.map(trip => (
-                <div key={trip.id}>
+                <div key={trip.id} className={'tripContainer'}>
                     <Grid.Column style={{padding: '0 2rem'}} onClick={() => {
                         this.setState({
                             selectedTrip: trip
@@ -71,13 +79,14 @@ class Search extends Component {
                             <Image
                                 className="TripImage"
                                 // onClick={() => rangeValue(trip.id)}
-                                src={trip.img}
+                                src={trip.tripImageUrl || defaultImg}
                                 label={{
                                     ribbon: true,
                                     color: "blue",
                                     content: `${trip.city}`
                                 }}
                                 centered={true}
+                                style={{cursor: 'pointer'}}
                             >
                             </Image>
                             <Icon
@@ -171,7 +180,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Cena za dobę: {this.state.rangeValue || '0' }</span>
+                            }}>Cena za dobę: {this.state.rangeValue || '0'}</span>
                             <input type={'range'}
                                    min={0}
                                    max={2000}
@@ -186,16 +195,23 @@ class Search extends Component {
                 </Grid>
                 <Grid container
                       style={
-                          {flex: 1, justifyContent: 'center', flexDirection: 'column', margin: 'auto !important'}
+                          {
+                              display: 'flex',
+                              justifyContent: 'flex-start',
+                              flexDirection: 'column',
+                              height: '100%',
+                              margin: 'auto !important'
+                          }
                       }>
                     <Grid.Row
-                        columns={3} style={{flex: 1}}
+                        columns={3} style={{display: 'flex', height: '100%'}}
                     >
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
-                <Modal dimmer={"blurring"} open={this.state.selectedTrip != null}
-                    // onClose={close}
+                <Modal
+                    dimmer={"blurring"}
+                    open={this.state.selectedTrip != null}
                 >
                     {selectedTrip != null && <Fragment>
                         <Modal.Header>{selectedTrip.title}</Modal.Header>
@@ -203,7 +219,7 @@ class Search extends Component {
                             <Image
                                 wrapped
                                 size="large"
-                                src={selectedTrip.img}
+                                src={selectedTrip.tripImageUrl || defaultImg}
                             />
                             <Modal.Description>
                                 <Header>{selectedTrip.city}</Header>
