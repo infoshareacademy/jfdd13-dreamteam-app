@@ -18,7 +18,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Navbar/>
-                <main>
+                <main className={'main'}>
                     <Appbar/>
                     <Switch>
                         <Route exact strict path="/" component={Dashboard}/>

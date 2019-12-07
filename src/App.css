@@ -24,7 +24,7 @@
   color: #09d3ac;
 }
 
-main {
+.main {
   display: flex !important;
   flex-direction: column;
   flex: 1;
