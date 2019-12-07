@@ -73,14 +73,13 @@ const Favourites = () => {
                             </div>
                             <p>{trip.title}</p>
                         </Grid.Column>
-
                         <Modal dimmer={"blurring"} open={open} onClose={close}>
                             <Modal.Header>{trip.title}</Modal.Header>
                             <Modal.Content image>
                                 <Image
                                     wrapped
                                     size="large"
-                                    src={trip.img}
+                                    src={trip.tripImageUrl}
                                 />
                                 <Modal.Description>
                                     <Header>{trip.city}</Header>
@@ -90,23 +89,12 @@ const Favourites = () => {
                                         <li>Data wyjazdu: {trip.date}</li>
                                         <li>Opis: {trip.description}</li>
                                     </ul>
-                                    {/* <p>Możesz polubić</p> */}
                                 </Modal.Description>
                             </Modal.Content>
                             <Modal.Actions>
                                 <Button color="black" onClick={close}>
                                     Wyjdź
                                 </Button>
-                                <Button
-                                    positive
-                                    icon={`heart${favourites ? "" : " outline"}`}
-                                    labelPosition="right"
-                                    content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
-                                    // content="Ulubione"
-                                    onClick={() => {
-                                        setFavourites(!favourites);
-                                    }}
-                                />
                             </Modal.Actions>
                         </Modal>
 
