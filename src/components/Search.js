@@ -163,7 +163,7 @@ class Search extends Component {
             <div className="search">
                 <Grid padded={true}>
                     <Grid.Row columns={1} centered={true}>
-                        <Grid.Column width={12}>
+                        <Grid.Column width={12} mobile={12}>
                             <Input
                                 onChange={this.handleInputChange}
                                 placeholder='Gdzie chesz pojechać?'
@@ -176,7 +176,7 @@ class Search extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={2} centered={true}>
-                        <Grid.Column width={6}>
+                        <Grid.Column width={6} mobile={12}>
                             <Dropdown
                                 clearable
                                 fluid
@@ -186,7 +186,7 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} textAlign={"right"}
+                        <Grid.Column as={Form} width={6} mobile={12} textAlign={"right"}
                             style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                             <span style={{
                                 display: 'inline-flex',
