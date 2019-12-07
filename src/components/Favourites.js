@@ -89,7 +89,7 @@ const Favourites = () => {
                                 </Button>
                                 <Button
                                     positive
-                                    icon={`heart ${favourites ? "" : "outline"}`}
+                                    icon={`heart${favourites ? "" : " outline"}`}
                                     labelPosition="right"
                                     content={favourites ? "Ulubione" : "Dodaj do ulubionych"}
                                     // content="Ulubione"
