@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, handleFavIcon } from "../services/TripService";
 import firebase from "../firebase";
 
 
@@ -31,9 +31,6 @@ class Search extends Component {
     };
 
     async componentDidMount() {
-        // 1. get user favourites from firebase
-        // 2. set current state to that data
-
         const favourites = await fetchFromFavorites()
         //tu bedzie loader
         this.setState({
@@ -53,9 +50,6 @@ class Search extends Component {
             this.setState({
                 favourites: nextFavourites
             }, async () => {
-                // 1. get current logged in user (firebase.auth().currentUser)
-                // 2. get his id (currentUser.uid)
-                // 3. upload favourites to firebase to that user
                 const userId = await firebase.auth().currentUser.uid
                 console.log(userId)
                 await firebase.database().ref(`/favorites/${userId}`).set(

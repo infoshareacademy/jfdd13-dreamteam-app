@@ -106,9 +106,7 @@ const Favourites = () => {
                     </div>
                 ))}
             </Grid.Row>
-        </Grid>
-
-    )
+        </Grid>)
 }
 
 export default Favourites;
