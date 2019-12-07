@@ -5,13 +5,22 @@ import { signout } from "../services/AuthService";
 
 
 function Navbar() {
+  const windowWidth = window.screen.width;
 
   const navStyle = {
-    minWidth: '150px',
+    minWidth: windowWidth > 500 ? '150px' : '60px',
     height: '100vh',
     position: 'fixed',
     border: 0,
     borderRadius: 0
+  };
+  const menuItem = ( elText='', iconName='', iconStyle={},elType='div', elStyle={}) => {
+    return (
+        <Menu.Item as={elType} style={elStyle} className={'navItem'} >
+          <Icon name={iconName} style={iconStyle}/>
+          {windowWidth > 500 ? elText : ''}
+        </Menu.Item>
+    )
   };
   return (
   <Sidebar.Pushable as={Segment} style={navStyle}>
@@ -22,43 +31,29 @@ function Navbar() {
           inverted
           vertical
           visible
-          width={window.screen.availWidth < 400 ? 'thin': 'thin'
+          width={windowWidth < 500 ? 'very thin': 'thin'
           }
       >
         <NavLink to="/main" exact>
-          <Menu.Item as={'div'} style={{marginTop: '60px'}}>
-            <Icon name='chart line' />
-            Statystyki
-          </Menu.Item>
+
+          {menuItem('Statystyki', 'chart line',{} , 'div', {marginTop: '60px'} )}
         </NavLink>
         <NavLink to="/search" exact>
-          <Menu.Item as={'div'}>
-            <Icon name='search' />
-            Oferta
-          </Menu.Item>
+          {menuItem('Oferta', 'search')}
         </NavLink>
         <NavLink to="/form/" exact>
-          <Menu.Item as={'div'}>
-            <Icon name='add' />
-            Dodaj
-          </Menu.Item>
+          {menuItem('Dodaj', 'add')}
         </NavLink>
         <NavLink to="/panel" exact>
-          <Menu.Item as={'div'}>
-            <Icon name='user' />
-            Panel
-          </Menu.Item>
+          {menuItem('Panel', 'user')}
         </NavLink>
         <NavLink to="/favs" exact>
-          <Menu.Item as={'div'}>
-            <Icon name='heart' />
-            Ulubione
-          </Menu.Item>
+          {menuItem('Ulubione', 'heart')}
         </NavLink>
         <NavLink to="#" exact>
-          <Menu.Item as={'div'} onClick={() => signout()}>
+          <Menu.Item as={'div'} className='navItem' onClick={() => signout()}>
             <Icon name="sign out" />
-            Wyloguj
+            {windowWidth > 500 ? 'Wyloguj':''}
           </Menu.Item>
         </NavLink>
       </Sidebar>
