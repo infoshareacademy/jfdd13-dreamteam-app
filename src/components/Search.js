@@ -216,7 +216,7 @@ class Search extends Component {
                         }
                     }>
                     <Grid.Row
-                        columns={3} style={{ display: 'flex', height: '100%' }}
+                        columns={3} mobile={1} style={{ display: 'flex', height: '100%' }}
                     >
                         {this.queryOutput()}
                     </Grid.Row>
