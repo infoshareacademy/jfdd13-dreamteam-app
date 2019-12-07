@@ -10,7 +10,7 @@ import {
     Header,
     Button
 } from 'semantic-ui-react'
-import {fetchTrips} from "../services/TripService";
+import {fetchTrips, fetchFromFavorites} from "../services/TripService";
 
 const Favourites = () => {
     const [trips, setTrips] = useState([]);
@@ -20,9 +20,14 @@ const Favourites = () => {
     const close = () => setOpen(false);
 
     useEffect(() => {
-        fetchTrips().then(trips => {
-            setTrips(trips)
-        })
+       
+        const getFav = async () => {
+            const fav = await fetchFromFavorites()
+            const allTrips = await fetchTrips();
+            setTrips(allTrips.filter((t) => fav.indexOf(t.id) !== -1))
+        
+        }
+        getFav();
     }, []);
 
     return (
