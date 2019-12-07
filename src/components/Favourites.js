@@ -1,5 +1,15 @@
 import React, {useState, useEffect} from "react";
-import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button} from 'semantic-ui-react'
+import {
+    Grid,
+    Input,
+    Dropdown,
+    Form,
+    Image,
+    Icon,
+    Modal,
+    Header,
+    Button
+} from 'semantic-ui-react'
 import {fetchTrips} from "../services/TripService";
 
 const Favourites = () => {
