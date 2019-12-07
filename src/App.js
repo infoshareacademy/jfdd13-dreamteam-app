@@ -18,7 +18,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Navbar/>
-                <main className={'main'}>
+                <main className={'main'} style={{marginLeft: (window.screen.width < 501) ? '60px':'150px'}}>
                     <Appbar/>
                     <Switch>
                         <Route exact strict path="/" component={Dashboard}/>
