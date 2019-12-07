@@ -34,7 +34,7 @@ class Search extends Component {
         // 1. get user favourites from firebase
         // 2. set current state to that data
 
-        const favourites = JSON.parse(localStorage.getItem('favourites')) || []
+        const favourites = JSON.parse(localStorage.getItem('favourites')) || [];
         //tu bedzie loader
         this.setState({
             favourites
