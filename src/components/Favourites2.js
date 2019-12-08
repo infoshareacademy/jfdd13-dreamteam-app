@@ -27,7 +27,7 @@ class Favourites2 extends Component {
         console.log(favouritesList)
         this.setState({
             results: favouritesList,
-            favourites: favouritesList
+            favourites: favTable
         })
     }
 
@@ -47,7 +47,6 @@ class Favourites2 extends Component {
                 await firebase.database().ref(`/favorites/${userId}`).set(
                     nextFavourites
                 )
-                localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
                 console.log(this.state.favourites)
             })
         } else {
@@ -55,7 +54,6 @@ class Favourites2 extends Component {
             this.setState({
                 favourites: nextFavourites
             }, async () => {
-                // localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
                 const userId = await firebase.auth().currentUser.uid
                 console.log(userId)
                 await firebase.database().ref(`/favorites/${userId}`).set(
