@@ -226,7 +226,6 @@ class Formularz extends React.Component {
                           () => {},
                           () => {
                             uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                              console.log('File available at', downloadURL);
                               setFieldValue('tripImageUrl', downloadURL)
                             });
                           })
