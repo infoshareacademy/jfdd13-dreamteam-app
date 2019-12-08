@@ -21,16 +21,10 @@ export async function addToFavorites(city, title) {
   })
 }
 
+
 export async function fetchFromFavorites() {
   const id =  await firebase.auth().currentUser.uid
   const dataSnapshot = await firebase.database().ref(`/favorites/${id}`).once('value')
   const favoritesFromFirebase = dataSnapshot.val()
-  const favs = Object.entries(favoritesFromFirebase).map(entry => {
-    const [id, fav] = entry
-    return {
-      id,
-      ...fav
-    }
-  })
-  return favs
+  return favoritesFromFirebase || []
 }
