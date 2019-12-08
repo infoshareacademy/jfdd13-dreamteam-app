@@ -29,6 +29,7 @@ class Search extends Component {
         selectedTrip: null,
         favourites: {}
     };
+    
 
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
