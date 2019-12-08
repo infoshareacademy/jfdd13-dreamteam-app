@@ -18,7 +18,7 @@ class Favourites2 extends Component {
         selectedTrip: null,
         favourites: {}
     };
-    
+
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
         const allTrips = await fetchTrips();
@@ -28,13 +28,13 @@ class Favourites2 extends Component {
             favourites
         })
     }
-​
+
     async handleFavIcon(tripId) {
       await toggleFavorite(tripId);
       const favourites = await fetchFromFavorites();
       this.setState({ favourites })
     }
-​
+
     queryOutput() {
         return (this.state.results.map(trip => (
             <div key={trip.id} className={'tripContainer'}>
@@ -72,9 +72,9 @@ class Favourites2 extends Component {
         ))
         )
     }
-​
+
     handleChange = (e, { name, value }) => this.setState({ [name]: value });
-​
+
     render() {
         const { selectedTrip } = this.state
         return (
@@ -134,5 +134,5 @@ class Favourites2 extends Component {
         );
     };
 }
-​
+
 export default Favourites2

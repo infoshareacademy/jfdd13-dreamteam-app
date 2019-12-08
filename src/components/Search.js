@@ -4,6 +4,7 @@ import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
 import firebase from "../firebase";
 
+
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
     { key: 'apd', value: 2, text: "Ameryka Południowa" },
@@ -14,6 +15,7 @@ const continents = [
 ];
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
+
 
 class Search extends Component {
     state = {
@@ -27,7 +29,7 @@ class Search extends Component {
         selectedTrip: null,
         favourites: {}
     };
-    
+
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
         //tu bedzie loader
@@ -40,13 +42,13 @@ class Search extends Component {
             })
         })
     }
-​
+
     async handleFavIcon(tripId) {
       await toggleFavorite(tripId);
       const favourites = await fetchFromFavorites();
       this.setState({ favourites })
     }
-​
+
     queryOutput() {
         return (this.filteredResults.map(trip => (
             <div key={trip.id} className={'tripContainer'}>
@@ -85,25 +87,25 @@ class Search extends Component {
         ))
         )
     }
-​
+
     handleRange = (e) => {
         this.setState({
             rangeValue: Number(e.target.value)
         })
     };
-​
+
     handleSelect = (e, data) => {
         this.setState({
             selectedContinent: data.value
         })
     };
-​
+
     handleInputChange = e => {
         this.setState({
             searchQuery: e.target.value
         })
     };
-​
+
     get filteredResults() {
         const { searchQuery, selectedContinent, rangeValue } = this.state;
         const continent = continents.find(continent => {
@@ -121,12 +123,12 @@ class Search extends Component {
             )
         })
     }
-​
+
     handleChange = (e, { name, value }) => this.setState({ [name]: value });
-​
+
     render() {
         const { selectedTrip } = this.state
-​
+
         return (
             <div className="search">
                 <Grid padded={true}>
@@ -241,5 +243,6 @@ class Search extends Component {
         );
     };
 }
-​
+
 export default Search;
+
