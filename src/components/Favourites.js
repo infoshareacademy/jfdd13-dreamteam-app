@@ -1,112 +1,166 @@
-import React, {useState, useEffect} from "react";
+import React, { Component, Fragment } from "react";
 import {
     Grid,
-    Input,
-    Dropdown,
-    Form,
     Image,
     Icon,
     Modal,
     Header,
     Button
 } from 'semantic-ui-react'
-import {fetchTrips, fetchFromFavorites} from "../services/TripService";
+import { fetchTrips, fetchFromFavorites } from "../services/TripService";
+import firebase from "../firebase";
 
-const Favourites = () => {
-    const [trips, setTrips] = useState([]);
-    const [open, setOpen] = useState(false);
-    const show = () => setOpen(true);
-    const [favourites, setFavourites] = useState(false);
-    const close = () => setOpen(false);
+const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
-    useEffect(() => {
-       
-        const getFav = async () => {
-            const fav = await fetchFromFavorites()
-            const allTrips = await fetchTrips();
-            setTrips(allTrips.filter((t) => fav.indexOf(t.id) !== -1))
-        
+class Favourites2 extends Component {
+    state = {
+        results: [],
+        selectedTrip: null,
+        favourites: []
+    };
+
+    async componentDidMount() {
+        const favTable = await fetchFromFavorites()
+        const allTrips = await fetchTrips();
+        const favouritesList = allTrips.filter((trip) => favTable.indexOf(trip.id) !== -1)
+        console.log(`favouritesList`)
+        console.log(favouritesList)
+        this.setState({
+            results: favouritesList,
+            favourites: favTable
+        })
+    }
+
+    handleFavIcon(tripId) {
+        const { favourites: prevfavourites } = this.state
+        console.log(`PREVFAVOURTIES`)
+        console.log(prevfavourites)
+        if (prevfavourites.includes(tripId)) {
+            const nextFavourites = prevfavourites.filter(id => id !== tripId);
+            console.log("nextFavourites")
+            console.log(nextFavourites)
+            this.setState({
+                favourites: nextFavourites
+            }, async () => {
+                const userId = await firebase.auth().currentUser.uid
+                console.log(userId)
+                await firebase.database().ref(`/favorites/${userId}`).set(
+                    nextFavourites
+                )
+                console.log(this.state.favourites)
+            })
+        } else {
+            const nextFavourites = [...prevfavourites, tripId];
+            this.setState({
+                favourites: nextFavourites
+            }, async () => {
+                const userId = await firebase.auth().currentUser.uid
+                console.log(userId)
+                await firebase.database().ref(`/favorites/${userId}`).set(
+                    nextFavourites
+                )
+            })
         }
-        getFav();
-    }, []);
+    }
 
-    return (
-        <Grid container
-              style={
-                  {
-                      display: 'flex',
-                      justifyContent: 'flex-start',
-                      flexDirection: 'column',
-                      height: '100%',
-                      margin: 'auto !important'
-                  }
-              }>
-            <Grid.Row
-                columns={3} style={{display: 'flex', height: '100%'}}
-            >
-                {trips.map(trip => (
-                    <div key={trip.id} className={'tripContainer'}>
-                        <Grid.Column
-                            style={{padding: '0 2rem'}}
-                            onClick={() => {
-                                // this.setState({
-                                   show(trip.id)
-                                // })
-                            }}>
-                            <div style={{position: 'relative'}}>
-                                <Image
-                                    className="TripImage"
-                                    // onClick={() => rangeValue(trip.id)}
-                                    src={trip.tripImageUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s'}
-                                    label={{
-                                        ribbon: true,
-                                        color: "blue",
-                                        content: `${trip.city}`
-                                    }}
-                                    centered={true}
-                                >
-                                </Image>
-                                <Icon
-                                    className={'iconFavourites'}
-                                    size={'large'}
-                                    inverted
-                                    // name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        this.handleFavIcon(trip.id)
-                                    }}/>
-                            </div>
-                            <p>{trip.title}</p>
-                        </Grid.Column>
-                        <Modal dimmer={"blurring"} open={open} onClose={close}>
-                            <Modal.Header>{trip.title}</Modal.Header>
-                            <Modal.Content image>
-                                <Image
-                                    wrapped
-                                    size="large"
-                                    src={trip.tripImageUrl}
-                                />
-                                <Modal.Description>
-                                    <Header>{trip.city}</Header>
-                                    <ul style={{padding: "0 0 0 1.5rem"}}>
-                                        <li>{trip.continent}</li>
-                                        <li>Cena za dobę za osobę: {trip.price} PLN</li>
-                                        <li>Data wyjazdu: {trip.date}</li>
-                                        <li>Opis: {trip.description}</li>
-                                    </ul>
-                                </Modal.Description>
-                            </Modal.Content>
-                            <Modal.Actions>
-                                <Button color="black" onClick={close}>
-                                    Wyjdź
-                                </Button>
-                            </Modal.Actions>
-                        </Modal>
-
+    queryOutput() {
+        return (this.state.results.map(trip => (
+            <div key={trip.id} className={'tripContainer'}>
+                <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
+                    this.setState({
+                        selectedTrip: trip
+                    })
+                }}>
+                    <div style={{ position: 'relative' }}>
+                        <Image
+                            className="TripImage"
+                            src={trip.tripImageUrl || defaultImg}
+                            label={{
+                                ribbon: true,
+                                color: "blue",
+                                content: `${trip.city}`
+                            }}
+                            centered={true}
+                            style={{ cursor: 'pointer' }}
+                        >
+                        </Image>
+                        <Icon
+                            className={'iconFavourites'}
+                            size={'large'}
+                            inverted
+                            name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                this.handleFavIcon(trip.id)
+                            }} />
                     </div>
-                ))}
-            </Grid.Row>
-        </Grid>)
+                    <p>{trip.title}</p>
+                </Grid.Column>
+            </div>
+        ))
+        )
+    }
+
+    handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
+    render() {
+        const { selectedTrip } = this.state
+        return (
+            <div className="search">
+                <Grid container
+                    style={
+                        {
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            flexDirection: 'column',
+                            height: '100%',
+                            margin: 'auto !important'
+                        }
+                    }>
+                    <Grid.Row
+                        columns={3} style={{ display: 'flex', height: '100%' }}
+                    >
+                        {this.queryOutput()}
+                    </Grid.Row>
+                </Grid>
+                <Modal
+                    dimmer={"blurring"}
+                    open={this.state.selectedTrip != null}
+                >
+                    {selectedTrip != null && <Fragment>
+                        <Modal.Header>{selectedTrip.title}</Modal.Header>
+                        <Modal.Content image>
+                            <Image
+                                wrapped
+                                size="large"
+                                src={selectedTrip.tripImageUrl || defaultImg}
+                            />
+                            <Modal.Description>
+                                <Header>{selectedTrip.city}</Header>
+                                <ul style={{ padding: "0 0 0 1.5rem" }}>
+                                    <li>{selectedTrip.continent}</li>
+                                    <li>Cena za dobę za osobę: {selectedTrip.price} PLN</li>
+                                    <li>Data wyjazdu: {selectedTrip.date}</li>
+                                    <li>Opis: {selectedTrip.description}</li>
+                                </ul>
+                            </Modal.Description>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button color="black"
+                                onClick={() => {
+                                    this.setState({
+                                        selectedTrip: null
+                                    })
+                                }}
+                            >
+                                Wyjdź
+                            </Button> 
+                        </Modal.Actions>
+                    </Fragment>}
+                </Modal>
+            </div>
+        );
+    };
 }
 
-export default Favourites;
+export default Favourites2
