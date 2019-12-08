@@ -13,10 +13,10 @@ function Dashboard() {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={8} mobile={16}>
+                    <Grid.Column largeScreen={8} mobile={16}>
                         <PieChartComponent/>
                     </Grid.Column>
-                    <Grid.Column width={8} mobile={16} verticalAlign={'middle'}>
+                    <Grid.Column largeScreen={8} mobile={16} verticalAlign={'middle'}>
                         <DataBarChart/>
                     </Grid.Column>
                 </Grid.Row>
