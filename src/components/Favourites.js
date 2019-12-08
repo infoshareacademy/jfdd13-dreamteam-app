@@ -7,7 +7,7 @@ import {
     Header,
     Button
 } from 'semantic-ui-react'
-import { fetchTrips, fetchFromFavorites } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 import firebase from "../firebase";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -16,53 +16,25 @@ class Favourites2 extends Component {
     state = {
         results: [],
         selectedTrip: null,
-        favourites: []
+        favourites: {}
     };
-
+    
     async componentDidMount() {
-        const favTable = await fetchFromFavorites()
+        const favourites = await fetchFromFavorites()
         const allTrips = await fetchTrips();
-        const favouritesList = allTrips.filter((trip) => favTable.indexOf(trip.id) !== -1)
-        console.log(`favouritesList`)
-        console.log(favouritesList)
+        const favouritesList = allTrips.filter((trip) => favourites[trip.id] !== undefined)
         this.setState({
             results: favouritesList,
-            favourites: favTable
+            favourites
         })
     }
-
-    handleFavIcon(tripId) {
-        const { favourites: prevfavourites } = this.state
-        console.log(`PREVFAVOURTIES`)
-        console.log(prevfavourites)
-        if (prevfavourites.includes(tripId)) {
-            const nextFavourites = prevfavourites.filter(id => id !== tripId);
-            console.log("nextFavourites")
-            console.log(nextFavourites)
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-                console.log(this.state.favourites)
-            })
-        } else {
-            const nextFavourites = [...prevfavourites, tripId];
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-            })
-        }
+​
+    async handleFavIcon(tripId) {
+      await toggleFavorite(tripId);
+      const favourites = await fetchFromFavorites();
+      this.setState({ favourites })
     }
-
+​
     queryOutput() {
         return (this.state.results.map(trip => (
             <div key={trip.id} className={'tripContainer'}>
@@ -88,7 +60,7 @@ class Favourites2 extends Component {
                             className={'iconFavourites'}
                             size={'large'}
                             inverted
-                            name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                            name={this.state.favourites[trip.id] ? 'heart' : 'heart outline'}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 this.handleFavIcon(trip.id)
@@ -100,9 +72,9 @@ class Favourites2 extends Component {
         ))
         )
     }
-
+​
     handleChange = (e, { name, value }) => this.setState({ [name]: value });
-
+​
     render() {
         const { selectedTrip } = this.state
         return (
@@ -162,5 +134,5 @@ class Favourites2 extends Component {
         );
     };
 }
-
+​
 export default Favourites2
