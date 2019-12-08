@@ -23,6 +23,8 @@ class Favourites2 extends Component {
         const favTable = await fetchFromFavorites()
         const allTrips = await fetchTrips();
         const favouritesList = allTrips.filter((trip) => favTable.indexOf(trip.id) !== -1)
+        console.log(`favouritesList`)
+        console.log(favouritesList)
         this.setState({
             results: favouritesList,
             favourites: favouritesList
@@ -31,8 +33,12 @@ class Favourites2 extends Component {
 
     handleFavIcon(tripId) {
         const { favourites: prevfavourites } = this.state
+        console.log(`PREVFAVOURTIES`)
+        console.log(prevfavourites)
         if (prevfavourites.includes(tripId)) {
             const nextFavourites = prevfavourites.filter(id => id !== tripId);
+            console.log("nextFavourites")
+            console.log(nextFavourites)
             this.setState({
                 favourites: nextFavourites
             }, async () => {
