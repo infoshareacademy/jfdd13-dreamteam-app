@@ -12,9 +12,11 @@ import UserPanel from './components/UserPanel';
 import Register from './screens/Register';
 import Login from './screens/Login';
 import LoggedUser from './screens/LoggedUser';
-
+import Favicon from 'react-favicon';
 function App() {
     return (
+        <>
+        <Favicon url="../public/favicon.ico" />
         <BrowserRouter>
             <div className="App">
                 <Navbar/>
@@ -36,6 +38,7 @@ function App() {
             </div>
             <Redirect to="/"/>
         </BrowserRouter>
+        </>
     );
 }
 
