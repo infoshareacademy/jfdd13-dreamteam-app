@@ -7,7 +7,7 @@ import {
     Header,
     Button
 } from 'semantic-ui-react'
-import { fetchTrips, fetchFromFavorites } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 
@@ -17,44 +17,25 @@ class Favourites2 extends Component {
     state = {
         results: [],
         selectedTrip: null,
-        favourites: [],
+        favourites: {},
         fetched: false
     };
 
     async componentDidMount() {
-        const favTable = await fetchFromFavorites()
+        const favourites = await fetchFromFavorites()
         const allTrips = await fetchTrips();
-        const favouritesList = allTrips.filter((trip) => favTable.indexOf(trip.id) !== -1)
+        const favouritesList = allTrips.filter((trip) => favourites[trip.id] !== undefined)
         this.setState({
             results: favouritesList,
-            favourites: favTable,
+            favourites,
             fetched: true
         })
     }
 
-    handleFavIcon(tripId) {
-        const { favourites: prevfavourites } = this.state
-        if (prevfavourites.includes(tripId)) {
-            const nextFavourites = prevfavourites.filter(id => id !== tripId);
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                const userId = await firebase.auth().currentUser.uid
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-            })
-        } else {
-            const nextFavourites = [...prevfavourites, tripId];
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                const userId = await firebase.auth().currentUser.uid
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-            })
-        }
+    async handleFavIcon(tripId) {
+      await toggleFavorite(tripId);
+      const favourites = await fetchFromFavorites();
+      this.setState({ favourites })
     }
 
     showLoader() {
@@ -104,7 +85,7 @@ class Favourites2 extends Component {
                             className={'iconFavourites'}
                             size={'large'}
                             inverted
-                            name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                            name={this.state.favourites[trip.id] ? 'heart' : 'heart outline'}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 this.handleFavIcon(trip.id)

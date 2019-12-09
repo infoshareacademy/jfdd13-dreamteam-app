@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites, handleFavIcon } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
 import firebase from "../firebase";
 
 
@@ -31,6 +31,7 @@ class Search extends Component {
         favourites: [],
         fetched: false
     };
+    
 
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
@@ -61,34 +62,10 @@ class Search extends Component {
         )
     }
 
-    handleFavIcon(tripId) {
-        const { favourites: prevfavourites } = this.state
-        if (prevfavourites.includes(tripId)) {
-            const nextFavourites = prevfavourites.filter(id => id !== tripId);
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-                localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
-                console.log(this.state.favourites)
-            })
-        } else {
-            const nextFavourites = [...prevfavourites, tripId];
-            this.setState({
-                favourites: nextFavourites
-            }, async () => {
-                // localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
-                const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
-                await firebase.database().ref(`/favorites/${userId}`).set(
-                    nextFavourites
-                )
-            })
-        }
+    async handleFavIcon(tripId) {
+        await toggleFavorite(tripId);
+        const favourites = await fetchFromFavorites();
+        this.setState({ favourites })
     }
 
     queryOutput() {
@@ -124,7 +101,7 @@ class Search extends Component {
                                     className={'iconFavourites'}
                                     size={'large'}
                                     inverted
-                                    name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                                    name={this.state.favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         this.handleFavIcon(trip.id)
