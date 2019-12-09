@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
