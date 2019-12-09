@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react'
 import { fetchTrips, fetchFromFavorites } from "../services/TripService";
 import firebase from "../firebase";
+import Loader from "react-loader-spinner";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
@@ -16,38 +17,32 @@ class Favourites2 extends Component {
     state = {
         results: [],
         selectedTrip: null,
-        favourites: []
+        favourites: [],
+        fetched: false
     };
 
     async componentDidMount() {
         const favTable = await fetchFromFavorites()
         const allTrips = await fetchTrips();
         const favouritesList = allTrips.filter((trip) => favTable.indexOf(trip.id) !== -1)
-        console.log(`favouritesList`)
-        console.log(favouritesList)
         this.setState({
             results: favouritesList,
-            favourites: favTable
+            favourites: favTable,
+            fetched: true
         })
     }
 
     handleFavIcon(tripId) {
         const { favourites: prevfavourites } = this.state
-        console.log(`PREVFAVOURTIES`)
-        console.log(prevfavourites)
         if (prevfavourites.includes(tripId)) {
             const nextFavourites = prevfavourites.filter(id => id !== tripId);
-            console.log("nextFavourites")
-            console.log(nextFavourites)
             this.setState({
                 favourites: nextFavourites
             }, async () => {
                 const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
                 await firebase.database().ref(`/favorites/${userId}`).set(
                     nextFavourites
                 )
-                console.log(this.state.favourites)
             })
         } else {
             const nextFavourites = [...prevfavourites, tripId];
@@ -55,7 +50,6 @@ class Favourites2 extends Component {
                 favourites: nextFavourites
             }, async () => {
                 const userId = await firebase.auth().currentUser.uid
-                console.log(userId)
                 await firebase.database().ref(`/favorites/${userId}`).set(
                     nextFavourites
                 )
@@ -63,8 +57,23 @@ class Favourites2 extends Component {
         }
     }
 
+    showLoader() {
+        return (
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                <Loader
+                    type="TailSpin"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={0}
+                />
+            </div>
+        )
+    }
+
     queryOutput() {
         return (
+            !this.state.fetched ? this.showLoader() :
 
         this.state.results.length === 0 ?
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
