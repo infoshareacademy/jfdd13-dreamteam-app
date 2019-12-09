@@ -64,7 +64,14 @@ class Favourites2 extends Component {
     }
 
     queryOutput() {
-        return (this.state.results.map(trip => (
+        return (
+
+        this.state.results.length === 0 ?
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                <h2>Nie polubiłeś/aś jeszcze żadnej wycieczki</h2>
+            </div>
+            :
+            this.state.results.map(trip => (
             <div key={trip.id} className={'tripContainer'}>
                 <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
                     this.setState({

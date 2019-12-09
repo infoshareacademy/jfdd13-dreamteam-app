@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, handleFavIcon } from "../services/TripService";
@@ -27,20 +28,37 @@ class Search extends Component {
         searchTargetValue: '',
         selectedContinent: '',
         selectedTrip: null,
-        favourites: []
+        favourites: [],
+        fetched: false
     };
 
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
+
         //tu bedzie loader
         this.setState({
             favourites
         })
         fetchTrips().then(results => {
             this.setState({
-                results
+                results,
+                fetched: true
             })
         })
+    }
+
+    showLoader() {
+        return (
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+            <Loader
+                type="TailSpin"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                timeout={0}
+            />
+            </div>
+        )
     }
 
     handleFavIcon(tripId) {
@@ -74,42 +92,51 @@ class Search extends Component {
     }
 
     queryOutput() {
-        return (this.filteredResults.map(trip => (
-            <div key={trip.id} className={'tripContainer'}>
-                <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
-                    this.setState({
-                        selectedTrip: trip
-                    })
-                }}>
-                    <div style={{ position: 'relative' }}>
-                        <Image
-                            className="TripImage"
-                            // onClick={() => rangeValue(trip.id)}
-                            src={trip.tripImageUrl || defaultImg}
-                            label={{
-                                ribbon: true,
-                                color: "blue",
-                                content: `${trip.city}`
-                            }}
-                            centered={true}
-                            style={{ cursor: 'pointer' }}
-                        >
-                        </Image>
-                        <Icon
-                            className={'iconFavourites'}
-                            size={'large'}
-                            inverted
-                            name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                this.handleFavIcon(trip.id)
-                            }} />
+        return (
+            (!this.state.fetched) ?
+                this.showLoader():
+                (this.filteredResults.length === 0) ?
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                        <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
+                    </div>:
+                this.filteredResults.map(trip => (
+                    <div key={trip.id} className={'tripContainer'}>
+                        <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
+                            this.setState({
+                                selectedTrip: trip
+                            })
+                        }}>
+                            <div style={{ position: 'relative' }}>
+                                <Image
+                                    className="TripImage"
+                                    // onClick={() => rangeValue(trip.id)}
+                                    src={trip.tripImageUrl || defaultImg}
+                                    label={{
+                                        ribbon: true,
+                                        color: "blue",
+                                        content: `${trip.city}`
+                                    }}
+                                    centered={true}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                </Image>
+                                <Icon
+                                    className={'iconFavourites'}
+                                    size={'large'}
+                                    inverted
+                                    name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        this.handleFavIcon(trip.id)
+                                    }} />
+                            </div>
+                            <p>{trip.title}</p>
+                        </Grid.Column>
                     </div>
-                    <p>{trip.title}</p>
-                </Grid.Column>
-            </div>
-        ))
-        )
+                ))
+
+
+    )
     }
 
     handleRange = (e) => {
