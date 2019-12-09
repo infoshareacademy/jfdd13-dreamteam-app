@@ -187,7 +187,7 @@ class Search extends Component {
                         <Grid.Column widescreen={12} largeScreen={12} mobile={12}>
                             <Input
                                 onChange={this.handleInputChange}
-                                placeholder='Gdzie chesz pojechać?'
+                                placeholder='Gdzie chcesz pojechać?'
                                 fluid
                                 value={this.state.searchQuery}
                             />
@@ -213,7 +213,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Cena za dobę: {this.state.rangeValue || '0'}</span>
+                            }}>Cena za dobę: {this.state.rangeValue || '0'}zł</span>
                             <input type={'range'}
                                 min={0}
                                 max={2000}
