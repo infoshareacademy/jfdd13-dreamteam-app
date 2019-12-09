@@ -27,7 +27,7 @@ const Register = props => {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
+        <Header as="h2" color="blue" textAlign="center">
           Utwórz konto
         </Header>
         <Form size="large">
@@ -60,7 +60,7 @@ const Register = props => {
 
             <Button
               onClick={() => registerError()}
-              color="teal"
+              color="blue"
               fluid
               size="large"
             >
@@ -72,8 +72,13 @@ const Register = props => {
           <Message error={true}>Podaj poprawny E-mail oraz Hasło</Message>
         )}
         <Message>
-          Jesteś już zarejestrowany? - <Link to="/login">Zaloguj się</Link>
+          Jesteś już zarejestrowany? - <Link style={{color: "blue"}} to="/login">Zaloguj się</Link>
         </Message>
+      <Message info>
+        Tylko jeden krok dzieli Cię od znalezienia <br></br> najlepszej dla
+        Ciebie wycieczki. <br></br>Załóż konto lub zaloguj się, jeśli już je
+        posiadasz <br></br>i zaplanuj podróż marzeń.
+      </Message>
       </Grid.Column>
     </Grid>
   );

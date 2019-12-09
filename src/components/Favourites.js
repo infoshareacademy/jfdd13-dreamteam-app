@@ -8,7 +8,6 @@ import {
     Button
 } from 'semantic-ui-react'
 import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
-import firebase from "../firebase";
 import Loader from "react-loader-spinner";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';

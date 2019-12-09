@@ -2,9 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
-import firebase from "../firebase";
-
+import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
@@ -138,12 +136,12 @@ class Search extends Component {
         const continentText = continent ? continent.text : '';
         return this.state.results.filter(trip => {
             return (
-                trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                Number(trip.price) < rangeValue ||
-                trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                Number(trip.price) < rangeValue) ||
+                (trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                Number(trip.price) < rangeValue
+                Number(trip.price) < rangeValue)
             )
         })
     }
