@@ -13,18 +13,19 @@ export async function fetchTrips() {
   return trips
 }
 
-export async function addToFavorites(city, title) {
- const id =  await firebase.auth().currentUser.uid
- await firebase.database().ref(`/favorites/${id}`).push({
-    city: 'tututu',
-    title: 'testujemy'
-  })
+const favRefName = 'favorites'
+export async function toggleFavorite(tripId) {
+ const userUid = firebase.auth().currentUser.uid
+ return await firebase.database()
+  .ref(favRefName)
+  .child(userUid)
+  .child(tripId)
+  .transaction(isFav => isFav ? null : true)
 }
-
-
-export async function fetchFromFavorites() {
-  const id =  await firebase.auth().currentUser.uid
-  const dataSnapshot = await firebase.database().ref(`/favorites/${id}`).once('value')
-  const favoritesFromFirebase = dataSnapshot.val()
-  return favoritesFromFirebase || []
+export function fetchFromFavorites(onSuccess) {
+  const userUid = firebase.auth().currentUser.uid
+  firebase.database().ref(favRefName).child(userUid).on('value', dataSnapshot => {
+    const favoritesFromFirebase = dataSnapshot.val()
+    onSuccess(favoritesFromFirebase || {})
+  })
 }
