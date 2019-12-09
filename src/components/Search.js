@@ -136,12 +136,12 @@ class Search extends Component {
         const continentText = continent ? continent.text : '';
         return this.state.results.filter(trip => {
             return (
-                trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                Number(trip.price) < rangeValue ||
-                trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                Number(trip.price) < rangeValue) ||
+                (trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                Number(trip.price) < rangeValue
+                Number(trip.price) < rangeValue)
             )
         })
     }
