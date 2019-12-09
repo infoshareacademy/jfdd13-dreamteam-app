@@ -10,6 +10,10 @@ export async function login (email, password) {
   }
 } 
 
+export const passwordReset = email => {
+  return firebase.auth().sendPasswordResetEmail(email);
+}; 
+
 export const loginWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
