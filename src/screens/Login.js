@@ -27,11 +27,6 @@ const Login = () => {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Message info>
-          Tylko jeden krok dzieli Cię od znalezienia <br></br> najlepszej dla
-          Ciebie wycieczki. <br></br>Załóż konto lub zaloguj się, jeśli już je
-          posiadasz <br></br>i zaplanuj podróż marzeń.
-        </Message>
         <Header as="h2" color="blue" textAlign="center">
           Zaloguj się
         </Header>
@@ -80,6 +75,12 @@ const Login = () => {
         <Message>
           Chcesz się zarejestrować? - <Link style={{color: "blue"}} to="/register">Kliknij</Link>
         </Message>
+        <Message info>
+          Tylko jeden krok dzieli Cię od znalezienia <br></br> najlepszej dla
+          Ciebie wycieczki. <br></br>Załóż konto lub zaloguj się, jeśli już je
+          posiadasz <br></br>i zaplanuj podróż marzeń.
+        </Message>
+        
       </Grid.Column>
     </Grid>
   );
