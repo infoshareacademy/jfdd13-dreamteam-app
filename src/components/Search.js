@@ -218,6 +218,11 @@ class Search extends Component {
                 <Modal
                     dimmer={"blurring"}
                     open={this.state.selectedTrip != null}
+                    onClose={() => {
+                        this.setState({
+                            selectedTrip: null
+                        })
+                    }}
                 >
                     {selectedTrip != null && <Fragment>
                         <Modal.Header>{selectedTrip.title}</Modal.Header>
