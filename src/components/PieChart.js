@@ -42,6 +42,7 @@ export default class PieChartComponent extends PureComponent {
 
         const stateData = this.state.tripsData;
         const continentsNames = data.map(el => el.name);
+        console.log(continentsNames)
         const continentsValues = []
         console.log(stateData)
         if (stateData.isArray) {
