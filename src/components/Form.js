@@ -30,7 +30,7 @@ const accountFormSchema = Yup.object().shape({
   terms: Yup.boolean()
     .oneOf([true], 'Zaznacz pole powyżej.'),
   tripImageUrl: Yup.string()
-    .required("Zdjecie wycieczki jest wymagane")
+    .required("Zdjęcie wycieczki jest wymagane")
 });
 
 const continents = [
@@ -206,7 +206,7 @@ class Formularz extends React.Component {
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <label>Zdjecie wycieczki</label>
+                  <label>Zdjęcie wycieczki</label>
                   <Input
                     type="file"
                     name="tripImageUrl"
