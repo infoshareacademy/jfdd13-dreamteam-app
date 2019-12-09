@@ -96,8 +96,6 @@ class Favourites2 extends Component {
         )
     }
 
-    handleChange = (e, { name, value }) => this.setState({ [name]: value });
-
     render() {
         const { selectedTrip } = this.state
         return (

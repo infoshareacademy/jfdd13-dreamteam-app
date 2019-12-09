@@ -146,8 +146,6 @@ class Search extends Component {
         })
     }
 
-    handleChange = (e, { name, value }) => this.setState({ [name]: value });
-
     render() {
         const { selectedTrip } = this.state
 

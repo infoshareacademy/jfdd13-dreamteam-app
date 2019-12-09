@@ -45,10 +45,10 @@ const continents = [
 
 const truncateDecimals = function (value, digits) {
   const number = parseFloat(value)
-  var multiplier = Math.pow(10, digits),
-      adjustedNum = number * multiplier,
-      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
-  return truncatedNum / multiplier;
+    const multiplier = Math.pow(10, digits),
+        adjustedNum = number * multiplier,
+        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+    return truncatedNum / multiplier;
 };
 
 class Formularz extends React.Component {
@@ -250,6 +250,6 @@ class Formularz extends React.Component {
       </div>
     )
   };
-};
+}
 
 export default Formularz;
