@@ -34,18 +34,16 @@ class Search extends Component {
     
 
     async componentDidMount() {
-        const favourites = await fetchFromFavorites()
-
-        //tu bedzie loader
+        const results = await fetchTrips()
         this.setState({
-            favourites
+            results
         })
-        fetchTrips().then(results => {
+        fetchFromFavorites(favourites => {
             this.setState({
-                results,
+                favourites,
                 fetched: true
             })
-        })
+        }) 
     }
 
     showLoader() {
@@ -64,8 +62,6 @@ class Search extends Component {
 
     async handleFavIcon(tripId) {
         await toggleFavorite(tripId);
-        const favourites = await fetchFromFavorites();
-        this.setState({ favourites })
     }
 
     queryOutput() {

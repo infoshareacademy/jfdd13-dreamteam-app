@@ -22,9 +22,10 @@ export async function toggleFavorite(tripId) {
   .child(tripId)
   .transaction(isFav => isFav ? null : true)
 }
-export async function fetchFromFavorites() {
+export function fetchFromFavorites(onSuccess) {
   const userUid = firebase.auth().currentUser.uid
-  const dataSnapshot = await firebase.database().ref(favRefName).child(userUid).once('value')
-  const favoritesFromFirebase = dataSnapshot.val()
-  return favoritesFromFirebase || {}
+  firebase.database().ref(favRefName).child(userUid).on('value', dataSnapshot => {
+    const favoritesFromFirebase = dataSnapshot.val()
+    onSuccess(favoritesFromFirebase || {})
+  })
 }

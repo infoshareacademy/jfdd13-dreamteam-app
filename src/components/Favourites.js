@@ -22,20 +22,19 @@ class Favourites2 extends Component {
     };
 
     async componentDidMount() {
-        const favourites = await fetchFromFavorites()
         const allTrips = await fetchTrips();
-        const favouritesList = allTrips.filter((trip) => favourites[trip.id] !== undefined)
-        this.setState({
-            results: favouritesList,
-            favourites,
-            fetched: true
+        fetchFromFavorites(favourites => {
+            const favouritesList = allTrips.filter((trip) => favourites[trip.id] !== undefined)
+            this.setState({
+                results: favouritesList,
+                favourites,
+                fetched: true
+            })
         })
     }
 
     async handleFavIcon(tripId) {
       await toggleFavorite(tripId);
-      const favourites = await fetchFromFavorites();
-      this.setState({ favourites })
     }
 
     showLoader() {
