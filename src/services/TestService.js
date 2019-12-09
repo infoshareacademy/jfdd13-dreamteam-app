@@ -8,9 +8,7 @@ export async function sendTest(test, city, title) {
      date: new Date().toLocaleString(),
      title: 'testujemy'
    })
-   console.log("test wysłany!")
   } catch (error) {
-    console.log("test nie został wysłany");
   }
  }
   

@@ -3,7 +3,7 @@ import {Grid, Header, Image} from 'semantic-ui-react';
 import {data} from '../data'
 
 const localSdata = JSON.parse(localStorage.getItem('favourites')) || [];
-const dataFromLocalStorage = (localSdata) ? localSdata : console.log('dupa');
+const dataFromLocalStorage = (localSdata) ? localSdata : console.log('Test failed');
 
 const Test = () => {
 

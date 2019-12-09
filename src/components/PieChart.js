@@ -40,7 +40,6 @@ export default class PieChartComponent extends PureComponent {
 
     render() {
         return (<div>
-                {console.log(this.state)}
                 <PieChart
                     width={windowWidth > 500 ? 500 : 300}
                     height={windowWidth > 500 ? 350 : 250}

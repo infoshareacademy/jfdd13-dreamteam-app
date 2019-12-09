@@ -39,7 +39,6 @@ export const signout = () => {
     .auth()
     .signOut()
     .then(() => {
-      console.log("Wylogowano!");
       });
 };
 
