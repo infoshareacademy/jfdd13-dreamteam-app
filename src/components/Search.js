@@ -36,7 +36,7 @@ class Search extends Component {
         this.setState({
             results
         })
-        fetchFromFavorites(favourites => {
+       await fetchFromFavorites(favourites => {
             this.setState({
                 favourites,
                 fetched: true
@@ -98,7 +98,7 @@ class Search extends Component {
                                     name={this.state.favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        this.handleFavIcon(trip.id)
+                                       this.handleFavIcon(trip.id)
                                     }} />
                             </div>
                             <p>{trip.title}</p>
