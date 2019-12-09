@@ -7,8 +7,7 @@ import {
   Grid,
   Header,
   Message,
-  Segment,
-  Lin
+  Segment
 } from "semantic-ui-react";
 
 const Login = () => {
