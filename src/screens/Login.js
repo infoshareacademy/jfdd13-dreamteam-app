@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { login } from "../services/AuthService";
+import { Link } from "react-router-dom";
+import { login, loginWithGoogle } from "../services/AuthService";
 import {
   Button,
   Form,
@@ -25,7 +26,7 @@ const Login = () => {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
+        <Header as="h2" color="blue" textAlign="center">
           Zaloguj się
         </Header>
         <Form size="large">
@@ -49,12 +50,21 @@ const Login = () => {
             />
 
             <Button
-              onClick={() => loginError()}
-              color="teal"
+              onClick={loginError}
+              color="blue"
               fluid
               size="large"
             >
               Zaloguj się
+            </Button>
+            <Button
+              onClick={loginWithGoogle}
+              style={{ marginTop: "8px" }}
+              color="google plus"
+              fluid
+              size="large"
+            >
+              Zaloguj się przez Google
             </Button>
           </Segment>
         </Form>
@@ -62,8 +72,14 @@ const Login = () => {
           <Message error={true}>Nieudana próba logowania</Message>
         )}
         <Message>
-          Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
+          Chcesz się zarejestrować? - <Link style={{color: "blue"}} to="/register">Kliknij</Link>
         </Message>
+        <Message info>
+          Tylko jeden krok dzieli Cię od znalezienia <br></br> najlepszej dla
+          Ciebie wycieczki. <br></br>Załóż konto lub zaloguj się, jeśli już je
+          posiadasz <br></br>i zaplanuj podróż marzeń.
+        </Message>
+        
       </Grid.Column>
     </Grid>
   );
