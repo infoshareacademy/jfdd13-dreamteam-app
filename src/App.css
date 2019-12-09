@@ -1,3 +1,4 @@
+
 .App {
   display: flex;
   flex-wrap: nowrap;
@@ -23,8 +24,11 @@
 .App-link {
   color: #09d3ac;
 }
-
-main {
+.navItem {
+  padding: 1rem 0 !important;
+  min-width: auto !important;
+}
+.main {
   display: flex !important;
   flex-direction: column;
   flex: 1;
@@ -39,10 +43,6 @@ main {
   flex: 1;
 }
 
-.TripImage{
-  position: relative;
-  padding-top: 18px;
-}
 
 .pieUl {
   list-style-type: none;
@@ -81,6 +81,25 @@ main {
 
 .favouriteContainer {
   position: relative !important;
+}
+
+.TripImage{
+  position: relative;
+  padding-top: 18px;
+  height: auto;
+  min-height: 168px;
+  width: 299px;
+}
+/*
+.TripImage{
+  height: '168px', width: '299px'
+}*/
+.tripContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 298px;
+  margin: 0 auto;
 }
 .iconFavourites {
   position: absolute !important;

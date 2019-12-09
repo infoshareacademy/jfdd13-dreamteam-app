@@ -1,5 +1,6 @@
 .formContainer {
-    width: 450px;
+    width: 90%;
+    max-width: 500px !important;
     margin: 10px auto;
     padding-top: 20px;
 }
@@ -27,4 +28,10 @@ margin-top: 5px;
 .invisible {
 
     display: none;
+}
+
+@media all and (max-width: 470px) {
+    .formContainer {
+        min-width: 300px;
+    }
 }

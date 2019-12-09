@@ -1,16 +1,32 @@
-import React, {useState} from "react";
-import {login} from "../services/AuthService";
-import { Button, Form, Grid, Header, Message, Segment } from "semantic-ui-react";
+import React, { useState } from "react";
+import { login } from "../services/AuthService";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment
+} from "semantic-ui-react";
 
-const Login = props => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
+  const loginError = async () => {
+    try {
+      await login(email, password);
+    } catch (e) {
+      setLoginErrorMsg(e.code);
+    }
+  };
+
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="teal" textAlign="center">
-          Zaloguj się 
+          Zaloguj się
         </Header>
         <Form size="large">
           <Segment stacked>
@@ -33,8 +49,7 @@ const Login = props => {
             />
 
             <Button
-              onClick={(props) => login(email, password)
-              }
+              onClick={() => loginError()}
               color="teal"
               fluid
               size="large"
@@ -43,6 +58,9 @@ const Login = props => {
             </Button>
           </Segment>
         </Form>
+        {loginErrorMsg && (
+          <Message error={true}>Nieudana próba logowania</Message>
+        )}
         <Message>
           Chcesz się zarejestrować? - <a href="/register">Kliknij</a>
         </Message>
