@@ -26,53 +26,28 @@ export default class PieChartComponent extends PureComponent {
     };
 
     componentDidMount() {
-        fetchTrips().then(res => this.setState({
-            tripsData: res
-        }));
-        console.log(this.state.tripsData);
-    }
-    calculateContinents(arr, currentContinent) {
-
-        const logicOutput = arr.filter(item => arr[0].hasOwnProperty('continent') ? item.continent === currentContinent: '');
-
-        return logicOutput
-    }
-
-    calculateChartOutput() {
-
-        const stateData = this.state.tripsData;
-        const continentsNames = data.map(el => el.name);
-        console.log(continentsNames)
-        const continentsValues = []
-        console.log(stateData)
-        if (true) {
-           console.log('data os an arr')
-            const out = this.calculateContinents(stateData, 'Europa')
-            console.log(out)
-            console.log(out.length)
-            continentsNames.forEach(name => {
-                const calc = this.calculateContinents(stateData, name)
-                console.log(calc.length)
+        fetchTrips().then(res => {
+            const distribution = res.reduce((result, next) => {
+                result[next.continent] = (result[next.continent] || 0) + 1
+                return result;
+            }, {})
+            const tripsData = Object.entries(distribution).map(([name, value]) => ({ name, value }))
+            this.setState({
+                tripsData
             })
-            console.log('continentsValues')
-            // console.log(continentsValues)
-
-
-       } return false
+        });
     }
-
 
     render() {
         return (<div>
                 {console.log(this.state)}
-                {   this.calculateChartOutput()}
                 <PieChart
                     width={windowWidth > 500 ? 500 : 300}
                     height={windowWidth > 500 ? 350 : 250}
                     style={{margin: '0 auto'}}
                 >
                     <Pie
-                        data={data}
+                        data={this.state.tripsData}
                         labelLine={true}
                         fill="#8884d8"
                         dataKey="value"
