@@ -3,8 +3,6 @@ import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
-import firebase from "../firebase";
-
 
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
