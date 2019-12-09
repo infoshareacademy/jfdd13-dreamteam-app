@@ -50,7 +50,7 @@ const Login = () => {
             />
 
             <Button
-              onClick={() => loginError()}
+              onClick={loginError}
               color="blue"
               fluid
               size="large"
@@ -58,7 +58,7 @@ const Login = () => {
               Zaloguj się
             </Button>
             <Button
-              onClick={() => loginWithGoogle()}
+              onClick={loginWithGoogle}
               style={{ marginTop: "8px" }}
               color="google plus"
               fluid
