@@ -45,12 +45,17 @@ export default class PieChartComponent extends PureComponent {
         console.log(continentsNames)
         const continentsValues = []
         console.log(stateData)
-        if (stateData.isArray) {
+        if (true) {
            console.log('data os an arr')
+            const out = this.calculateContinents(stateData, 'Europa')
+            console.log(out)
+            console.log(out.length)
             continentsNames.forEach(name => {
                 const calc = this.calculateContinents(stateData, name)
-                continentsValues.push(calc)
+                console.log(calc.length)
             })
+            console.log('continentsValues')
+            // console.log(continentsValues)
 
 
        } return false
