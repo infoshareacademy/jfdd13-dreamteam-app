@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
@@ -27,66 +28,116 @@ class Search extends Component {
         searchTargetValue: '',
         selectedContinent: '',
         selectedTrip: null,
-        favourites: {}
+        favourites: [],
+        fetched: false
     };
     
 
     async componentDidMount() {
         const favourites = await fetchFromFavorites()
+
         //tu bedzie loader
         this.setState({
             favourites
         })
         fetchTrips().then(results => {
             this.setState({
-                results
+                results,
+                fetched: true
             })
         })
     }
 
-    async handleFavIcon(tripId) {
-      await toggleFavorite(tripId);
-      const favourites = await fetchFromFavorites();
-      this.setState({ favourites })
+    showLoader() {
+        return (
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+            <Loader
+                type="TailSpin"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                timeout={0}
+            />
+            </div>
+        )
+    }
+
+    handleFavIcon(tripId) {
+        const { favourites: prevfavourites } = this.state
+        if (prevfavourites.includes(tripId)) {
+            const nextFavourites = prevfavourites.filter(id => id !== tripId);
+            this.setState({
+                favourites: nextFavourites
+            }, async () => {
+                const userId = await firebase.auth().currentUser.uid
+                console.log(userId)
+                await firebase.database().ref(`/favorites/${userId}`).set(
+                    nextFavourites
+                )
+                localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
+                console.log(this.state.favourites)
+            })
+        } else {
+            const nextFavourites = [...prevfavourites, tripId];
+            this.setState({
+                favourites: nextFavourites
+            }, async () => {
+                // localStorage.setItem('favourites', JSON.stringify(this.state.favourites))
+                const userId = await firebase.auth().currentUser.uid
+                console.log(userId)
+                await firebase.database().ref(`/favorites/${userId}`).set(
+                    nextFavourites
+                )
+            })
+        }
     }
 
     queryOutput() {
-        return (this.filteredResults.map(trip => (
-            <div key={trip.id} className={'tripContainer'}>
-                <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
-                    this.setState({
-                        selectedTrip: trip
-                    })
-                }}>
-                    <div style={{ position: 'relative' }}>
-                        <Image
-                            className="TripImage"
-                            // onClick={() => rangeValue(trip.id)}
-                            src={trip.tripImageUrl || defaultImg}
-                            label={{
-                                ribbon: true,
-                                color: "blue",
-                                content: `${trip.city}`
-                            }}
-                            centered={true}
-                            style={{ cursor: 'pointer' }}
-                        >
-                        </Image>
-                        <Icon
-                            className={'iconFavourites'}
-                            size={'large'}
-                            inverted
-                            name={this.state.favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                this.handleFavIcon(trip.id)
-                            }} />
+        return (
+            (!this.state.fetched) ?
+                this.showLoader():
+                (this.filteredResults.length === 0) ?
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                        <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
+                    </div>:
+                this.filteredResults.map(trip => (
+                    <div key={trip.id} className={'tripContainer'}>
+                        <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
+                            this.setState({
+                                selectedTrip: trip
+                            })
+                        }}>
+                            <div style={{ position: 'relative' }}>
+                                <Image
+                                    className="TripImage"
+                                    // onClick={() => rangeValue(trip.id)}
+                                    src={trip.tripImageUrl || defaultImg}
+                                    label={{
+                                        ribbon: true,
+                                        color: "blue",
+                                        content: `${trip.city}`
+                                    }}
+                                    centered={true}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                </Image>
+                                <Icon
+                                    className={'iconFavourites'}
+                                    size={'large'}
+                                    inverted
+                                    name={this.state.favourites.includes(trip.id) ? 'heart' : 'heart outline'}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        this.handleFavIcon(trip.id)
+                                    }} />
+                            </div>
+                            <p>{trip.title}</p>
+                        </Grid.Column>
                     </div>
-                    <p>{trip.title}</p>
-                </Grid.Column>
-            </div>
-        ))
-        )
+                ))
+
+
+    )
     }
 
     handleRange = (e) => {
@@ -134,7 +185,7 @@ class Search extends Component {
             <div className="search">
                 <Grid padded={true}>
                     <Grid.Row columns={1} centered={true}>
-                        <Grid.Column width={12} mobile={12}>
+                        <Grid.Column widescreen={12} largeScreen={12} mobile={12}>
                             <Input
                                 onChange={this.handleInputChange}
                                 placeholder='Gdzie chesz pojechać?'
@@ -147,7 +198,7 @@ class Search extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={2} centered={true}>
-                        <Grid.Column width={6} mobile={12}>
+                        <Grid.Column widescreen={6} largeScreen={6} mobile={12}>
                             <Dropdown
                                 clearable
                                 fluid
@@ -157,7 +208,7 @@ class Search extends Component {
                                 value={this.state.selectedContinent}
                             />
                         </Grid.Column>
-                        <Grid.Column as={Form} width={6} mobile={12} textAlign={"right"}
+                        <Grid.Column as={Form} widescreen={6} largeScreen={6} mobile={12} textAlign={"right"}
                             style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                             <span style={{
                                 display: 'inline-flex',
