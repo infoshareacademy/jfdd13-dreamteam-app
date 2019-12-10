@@ -28,3 +28,15 @@ export function fetchFromFavorites(onSuccess) {
     onSuccess(favoritesFromFirebase || {})
   })
 }
+
+export async function fetchUsers() {
+  const dataSnapshot = await firebase.database().ref('/users').once('value')
+  const tripsFromFirebase = dataSnapshot.val()
+  return Object.entries(tripsFromFirebase).map(entry => {
+    const [a, b] = entry;
+    return {
+      a,
+      ...b
+    }
+  })
+}

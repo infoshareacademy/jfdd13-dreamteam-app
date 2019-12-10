@@ -8,46 +8,52 @@ import {
     Tooltip,
     Legend,
 } from 'recharts';
+import {fetchUsers} from "../services/TripService";
 
-const data = [
-    {
-        name: 'Lipiec',
-        mobileName: '07',
-        uv: 320,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Sierpień',
-        mobileName: '08',
-        uv: 526,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Wrzesień',
-        mobileName: '09',
-        uv: 678,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Październik',
-        mobileName: '10',
-        uv: 876,
-        pv: 3908,
-        amt: 2000,
-    }
-];
 const windowWidth = window.screen.width;
 export default class DataBarChart extends PureComponent {
+    state = {
+        barChartData: []
+    }
+
+    componentDidMount() {
+        const usersData = fetchUsers();
+        usersData.then(res => this.setState({
+            barChartData: res
+        }))
+        console.log('bar')
+        console.log(this.state)
+    }
+
+
+    get data () {
+
+    return [
+
+        {
+            name: 'Listopad',
+            mobileName: '08',
+            uv: 2,
+            pv: 1398,
+            amt: 2,
+        },
+        {
+            name: 'Grudzień',
+            mobileName: '10',
+            uv: this.state.barChartData.length,
+            pv: 3908,
+            amt: 2000,
+        }
+    ]
+
+    }
 
     render() {
         return (<div>
             <BarChart
                 width={windowWidth > 500 ? 500 : 300}
                 height={windowWidth > 500 ? 300: 150}
-                data={data}
+                data={this.data}
                 style={{ margin: '0 auto'}}
             >
                 <CartesianGrid strokeDasharray="3 3" />
