@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
+import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
 
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
@@ -36,12 +36,16 @@ class Search extends Component {
         this.setState({
             results
         })
-       await fetchFromFavorites(favourites => {
+        await fetchFromFavorites(favourites => {
             this.setState({
                 favourites,
                 fetched: true
             })
-        }) 
+        })
+    }
+
+    componentWillUnmount() {
+        stopFetching()
     }
 
     showLoader() {
@@ -182,7 +186,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Cena za dobę: {this.state.rangeValue || '0'}zł</span>
+                            }}>Maksymalna cena za dobę: {this.state.rangeValue || '0'}zł</span>
                             <input type={'range'}
                                 min={0}
                                 max={2000}

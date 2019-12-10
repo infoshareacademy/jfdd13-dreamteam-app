@@ -29,6 +29,11 @@ export function fetchFromFavorites(onSuccess) {
   })
 }
 
+export function stopFetching() {
+  const userUid = firebase.auth().currentUser.uid
+  firebase.database().ref(favRefName).child(userUid).off('value')
+}
+
 export async function fetchUsers() {
   const dataSnapshot = await firebase.database().ref('/users').once('value')
   const tripsFromFirebase = dataSnapshot.val()

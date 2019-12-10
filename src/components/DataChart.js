@@ -21,8 +21,6 @@ export default class DataBarChart extends PureComponent {
         usersData.then(res => this.setState({
             barChartData: res
         }))
-        console.log('bar')
-        console.log(this.state)
     }
 
 
@@ -34,7 +32,7 @@ export default class DataBarChart extends PureComponent {
             name: 'Listopad',
             mobileName: '08',
             uv: 2,
-            pv: 1398,
+            pv: 2,
             amt: 2,
         },
         {
@@ -62,7 +60,7 @@ export default class DataBarChart extends PureComponent {
                 <Tooltip />
                 <Legend />
                 {/*<Bar dataKey="pv" fill="#8884d8" />*/}
-                <Bar dataKey="uv" fill="#82ca9d" name={'Liczba wyświetleń'} />
+                <Bar dataKey="uv" fill="#82ca9d" name={'Liczba zarejestrowanych użytkowników'} />
             </BarChart>
             </div>
         );

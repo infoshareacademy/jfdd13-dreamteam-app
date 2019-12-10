@@ -22,30 +22,31 @@ function Dashboard() {
                 </Grid.Row>
                 <Grid.Row centered={true}>
                     <Grid.Column width={8} verticalAlign={'middle'}>
-                        <h3>Z WAY.TO skorzystało już 1529 osób, z czego:</h3>
+                        <h3>Z WAY.TO pojedziesz do:</h3>
                         <div style={{display: 'flex', justifyContent: 'center'}}>
                             <ul className={'pieUl'}>
-                                <li className={'pieLi pieLi__asia'}>423 osoby były w Azji</li>
-                                <li className={'pieLi pieLi__europe'}>313 poleciało do Europy</li>
-                                <li className={'pieLi pieLi__northamerica'}>241 poznało Północną Amerykę</li>
-                                <li className={'pieLi pieLi__africa'}>87 wybrało Afrykę</li>
+                                <li className={'pieLi pieLi__asia'}>Azji</li>
+                                <li className={'pieLi pieLi__europe'}>Europy</li>
+                                <li className={'pieLi pieLi__northamerica'}>Północnej Ameryki</li>
+                                <li className={'pieLi pieLi__africa'}>Afryki</li>
                             </ul>
                             <ul className={'pieUl'}>
-                                <li className={'pieLi pieLi__southamerica'}>328 zwiedziło Amerykę Południową</li>
-                                <li className={'pieLi pieLi__antarctica'}>56 wróciło z Antarktydy</li>
-                                <li className={'pieLi pieLi__australia'}>81 zostało w  Australii</li>
+                                <li className={'pieLi pieLi__southamerica'}>Ameryki Południowej</li>
+                                <li className={'pieLi pieLi__antarctica'}>Antarktydy</li>
+                                <li className={'pieLi pieLi__australia'}>Australii</li>
                             </ul>
                         </div>
                     </Grid.Column>
                     <Grid.Column width={8} verticalAlign={'middle'} style={{height: '100%'}}>
-                        <h3>Podróż na każdą kieszeń, zawsze.</h3>
-                        <div>
-                            <ul style={{listStyle: 'none'}}>
-                                <li>Wyjdź z domu i poczuj się turystą we własnym mieście</li>
-                                <li>Skorzystaj z formularza i dodaj swoją wycieczkę</li>
-                                <li>Wracaj do swoich najlepszych lokalizacji z pomocą ulubionych</li>
-                            </ul>
-                        </div>
+                            <h3>Podróż na każdą kieszeń, zawsze.</h3>
+                            <div>
+                                <ul style={{listStyle: 'none'}}>
+                                    <li>Wyjdź z domu i poczuj się turystą we własnym mieście</li>
+                                    <li>Skorzystaj z formularza i dodaj swoją wycieczkę</li>
+                                    <li>Wracaj do swoich najlepszych lokalizacji z pomocą ulubionych</li>
+
+                                </ul>
+                            </div>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
