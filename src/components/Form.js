@@ -30,7 +30,7 @@ const accountFormSchema = Yup.object().shape({
   terms: Yup.boolean()
     .oneOf([true], 'Zaznacz pole powyżej.'),
   tripImageUrl: Yup.string()
-    .required("Zdjecie wycieczki jest wymagane")
+    .required("Zdjęcie wycieczki jest wymagane")
 });
 
 const continents = [
@@ -45,10 +45,10 @@ const continents = [
 
 const truncateDecimals = function (value, digits) {
   const number = parseFloat(value)
-  var multiplier = Math.pow(10, digits),
-      adjustedNum = number * multiplier,
-      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
-  return truncatedNum / multiplier;
+    const multiplier = Math.pow(10, digits),
+        adjustedNum = number * multiplier,
+        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+    return truncatedNum / multiplier;
 };
 
 class Formularz extends React.Component {
@@ -206,7 +206,7 @@ class Formularz extends React.Component {
                   </div>
                 </Form.Field>
                 <Form.Field>
-                  <label>Zdjecie wycieczki</label>
+                  <label>Zdjęcie wycieczki</label>
                   <Input
                     type="file"
                     name="tripImageUrl"
@@ -250,6 +250,6 @@ class Formularz extends React.Component {
       </div>
     )
   };
-};
+}
 
 export default Formularz;

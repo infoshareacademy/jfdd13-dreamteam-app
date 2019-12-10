@@ -2,9 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Loader from 'react-loader-spinner'
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
-import { fetchTrips, fetchFromFavorites, handleFavIcon, toggleFavorite } from "../services/TripService";
-import firebase from "../firebase";
-
+import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
 
 const continents = [
     { key: 'afr', value: 1, text: "Afryka" },
@@ -38,12 +36,16 @@ class Search extends Component {
         this.setState({
             results
         })
-        fetchFromFavorites(favourites => {
+        await fetchFromFavorites(favourites => {
             this.setState({
                 favourites,
                 fetched: true
             })
-        }) 
+        })
+    }
+
+    componentWillUnmount() {
+        stopFetching()
     }
 
     showLoader() {
@@ -100,7 +102,7 @@ class Search extends Component {
                                     name={this.state.favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        this.handleFavIcon(trip.id)
+                                       this.handleFavIcon(trip.id)
                                     }} />
                             </div>
                             <p>{trip.title}</p>
@@ -138,17 +140,15 @@ class Search extends Component {
         const continentText = continent ? continent.text : '';
         return this.state.results.filter(trip => {
             return (
-                trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                 trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                Number(trip.price) < rangeValue ||
-                trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                Number(trip.price) < rangeValue) ||
+                (trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
                 trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                Number(trip.price) < rangeValue
+                Number(trip.price) < rangeValue)
             )
         })
     }
-
-    handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
     render() {
         const { selectedTrip } = this.state
@@ -186,7 +186,7 @@ class Search extends Component {
                                 display: 'inline-flex',
                                 padding: '0 8px',
                                 height: '100%'
-                            }}>Cena za dobę: {this.state.rangeValue || '0'}zł</span>
+                            }}>Maksymalna cena za dobę: {this.state.rangeValue || '0'}zł</span>
                             <input type={'range'}
                                 min={0}
                                 max={2000}

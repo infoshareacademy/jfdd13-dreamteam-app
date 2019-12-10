@@ -44,9 +44,6 @@ function Navbar() {
         <NavLink to="/form/" exact>
           {menuItem('Dodaj', 'add')}
         </NavLink>
-        <NavLink to="/panel" exact>
-          {menuItem('Panel', 'user')}
-        </NavLink>
         <NavLink to="/favs" exact>
           {menuItem('Ulubione', 'heart')}
         </NavLink>

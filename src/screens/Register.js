@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import { register } from "../services/AuthService";
 
-const Register = props => {
+const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ const Register = props => {
 
   const registerError = async () => {
     try {
-      await register(email, password);
+      await register(email, password, name);
     } catch (e) {
       setRegisterErrorMsg(e.code);
     }

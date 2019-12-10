@@ -1,9 +1,9 @@
 import React from 'react';
-import {Grid, Header, Image} from 'semantic-ui-react';
+import {Grid, Image} from 'semantic-ui-react';
 import {data} from '../data'
 
 const localSdata = JSON.parse(localStorage.getItem('favourites')) || [];
-const dataFromLocalStorage = (localSdata) ? localSdata : console.log('dupa');
+const dataFromLocalStorage = (localSdata) ? localSdata : console.log('Test failed');
 
 const Test = () => {
 
@@ -32,7 +32,6 @@ const Test = () => {
                                 <li>data: {trip.date}</li>
                                 <li>cena: {trip.price} PLN</li>
                                 <li>opis: {trip.description}</li>
-                                <li>kontakt: {trip.email}</li>
                             </ul>
                         </Grid.Column>))
             }

@@ -8,6 +8,6 @@ function UserPanel() {
             <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
         </div>
     )
-};
+}
 
 export default UserPanel;

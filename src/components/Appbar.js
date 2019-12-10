@@ -20,6 +20,6 @@ function Appbar () {
           WAY.TO
       </h1>
     </header>);
-};
+}
 
 export default Appbar;
