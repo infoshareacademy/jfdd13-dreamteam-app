@@ -42,13 +42,28 @@ export const signout = () => {
       });
 };
 
-export async function register (email, password, name) {
-  
-  try{
-    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    const id = userCredential.user.uid
-    await firebase.database().ref(`/users/${id}`).set({email, password, name})
-  } catch (error) {
-    throw error
-  }
-}
+export const register = (email, password, name) => {
+    return firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(value => {
+            const user = firebase.auth().currentUser;
+            const id = user.uid
+            user
+                .updateProfile({
+                    displayName: name
+                })
+                .then(() => {
+                    firebase
+                        .database()
+                        .ref(`/users/${id}`)
+                        .set({
+                            name,
+                            email
+                        })
+                });
+        })
+        .catch((error => {
+            throw error
+        }))
+};

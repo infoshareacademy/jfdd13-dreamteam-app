@@ -18,7 +18,7 @@ const Register = () => {
 
   const registerError = async () => {
     try {
-      await register(email, password);
+      await register(email, password, name);
     } catch (e) {
       setRegisterErrorMsg(e.code);
     }
