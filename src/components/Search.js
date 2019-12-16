@@ -3,7 +3,6 @@ import {ShowLoader} from "./Loader";
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
-// import {this.FilteredResults} from "./SearchFilters";
 import {Continents} from "./Continents";
 
 const initialRange = 1999;
@@ -129,8 +128,6 @@ class Search extends Component {
             )
         })
     }
-
-
 
     render() {
         const { selectedTrip } = this.state
