@@ -3,15 +3,8 @@ import {ShowLoader} from "./Loader";
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
+import {FilteredResults, Continents} from "./SearchFilters";
 
-const continents = [
-    { key: 'afr', value: 1, text: "Afryka" },
-    { key: 'apd', value: 2, text: "Ameryka Południowa" },
-    { key: 'apn', value: 3, text: "Ameryka Północna" },
-    { key: 'aus', value: 4, text: "Australia i Oceania" },
-    { key: 'azj', value: 5, text: "Azja" },
-    { key: 'eur', value: 6, text: "Europa" }
-];
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
@@ -56,11 +49,11 @@ class Search extends Component {
         return (
             (!this.state.fetched) ?
                 ShowLoader():
-                (this.filteredResults.length === 0) ?
+                (FilteredResults.length === 0) ?
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
                         <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
                     </div>:
-                this.filteredResults.map(trip => (
+                FilteredResults.map(trip => (
                     <div key={trip.id} className={'tripContainer'}>
                         <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
                             this.setState({
@@ -117,24 +110,7 @@ class Search extends Component {
             searchQuery: e.target.value
         })
     };
-
-    get filteredResults() {
-        const { searchQuery, selectedContinent, rangeValue } = this.state;
-        const continent = continents.find(continent => {
-            return continent.value === selectedContinent
-        });
-        const continentText = continent ? continent.text : '';
-        return this.state.results.filter(trip => {
-            return (
-                (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                Number(trip.price) < rangeValue) ||
-                (trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
-                Number(trip.price) < rangeValue)
-            )
-        })
-    }
+    
 
     render() {
         const { selectedTrip } = this.state
@@ -160,7 +136,7 @@ class Search extends Component {
                             <Dropdown
                                 clearable
                                 fluid
-                                options={continents}
+                                options={Continents}
                                 selection placeholder='Wybierz kontynent...'
                                 onChange={this.handleSelect}
                                 value={this.state.selectedContinent}
