@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import {Grid} from "semantic-ui-react";
-import Loader from 'react-loader-spinner'
+import {ShowLoader} from "./Loader";
 
 const Secure = props => {
   const [user, setUser] = useState(null);
@@ -20,15 +19,7 @@ const Secure = props => {
   }, []);
 
   if (user == null) {
-    return       <Grid style={{display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center'}}>
-      <Loader
-          type="TailSpin"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={0}
-      />
-        </Grid>
+    return ShowLoader()
 
   }
 
