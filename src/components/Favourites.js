@@ -12,7 +12,7 @@ import {ShowLoader} from "./Loader";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
-class Favourites2 extends Component {
+class Favourites extends Component {
     state = {
         results: [],
         selectedTrip: null,
@@ -147,4 +147,4 @@ class Favourites2 extends Component {
     };
 }
 
-export default Favourites2
+export default Favourites
