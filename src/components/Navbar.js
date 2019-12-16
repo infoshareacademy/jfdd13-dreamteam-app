@@ -14,12 +14,14 @@ function Navbar() {
     border: 0,
     borderRadius: 0
   };
-  const menuItem = ( elText='', iconName='', iconStyle={},elType='div', elStyle={}) => {
+  const menuItem = ( elText='', linkTo='', iconName='', iconStyle={},elType='div', elStyle={}) => {
     return (
+        <NavLink to={linkTo} exact>
         <Menu.Item as={elType} style={elStyle} className={'navItem'} >
           <Icon name={iconName} style={iconStyle}/>
           {windowWidth > 500 ? elText : ''}
         </Menu.Item>
+        </NavLink>
     )
   };
   return (
@@ -34,19 +36,11 @@ function Navbar() {
           width={windowWidth < 500 ? 'very thin': 'thin'
           }
       >
-        <NavLink to="/main" exact>
 
-          {menuItem('Statystyki', 'chart line',{} , 'div', {marginTop: '60px'} )}
-        </NavLink>
-        <NavLink to="/search" exact>
-          {menuItem('Oferta', 'search')}
-        </NavLink>
-        <NavLink to="/form/" exact>
-          {menuItem('Dodaj', 'add')}
-        </NavLink>
-        <NavLink to="/favs" exact>
-          {menuItem('Ulubione', 'heart')}
-        </NavLink>
+          {menuItem('Statystyki','/main' ,'chart line',{} , 'div', {marginTop: '60px'} )}
+          {menuItem('Oferta', '/search', 'search')}
+          {menuItem('Dodaj', '/form/', 'add')}
+          {menuItem('Ulubione', '/favs', 'heart')}
         <NavLink to="#" exact>
           <Menu.Item as={'div'} className='navItem' onClick={() => signout()}>
             <Icon name="sign out" />
