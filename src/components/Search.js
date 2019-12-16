@@ -3,7 +3,8 @@ import {ShowLoader} from "./Loader";
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
-import {FilteredResults, Continents} from "./SearchFilters";
+// import {this.FilteredResults} from "./SearchFilters";
+import {Continents} from "./Continents";
 
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -49,11 +50,11 @@ class Search extends Component {
         return (
             (!this.state.fetched) ?
                 ShowLoader():
-                (FilteredResults.length === 0) ?
+                (this.FilteredResults.length === 0) ?
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
                         <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
                     </div>:
-                FilteredResults.map(trip => (
+                this.FilteredResults.map(trip => (
                     <div key={trip.id} className={'tripContainer'}>
                         <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
                             this.setState({
@@ -110,7 +111,26 @@ class Search extends Component {
             searchQuery: e.target.value
         })
     };
-    
+
+    get FilteredResults()  {
+        const { searchQuery, selectedContinent, rangeValue } = this.state;
+        const continent = Continents.find(continent => {
+            return continent.value === selectedContinent
+        });
+        const continentText = continent ? continent.text : '';
+        return this.state.results.filter(trip => {
+            return (
+                (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                    trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    Number(trip.price) < rangeValue) ||
+                (trip.city.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                    trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
+                    Number(trip.price) < rangeValue)
+            )
+        })
+    }
+
+
 
     render() {
         const { selectedTrip } = this.state
@@ -216,16 +236,7 @@ class Search extends Component {
                             </Button>
                             <Button
                                 positive
-                                // icon={`heart ${favourites.includes(trip.id) ? "" : "outline"}`}
                                 labelPosition="right"
-                                // content={`${favourites.includes(trip.id) ? "Ulubione" : "Dodaj do ulubionych"}`}
-                                onClick={() => {
-                                    // if(favourites.includes(trip.id)){
-                                    //     setFavourites(favourites.filter(id => id !== trip.id))
-                                    // } else {
-                                    //     setFavourites([...favourites, trip.id]);
-                                    // };
-                                }}
                             />
                         </Modal.Actions>
                     </Fragment>}
