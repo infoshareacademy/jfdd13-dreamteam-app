@@ -49,10 +49,10 @@ function Navbar() {
                 {
                     menuItem('Ulubione', '/favs', 'heart')
                 }
-                {/* temporary commented out {
+                {
                     menuItem('Panel', '/panel', 'user')
 
-                } */}
+                }
 
                 <NavLink to="#" exact>
                     <Menu.Item as={'div'} className='navItem' onClick={() => signout()}>
