@@ -8,11 +8,11 @@ import {
     Button
 } from 'semantic-ui-react'
 import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
-import Loader from "react-loader-spinner";
+import {ShowLoader} from "./Loader";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
-class Favourites2 extends Component {
+class Favourites extends Component {
     state = {
         results: [],
         selectedTrip: null,
@@ -36,23 +36,9 @@ class Favourites2 extends Component {
       await toggleFavorite(tripId);
     }
 
-    showLoader() {
-        return (
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-                <Loader
-                    type="TailSpin"
-                    color="#00BFFF"
-                    height={100}
-                    width={100}
-                    timeout={0}
-                />
-            </div>
-        )
-    }
-
     queryOutput() {
         return (
-            !this.state.fetched ? this.showLoader() :
+            !this.state.fetched ? ShowLoader() :
 
         this.state.results.length === 0 ?
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
@@ -161,4 +147,4 @@ class Favourites2 extends Component {
     };
 }
 
-export default Favourites2
+export default Favourites
