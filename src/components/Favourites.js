@@ -1,11 +1,8 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import {
     Grid,
     Image,
     Icon,
-    Modal,
-    Header,
-    Button
 } from 'semantic-ui-react'
 import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 import {ShowLoader} from "./Loader";
