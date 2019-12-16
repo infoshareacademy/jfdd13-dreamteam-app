@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Loader from 'react-loader-spinner'
+import {ShowLoader} from "./Loader";
 import { Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button } from 'semantic-ui-react';
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
@@ -48,20 +48,6 @@ class Search extends Component {
         stopFetching()
     }
 
-    showLoader() {
-        return (
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-            <Loader
-                type="TailSpin"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                timeout={0}
-            />
-            </div>
-        )
-    }
-
     async handleFavIcon(tripId) {
         await toggleFavorite(tripId);
     }
@@ -69,7 +55,7 @@ class Search extends Component {
     queryOutput() {
         return (
             (!this.state.fetched) ?
-                this.showLoader():
+                ShowLoader():
                 (this.filteredResults.length === 0) ?
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
                         <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
