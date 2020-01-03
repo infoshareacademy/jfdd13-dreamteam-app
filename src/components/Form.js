@@ -4,6 +4,7 @@ import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-rea
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
+import {Continents} from "./Continents";
 
 const accountFormSchema = Yup.object().shape({
   title: Yup.string()
@@ -32,16 +33,6 @@ const accountFormSchema = Yup.object().shape({
   tripImageUrl: Yup.string()
     .required("Zdjęcie wycieczki jest wymagane")
 });
-
-const continents = [
-  { key: 'afr', value: "Afryka", text: "Afryka" },
-  { key: 'apd', value: "Ameryka Południowa", text: "Ameryka Południowa" },
-  { key: 'apn', value: "Ameryka Północna", text: "Ameryka Północna" },
-  { key: 'ant', value: "Antarktyda", text: "Antarktyda" },
-  { key: 'aus', value: "Australia i Oceania", text: "Australia i Oceania" },
-  { key: 'azj', value: "Azja", text: "Azja" },
-  { key: 'eur', value: "Europa", text: "Europa" }
-];
 
 const truncateDecimals = function (value, digits) {
   const number = parseFloat(value)
@@ -170,7 +161,7 @@ class Formularz extends React.Component {
                   <label>Kontynent</label>
                   <Select placeholder='Wybierz kontynent'
                    name="continent"
-                   options={continents}
+                   options={Continents}
                     onChange={(event, data) => setFieldValue('continent', data.value)}
                     onBlur={handleBlur}
                     touched={touched}
