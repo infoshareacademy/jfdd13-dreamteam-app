@@ -117,8 +117,7 @@ class Search extends Component {
             return continent.value === selectedContinent
         });
         const continentText = continent ? continent.text : '';
-        return this.state.results.filter(trip => {
-            return (
+        return this.state.results.filter(trip =>  (
                 (trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                     trip.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
                     Number(trip.price) < rangeValue) ||
@@ -126,7 +125,7 @@ class Search extends Component {
                     trip.continent.toLowerCase().includes(continentText.toLowerCase()) &&
                     Number(trip.price) < rangeValue)
             )
-        })
+        )
     }
 
     render() {
