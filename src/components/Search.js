@@ -9,12 +9,9 @@ const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
 const Search = () => {
-    const [dropdownValue, setDropdownValue] = useState('');
     const [rangeValue, setRangeValue] = useState(initialRange);
     const [searchQuery, setSearchQuery] = useState('');
-    const [drop, setDrop] = useState('');
     const [results, setResults] = useState([]);
-    const [searchTargetValue, setSearchTargetValue] = useState('');
     const [selectedContinent, setSelectedContinent] = useState('');
     const [selectedTrip, setSelectedTrip] = useState(null);
     const [favourites, setFavourites] = useState([]);
