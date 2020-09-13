@@ -95,6 +95,128 @@ const Hooked = () => {
 
     }
 
+    const SearchSection = ()=> (
+        <div className={'search'}>
+            <Grid padded={true}>
+                <Grid.Row columns={1} centered={true}>
+                    <Grid.Column widescreen={12} largescreen={12} mobile={12}>
+                        <Input
+                            onChange={handleInputChange}
+                            placeholder={'Dokąd chcesz pojehcać'}
+                            fluid
+                            value={searchQuery}
+                        />
+                        <datalist id={'places'}>
+                            {data.map(v => <option key={v.id}>{v.city}</option>)}
+                        </datalist>
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row columns={2} centered={true}>
+                    <Grid.Column widescreen={6} largeScreen={6} mobile={12}>
+                        <Dropdown
+                            clearable
+                            fluid
+                            options={Continents}
+                            selection
+                            placeholder={'Wybierz kontynent'}
+                            onChange={handleSelect}
+                            value={selectedContinent}
+                        />
+                    </Grid.Column>
+                    <GridColumn
+                        as={Form}
+                        widescreen={6}
+                        largeScreen={6}
+                        mobile={12}
+                        textAlign={'right'}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <span
+                            style={{
+                                display: 'inline-flex',
+                                padding: '0 8px',
+                                height: '100%'
+                            }}
+                        >
+                            Maksymalna cena za dobę: {rangeValue || '0'}zł
+                        </span>
+                        <input
+                            type={'range'}
+                            min={0}
+                            max={2000}
+                            step={100}
+                            onChange={handleRangeSlider}
+                            name={'show'}
+                            value={rangeValue}
+                            style={{minHeight: '40px'}}
+                        />
+                    </GridColumn>
+                </Grid.Row>
+            </Grid>
+            {/*{todo: place following results view as another component}*/}
+            <Grid container style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                flexDirection: 'column',
+                height: '100%',
+                margin: 'auto !important'
+            }}>
+                <Grid.Row
+                    columns={3}
+                    mobile={1}
+                    style={{
+                        display: 'flex',
+                        height: '100%'
+                    }}
+                >
+                    {queryOutput()}
+                </Grid.Row>
+            </Grid>
+            {/*{todo: set modal as another component}*/}
+            <Modal
+                dimmer={'blurring'}
+                open={selectedTrip != null}
+                onClose={()=> setSelectedTrip(null)}
+            >
+                {selectedTrip != null && <Fragment>
+                    <Modal.Header>{selectedTrip.title}</Modal.Header>
+                    <Modal.Content image>
+                        <Image
+                            wrapped
+                            size={'large'}
+                            src={selectedTrip.tripImageUrl || defaultImg}
+                        />
+                        <Modal.Description>
+                            {/*todo destructure following values*/}
+                            <Header>{selectedTrip.city}</Header>
+                            <ul>
+                                <li>{selectedTrip.continent}</li>
+                                <li>Cena za dobę za osobę: {selectedTrip.price} PLN</li>
+                                <li>Data wyjazdu: {selectedTrip.date}</li>
+                                <li>Opis: {selectedTrip.description}</li>
+                            </ul>
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button
+                            color={'black'}
+                            onClick={() => setSelectedTrip(null)}
+                        >
+                            Wyjdź
+                        </Button>
+                        <Button
+                            positive
+                            labelPosition="right"
+                        />
+                    </Modal.Actions>
+                </Fragment>}
+            </Modal>
+        </div>
+    )
 }
 //todo: rewrite render from Search
 const NoQueryResult = () => (
