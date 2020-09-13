@@ -38,6 +38,11 @@ const Hooked = () => {
     }
     //todo: handlers here, then the getter
     //todo: after that finish queryOutput
+    const handleRangeSlider = (e) => setRangeValue(Number(e.target.value))
+
+    const handleSelect = (e) => setSelectedContinent(data.value)
+
+    const handleInputChange = (e) => setSearchQuery(e.target.value)
 
     const queryOutput = () => !fetched ? ShowLoader() : ( <div>
 
