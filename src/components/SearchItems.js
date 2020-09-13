@@ -3,7 +3,7 @@ import {Dropdown, Form, Grid, GridColumn, Icon, Image, Input} from "semantic-ui-
 import {data} from "../data";
 import {Continents} from "./Continents";
 
-const SearchItems = ({
+export const SearchInputs = ({
                          handleInputChange, handleSelect, selectedContinent,
                          rangeValue, searchQuery, handleRangeSlider
                      }) => (
@@ -67,7 +67,6 @@ const SearchItems = ({
             </GridColumn>
         </Grid.Row>
     </Grid>
-
 )
 
 export const FilteredQueryResults = ({
@@ -110,4 +109,24 @@ export const FilteredQueryResults = ({
     </div>
 
 )
-export default SearchItems
+
+export const ResultsGrid = ({queryOutput}) => (
+    <Grid container style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+        height: '100%',
+        margin: 'auto !important'
+    }}>
+        <Grid.Row
+            columns={3}
+            mobile={1}
+            style={{
+                display: 'flex',
+                height: '100%'
+            }}
+        >
+            {queryOutput()}
+        </Grid.Row>
+    </Grid>
+)
