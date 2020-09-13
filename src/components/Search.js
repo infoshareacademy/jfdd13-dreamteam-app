@@ -42,7 +42,6 @@ const Search = () => {
     const handleFavIcon = async (tripId) => {
         await toggleFavorite(tripId)
     }
-    //todo: after that finish queryOutput
     const handleRangeSlider = (e) => setRangeValue(Number(e.target.value))
 
     const handleSelect = () => setSelectedContinent(data.value)
