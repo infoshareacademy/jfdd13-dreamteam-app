@@ -69,9 +69,7 @@ const Search = () => {
             return ShowLoader()
         } else if (FilteredResults().length === 0) {
             return (
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-                    <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
-                </div>
+              <NoQueryResult/>
             )
         }
         return FilteredResults().map(trip => (
