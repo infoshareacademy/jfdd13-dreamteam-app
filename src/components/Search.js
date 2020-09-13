@@ -50,7 +50,7 @@ const Search = () => {
     const handleInputChange = (e) => setSearchQuery(e.target.value)
 
     const FilteredResults = () => {
-        const continent = Continents.find(continent => continent.value === selectedContinent).toLowerCase()
+        const continent = Continents.find(continent => continent.value === selectedContinent)
         const continentText = continent ? continent.text.toLowerCase() : '';
         const userQuery = searchQuery.toLowerCase()
         return results.filter(trip => (
@@ -84,10 +84,23 @@ const Search = () => {
                 >
                     <div style={{position: 'relative'}}>
                         <Image
-                            className={'iconFavourites'}
-                            size={'large'}
+                            className={'TripImage'}
+                            src={trip.tripImageUrl || defaultImg}
+                            label={{
+                                ribbon: true,
+                                color: 'blue',
+                                content: `${trip.city}`
+                            }}
+                            centered={true}
+                            style={{cursor: 'pointer'}}
+
+                        />
+                        <Icon
                             inverted
-                            name={favourites[trip.id] !== undefined ? 'heart' : 'heart-outline'}
+                            className={'iconFavourites'}
+                            name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
+                            size={'large'}
+
                             onClick={(e) => {
                                 e.stopPropagation();
                                 handleFavIcon(trip.id)
