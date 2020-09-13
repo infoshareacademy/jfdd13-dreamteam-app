@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {ShowLoader} from "./Loader";
-import {Modal} from 'semantic-ui-react';
 import {data} from '../data'
 import {fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite} from "../services/TripService";
 import {Continents} from "./Continents";
@@ -63,7 +62,6 @@ const Search = () => {
                 Number(trip.price < rangeValue)
             ))
     }
-// todo: set following function as another component
     const queryOutput = () => {
         if (!fetched) {
             return ShowLoader()
