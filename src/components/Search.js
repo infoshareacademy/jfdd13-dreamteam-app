@@ -21,6 +21,7 @@ const Search = () => {
     const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
+        if (!fetched) {
         const f = async () => {
             const results = await fetchTrips()
             setResults(results)
@@ -30,8 +31,13 @@ const Search = () => {
             })
         }
         f()
-        return () => stopFetching()
-    })
+        }
+        return ()=> setFetched(false)
+    }, [])
+
+    if(!fetched) {
+        return null;
+    }
 
     const handleFavIcon = async (tripId) => {
         await toggleFavorite(tripId)
