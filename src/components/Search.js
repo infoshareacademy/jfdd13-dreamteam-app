@@ -8,17 +8,17 @@ import {Continents} from "./Continents";
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
-const Hooked = () => {
+const Search = () => {
     const [dropdownValue, setDropdownValue] = useState('');
     const [rangeValue, setRangeValue] = useState(initialRange);
     const [searchQuery, setSearchQuery] = useState('');
-    const [drop, setDrop] = '';
-    const [results, setResults] = [];
-    const [searchTargetValue, setSearchTargetValue] = '';
-    const [selectedContinent, setSelectedContinent] = '';
-    const [selectedTrip, setSelectedTrip] = null;
-    const [favourites, setFavourites] = [];
-    const [fetched, setFetched] = false;
+    const [drop, setDrop] = useState('');
+    const [results, setResults] = useState([]);
+    const [searchTargetValue, setSearchTargetValue] = useState('');
+    const [selectedContinent, setSelectedContinent] = useState('');
+    const [selectedTrip, setSelectedTrip] = useState(null);
+    const [favourites, setFavourites] = useState([]);
+    const [fetched, setFetched] = useState(false);
 
     useEffect(() => {
         const f = async () => {
@@ -95,7 +95,7 @@ const Hooked = () => {
 
     }
 
-    const SearchSection = ()=> (
+    return (
         <div className={'search'}>
             <Grid padded={true}>
                 <Grid.Row columns={1} centered={true}>
@@ -180,7 +180,7 @@ const Hooked = () => {
             <Modal
                 dimmer={'blurring'}
                 open={selectedTrip != null}
-                onClose={()=> setSelectedTrip(null)}
+                onClose={() => setSelectedTrip(null)}
             >
                 {selectedTrip != null && <Fragment>
                     <Modal.Header>{selectedTrip.title}</Modal.Header>
@@ -249,7 +249,8 @@ const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}
         </GridColumn>
     </div>
 )
-class Search extends Component {
+
+class Search2 extends Component {
     state = {
         DropdownValue: '',
         rangeValue: initialRange,
