@@ -21,7 +21,7 @@ const Hooked = () => {
     const [fetched, setFetched] = false;
 
     useEffect(() => {
-        const f = async ()=> {
+        const f = async () => {
             const results = await fetchTrips()
             setResults(results)
             await fetchFromFavorites(favourites => {
@@ -33,10 +33,9 @@ const Hooked = () => {
         return () => stopFetching()
     })
 
-    const handleFavIcon = async (tripId)=> {
+    const handleFavIcon = async (tripId) => {
         await toggleFavorite(tripId)
     }
-    //todo: handlers here, then the getter
     //todo: after that finish queryOutput
     const handleRangeSlider = (e) => setRangeValue(Number(e.target.value))
 
@@ -44,7 +43,23 @@ const Hooked = () => {
 
     const handleInputChange = (e) => setSearchQuery(e.target.value)
 
-    const queryOutput = () => !fetched ? ShowLoader() : ( <div>
+    const FilteredResults = () => {
+        const continent = Continents.find(continent => continent.value === selectedContinent).toLowerCase()
+        const continentText = continent ? continent.text.toLowerCase() : '';
+        const userQuery = searchQuery.toLowerCase()
+        return results.filter(trip => (
+                trip.continent.toLowerCase().includes(continentText) &&
+                trip.title.toLowerCase().includes(userQuery) &&
+                Number(trip.price) < rangeValue
+            ) ||
+            (
+                trip.city.toLowerCase().includes(userQuery) &&
+                trip.continent.toLowerCase().includes(continentText) &&
+                Number(trip.price < rangeValue)
+            ))
+    }
+
+    const queryOutput = () => !fetched ? ShowLoader() : (<div>
 
         </div>
 
