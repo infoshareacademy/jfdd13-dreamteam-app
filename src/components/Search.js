@@ -4,6 +4,7 @@ import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button, GridCol
 import {data} from '../data'
 import {fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite} from "../services/TripService";
 import {Continents} from "./Continents";
+import SearchItems from "./SearchItems";
 
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -113,66 +114,14 @@ const Search = () => {
 
     return (
         <div className={'search'}>
-            <Grid padded={true}>
-                <Grid.Row columns={1} centered={true}>
-                    <Grid.Column widescreen={12} largescreen={12} mobile={12}>
-                        <Input
-                            onChange={handleInputChange}
-                            placeholder={'Dokąd chcesz pojehcać'}
-                            fluid
-                            value={searchQuery}
-                        />
-                        <datalist id={'places'}>
-                            {data.map(v => <option key={v.id}>{v.city}</option>)}
-                        </datalist>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row columns={2} centered={true}>
-                    <Grid.Column widescreen={6} largeScreen={6} mobile={12}>
-                        <Dropdown
-                            clearable
-                            fluid
-                            options={Continents}
-                            selection
-                            placeholder={'Wybierz kontynent'}
-                            onChange={handleSelect}
-                            value={selectedContinent}
-                        />
-                    </Grid.Column>
-                    <GridColumn
-                        as={Form}
-                        widescreen={6}
-                        largeScreen={6}
-                        mobile={12}
-                        textAlign={'right'}
-                        style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <span
-                            style={{
-                                display: 'inline-flex',
-                                padding: '0 8px',
-                                height: '100%'
-                            }}
-                        >
-                            Maksymalna cena za dobę: {rangeValue || '0'}zł
-                        </span>
-                        <input
-                            type={'range'}
-                            min={0}
-                            max={2000}
-                            step={100}
-                            onChange={handleRangeSlider}
-                            name={'show'}
-                            value={rangeValue}
-                            style={{minHeight: '40px'}}
-                        />
-                    </GridColumn>
-                </Grid.Row>
-            </Grid>
+            <SearchItems
+                handleInputChange={handleInputChange}
+                handleSelect={handleSelect}
+                handleRangeSlider={handleRangeSlider}
+                selectedContinent={selectedContinent}
+                rangeValue={rangeValue}
+                searchQuery={searchQuery}
+            />
             {/*{todo: place following results view as another component}*/}
             <Grid container style={{
                 display: 'flex',
