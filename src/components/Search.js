@@ -156,7 +156,7 @@ const NoQueryResult = () => (
 
 //todo: pass following as props when mounting the component
 const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}) => (
-    <div key={trip.id}>
+    <div key={trip.id} className={'tripContainer'}>
         <GridColumn style={{padding: '0 2rem'}}
                     onClick={() => {
                         setSelectedTrip(trip)
@@ -164,10 +164,23 @@ const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}
         >
             <div style={{position: 'relative'}}>
                 <Image
-                    className={'iconFavourites'}
-                    size={'large'}
+                    className={'TripImage'}
+                    src={trip.tripImageUrl || defaultImg}
+                    label={{
+                        ribbon: true,
+                        color: 'blue',
+                        content: `${trip.city}`
+                    }}
+                    centered={true}
+                    style={{cursor: 'pointer'}}
+
+                />
+                <Icon
                     inverted
-                    name={favourites[trip.id] !== undefined ? 'heart' : 'heart-outline'}
+                    className={'iconFavourites'}
+                    name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
+                    size={'large'}
+
                     onClick={(e) => {
                         e.stopPropagation();
                         handleFavIcon(trip.id)
@@ -177,6 +190,7 @@ const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}
             <p>{trip.title}</p>
         </GridColumn>
     </div>
+
 )
 
 
