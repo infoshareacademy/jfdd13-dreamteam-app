@@ -1,5 +1,5 @@
 import React from 'react'
-import {Dropdown, Form, Grid, GridColumn, Input} from "semantic-ui-react";
+import {Dropdown, Form, Grid, GridColumn, Icon, Image, Input} from "semantic-ui-react";
 import {data} from "../data";
 import {Continents} from "./Continents";
 
@@ -67,6 +67,47 @@ const SearchItems = ({
             </GridColumn>
         </Grid.Row>
     </Grid>
+
+)
+
+export const FilteredQueryResults = ({
+                                         trip, setSelectedTrip, favourites,
+                                         handleFavIcon, defaultImg
+                                     }) => (
+    <div key={trip.id} className={'tripContainer'}>
+        <GridColumn style={{padding: '0 2rem'}}
+                    onClick={() => {
+                        setSelectedTrip(trip)
+                    }}
+        >
+            <div style={{position: 'relative'}}>
+                <Image
+                    className={'TripImage'}
+                    src={trip.tripImageUrl || defaultImg}
+                    label={{
+                        ribbon: true,
+                        color: 'blue',
+                        content: `${trip.city}`
+                    }}
+                    centered={true}
+                    style={{cursor: 'pointer'}}
+
+                />
+                <Icon
+                    inverted
+                    className={'iconFavourites'}
+                    name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
+                    size={'large'}
+
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleFavIcon(trip.id)
+                    }}
+                />
+            </div>
+            <p>{trip.title}</p>
+        </GridColumn>
+    </div>
 
 )
 export default SearchItems

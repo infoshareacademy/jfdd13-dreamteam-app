@@ -4,7 +4,7 @@ import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button, GridCol
 import {data} from '../data'
 import {fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite} from "../services/TripService";
 import {Continents} from "./Continents";
-import SearchItems from "./SearchItems";
+import SearchItems, {FilteredQueryResults} from "./SearchItems";
 
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -72,43 +72,15 @@ const Search = () => {
               <NoQueryResult/>
             )
         }
-        return FilteredResults().map(trip => (
-            <div key={trip.id} className={'tripContainer'}>
-                <GridColumn style={{padding: '0 2rem'}}
-                            onClick={() => {
-                                setSelectedTrip(trip)
-                            }}
-                >
-                    <div style={{position: 'relative'}}>
-                        <Image
-                            className={'TripImage'}
-                            src={trip.tripImageUrl || defaultImg}
-                            label={{
-                                ribbon: true,
-                                color: 'blue',
-                                content: `${trip.city}`
-                            }}
-                            centered={true}
-                            style={{cursor: 'pointer'}}
-
-                        />
-                        <Icon
-                            inverted
-                            className={'iconFavourites'}
-                            name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
-                            size={'large'}
-
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleFavIcon(trip.id)
-                            }}
-                        />
-                    </div>
-                    <p>{trip.title}</p>
-                </GridColumn>
-            </div>
+        return FilteredResults().map(trip => ( <FilteredQueryResults
+                trip={trip}
+                key={trip.id}
+                handleFavIcon={handleFavIcon}
+                setSelectedTrip={setSelectedTrip}
+                favourites={favourites}
+                defaultImg={defaultImg}
+            />
         ))
-
     }
 
     return (
@@ -121,7 +93,6 @@ const Search = () => {
                 rangeValue={rangeValue}
                 searchQuery={searchQuery}
             />
-            {/*{todo: place following results view as another component}*/}
             <Grid container style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
@@ -147,51 +118,13 @@ const Search = () => {
         </div>
     )
 }
-//todo: rewrite render from Search
 const NoQueryResult = () => (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
         <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
     </div>
 )
 
-//todo: pass following as props when mounting the component
-const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}) => (
-    <div key={trip.id} className={'tripContainer'}>
-        <GridColumn style={{padding: '0 2rem'}}
-                    onClick={() => {
-                        setSelectedTrip(trip)
-                    }}
-        >
-            <div style={{position: 'relative'}}>
-                <Image
-                    className={'TripImage'}
-                    src={trip.tripImageUrl || defaultImg}
-                    label={{
-                        ribbon: true,
-                        color: 'blue',
-                        content: `${trip.city}`
-                    }}
-                    centered={true}
-                    style={{cursor: 'pointer'}}
 
-                />
-                <Icon
-                    inverted
-                    className={'iconFavourites'}
-                    name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
-                    size={'large'}
-
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        handleFavIcon(trip.id)
-                    }}
-                />
-            </div>
-            <p>{trip.title}</p>
-        </GridColumn>
-    </div>
-
-)
 
 
 export default Search;
