@@ -1,10 +1,11 @@
-import React, {Component, Fragment, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ShowLoader} from "./Loader";
-import {Grid, Input, Dropdown, Form, Image, Icon, Modal, Header, Button, GridColumn} from 'semantic-ui-react';
+import {Modal} from 'semantic-ui-react';
 import {data} from '../data'
 import {fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite} from "../services/TripService";
 import {Continents} from "./Continents";
-import SearchItems, {FilteredQueryResults} from "./SearchItems";
+import {SearchInputs, FilteredQueryResults, ResultsGrid} from "./SearchItems";
+import TripModal from "./TripModal";
 
 const initialRange = 1999;
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
@@ -44,7 +45,7 @@ const Search = () => {
     //todo: after that finish queryOutput
     const handleRangeSlider = (e) => setRangeValue(Number(e.target.value))
 
-    const handleSelect = (e) => setSelectedContinent(data.value)
+    const handleSelect = () => setSelectedContinent(data.value)
 
     const handleInputChange = (e) => setSearchQuery(e.target.value)
 
@@ -85,7 +86,7 @@ const Search = () => {
 
     return (
         <div className={'search'}>
-            <SearchItems
+            <SearchInputs
                 handleInputChange={handleInputChange}
                 handleSelect={handleSelect}
                 handleRangeSlider={handleRangeSlider}
@@ -93,25 +94,8 @@ const Search = () => {
                 rangeValue={rangeValue}
                 searchQuery={searchQuery}
             />
-            <Grid container style={{
-                display: 'flex',
-                justifyContent: 'flex-start',
-                flexDirection: 'column',
-                height: '100%',
-                margin: 'auto !important'
-            }}>
-                <Grid.Row
-                    columns={3}
-                    mobile={1}
-                    style={{
-                        display: 'flex',
-                        height: '100%'
-                    }}
-                >
-                    {queryOutput()}
-                </Grid.Row>
-            </Grid>
-            <Modal
+            <ResultsGrid queryOutput={queryOutput}/>
+            <TripModal
                 selectedTrip={selectedTrip}
                 setSelectedTrip={setSelectedTrip}
             />
