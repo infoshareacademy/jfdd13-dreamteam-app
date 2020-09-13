@@ -97,7 +97,36 @@ const Hooked = () => {
 
 }
 //todo: rewrite render from Search
+const NoQueryResult = () => (
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+        <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
+    </div>
+)
 
+//todo: pass following as props when mounting the component
+const FilteredQueryResults = ({trip, setSelectedTrip, favourites, handleFavIcon}) => (
+    <div key={trip.id}>
+        <GridColumn style={{padding: '0 2rem'}}
+                    onClick={() => {
+                        setSelectedTrip(trip)
+                    }}
+        >
+            <div style={{position: 'relative'}}>
+                <Image
+                    className={'iconFavourites'}
+                    size={'large'}
+                    inverted
+                    name={favourites[trip.id] !== undefined ? 'heart' : 'heart-outline'}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleFavIcon(trip.id)
+                    }}
+                />
+            </div>
+            <p>{trip.title}</p>
+        </GridColumn>
+    </div>
+)
 class Search extends Component {
     state = {
         DropdownValue: '',
