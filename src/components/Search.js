@@ -20,20 +20,21 @@ const Search = () => {
 
     useEffect(() => {
         if (!fetched) {
-        const f = async () => {
-            const results = await fetchTrips()
-            setResults(results)
-            await fetchFromFavorites(favourites => {
-                setFavourites(favourites)
-                setFetched(true)
-            })
+            const f = async () => {
+                const results = await fetchTrips()
+                setResults(results)
+                await fetchFromFavorites(favourites => {
+                    setFavourites(favourites)
+                    setFetched(true)
+                    stopFetching()
+                })
+            }
+            f()
         }
-        f()
-        }
-        return ()=> setFetched(false)
+        return () => setFetched(false)
     }, [])
 
-    if(!fetched) {
+    if (!fetched) {
         return null;
     }
 
@@ -141,45 +142,10 @@ const Search = () => {
                     {queryOutput()}
                 </Grid.Row>
             </Grid>
-            {/*{todo: set modal as another component}*/}
             <Modal
-                dimmer={'blurring'}
-                open={selectedTrip != null}
-                onClose={() => setSelectedTrip(null)}
-            >
-                {selectedTrip != null && <Fragment>
-                    <Modal.Header>{selectedTrip.title}</Modal.Header>
-                    <Modal.Content image>
-                        <Image
-                            wrapped
-                            size={'large'}
-                            src={selectedTrip.tripImageUrl || defaultImg}
-                        />
-                        <Modal.Description>
-                            {/*todo destructure following values*/}
-                            <Header>{selectedTrip.city}</Header>
-                            <ul>
-                                <li>{selectedTrip.continent}</li>
-                                <li>Cena za dobę za osobę: {selectedTrip.price} PLN</li>
-                                <li>Data wyjazdu: {selectedTrip.date}</li>
-                                <li>Opis: {selectedTrip.description}</li>
-                            </ul>
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button
-                            color={'black'}
-                            onClick={() => setSelectedTrip(null)}
-                        >
-                            Wyjdź
-                        </Button>
-                        <Button
-                            positive
-                            labelPosition="right"
-                        />
-                    </Modal.Actions>
-                </Fragment>}
-            </Modal>
+                selectedTrip={selectedTrip}
+                setSelectedTrip={setSelectedTrip}
+            />
         </div>
     )
 }
