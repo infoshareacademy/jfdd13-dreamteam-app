@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-import {Button, Header, Image} from "semantic-ui-react";
+import {Button, Header, Image, Modal} from "semantic-ui-react";
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 
-const Modal = ({ selectedTrip, setSelectedTrip}) => (
+const TripModal = ({ selectedTrip, setSelectedTrip}) => (
     <Modal
         dimmer={'blurring'}
         open={selectedTrip != null}
@@ -43,4 +43,4 @@ const Modal = ({ selectedTrip, setSelectedTrip}) => (
     </Modal>
 )
 
-export default Modal
+export default TripModal
