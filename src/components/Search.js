@@ -17,7 +17,7 @@ const Search = () => {
     const [selectedTrip, setSelectedTrip] = useState(null);
     const [favourites, setFavourites] = useState([]);
     const [fetched, setFetched] = useState(false);
-    const [favourite, setFavouriteTrip] = useState(false);
+    const [favouriteTrip, setFavouriteTrip] = useState(false);
 
     useEffect(() => {
         if (!fetched) {
@@ -45,10 +45,11 @@ const Search = () => {
             })
         }
 
-        if (favourite) {
-            f(favourite)
+        if (favouriteTrip) {
+            f(favouriteTrip)
         }
-    }, [favourite])
+        return ()=>setFavouriteTrip(false)
+    }, [favouriteTrip])
 
     if (!fetched) {
         return null;
