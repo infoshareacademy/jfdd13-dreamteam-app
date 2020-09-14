@@ -99,9 +99,10 @@ const Search = () => {
         </div>
     )
 }
-const NoQueryResult = () => (
+const NoQueryResult = (message) => (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-        <h2>Nie ma takiej wycieczki, ale możesz ją dodać!</h2>
+        <h2>{message ? message :
+            "Nie ma takiej wycieczki, ale możesz ją dodać!"}</h2>
     </div>
 )
 
