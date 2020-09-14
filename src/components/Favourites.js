@@ -7,6 +7,7 @@ import {
     Header,
     Button
 } from 'semantic-ui-react'
+import {NoQueryResult} from './SearchItems'
 import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
 import {ShowLoader} from "./Loader";
 
@@ -41,9 +42,7 @@ class Favourites extends Component {
             !this.state.fetched ? ShowLoader() :
 
         this.state.results.length === 0 ?
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-                <h2>Nie polubiłeś/aś jeszcze żadnej wycieczki</h2>
-            </div>
+            <NoQueryResult message={"Nie polubiłeś/aś jeszcze żadnej wycieczki"}/>
             :
             this.state.results.map(trip => (
             <div key={trip.id} className={'tripContainer'}>
