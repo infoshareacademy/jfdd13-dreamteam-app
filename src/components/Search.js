@@ -17,6 +17,7 @@ const Search = () => {
     const [selectedTrip, setSelectedTrip] = useState(null);
     const [favourites, setFavourites] = useState([]);
     const [fetched, setFetched] = useState(false);
+    const [favourite, setFavouriteTrip] = useState(false);
 
     useEffect(() => {
         if (!fetched) {
@@ -33,6 +34,21 @@ const Search = () => {
         }
         return () => setFetched(false)
     }, [])
+
+    useEffect(() => {
+        async function f(clickedTripId) {
+            await handleFavIcon(clickedTripId)
+            setFavouriteTrip(false)
+            await fetchFromFavorites(favourites => {
+                setFavourites(favourites)
+                stopFetching()
+            })
+        }
+
+        if (favourite) {
+            f(favourite)
+        }
+    }, [favourite])
 
     if (!fetched) {
         return null;
@@ -67,13 +83,13 @@ const Search = () => {
             return ShowLoader()
         } else if (FilteredResults().length === 0) {
             return (
-              <NoQueryResult/>
+                <NoQueryResult/>
             )
         }
-        return FilteredResults().map(trip => ( <FilteredQueryResults
+        return FilteredResults().map(trip => (<FilteredQueryResults
                 trip={trip}
                 key={trip.id}
-                handleFavIcon={handleFavIcon}
+                setFavouriteTrip={setFavouriteTrip}
                 setSelectedTrip={setSelectedTrip}
                 favourites={favourites}
                 defaultImg={defaultImg}
@@ -100,9 +116,4 @@ const Search = () => {
     )
 }
 
-
-
-
-
 export default Search;
-

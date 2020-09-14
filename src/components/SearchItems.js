@@ -71,7 +71,7 @@ export const SearchInputs = ({
 
 export const FilteredQueryResults = ({
                                          trip, setSelectedTrip, favourites,
-                                         handleFavIcon, defaultImg
+                                         setFavouriteTrip, defaultImg
                                      }) => (
     <div key={trip.id} className={'tripContainer'}>
         <GridColumn style={{padding: '0 2rem'}}
@@ -97,10 +97,10 @@ export const FilteredQueryResults = ({
                     className={'iconFavourites'}
                     name={favourites[trip.id] !== undefined ? 'heart' : 'heart outline'}
                     size={'large'}
-
+                    style={{cursor: 'pointer'}}
                     onClick={(e) => {
                         e.stopPropagation();
-                        handleFavIcon(trip.id)
+                        setFavouriteTrip(trip.id)
                     }}
                 />
             </div>
