@@ -3,7 +3,7 @@ import {ShowLoader} from "./Loader";
 import {data} from '../data'
 import {fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite} from "../services/TripService";
 import {Continents} from "./Continents";
-import {SearchInputs, FilteredQueryResults, ResultsGrid} from "./SearchItems";
+import {SearchInputs, FilteredQueryResults, ResultsGrid, NoQueryResult} from "./SearchItems";
 import TripModal from "./TripModal";
 
 const initialRange = 1999;
@@ -99,12 +99,7 @@ const Search = () => {
         </div>
     )
 }
-const NoQueryResult = (message) => (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-        <h2>{message ? message :
-            "Nie ma takiej wycieczki, ale możesz ją dodać!"}</h2>
-    </div>
-)
+
 
 
 
