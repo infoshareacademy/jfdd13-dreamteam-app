@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment, useState, useEffect} from "react";
 import {
     Grid,
     Image,
@@ -7,11 +7,72 @@ import {
     Header,
     Button
 } from 'semantic-ui-react'
-import {NoQueryResult} from './SearchItems'
-import { fetchTrips, fetchFromFavorites, toggleFavorite } from "../services/TripService";
+import {
+    FilteredQueryResults,
+    // handleFavIcon,
+    NoQueryResult,
+    ResultsGrid
+} from './SearchItems'
+import {fetchTrips, fetchFromFavorites, toggleFavorite, stopFetching} from "../services/TripService";
 import {ShowLoader} from "./Loader";
+import TripModal from "./TripModal";
+import {Continents} from "./Continents";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
+const Favourites2 = () => {
+    const [selectedTrip, setSelectedTrip] = useState(null);
+    const [favourites, setFavourites] = useState([])
+    const [fetched, setFetched] = useState(false);
+
+    useEffect(() => {
+        if (!fetched) {
+            const f = async () => {
+                const allTrips = await fetchTrips()
+                await fetchFromFavorites(favourites => {
+                    const favouritesList = allTrips.filter((trip) => favourites[trip.id] !== undefined)
+                    setFavourites(favouritesList)
+                    setFetched(true)
+                    stopFetching()
+                })
+            }
+            f()
+        }
+        return () => setFetched(false)
+    }, [])
+
+    if (!fetched) {
+        return null;
+    }
+
+
+    const queryOutput = () => {
+        if (!fetched) {
+            return ShowLoader()
+        } else if (favourites.length === 0) {
+            return (
+                <NoQueryResult/>
+            )
+        }
+        return favourites.map(trip => (<FilteredQueryResults
+                trip={trip}
+                key={trip.id}
+                // handleFavIcon={}
+                setSelectedTrip={setSelectedTrip}
+                favourites={favourites}
+                defaultImg={defaultImg}
+            />
+        ))
+    }
+
+    return (
+        <div className="search">
+            <ResultsGrid queryOutput={queryOutput}/>
+            <TripModal setSelectedTrip={setSelectedTrip} selectedTrip={selectedTrip}/>
+
+        </div>
+    );
+};
+
 
 class Favourites extends Component {
     state = {
@@ -34,113 +95,74 @@ class Favourites extends Component {
     }
 
     async handleFavIcon(tripId) {
-      await toggleFavorite(tripId);
+        await toggleFavorite(tripId);
     }
 
     queryOutput() {
         return (
             !this.state.fetched ? ShowLoader() :
 
-        this.state.results.length === 0 ?
-            <NoQueryResult message={"Nie polubiłeś/aś jeszcze żadnej wycieczki"}/>
-            :
-            this.state.results.map(trip => (
-            <div key={trip.id} className={'tripContainer'}>
-                <Grid.Column style={{ padding: '0 2rem' }} onClick={() => {
-                    this.setState({
-                        selectedTrip: trip
-                    })
-                }}>
-                    <div style={{ position: 'relative' }}>
-                        <Image
-                            className="TripImage"
-                            src={trip.tripImageUrl || defaultImg}
-                            label={{
-                                ribbon: true,
-                                color: "blue",
-                                content: `${trip.city}`
-                            }}
-                            centered={true}
-                            style={{ cursor: 'pointer' }}
-                        >
-                        </Image>
-                        <Icon
-                            className={'iconFavourites'}
-                            size={'large'}
-                            inverted
-                            name={this.state.favourites[trip.id] ? 'heart' : 'heart outline'}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                this.handleFavIcon(trip.id)
-                            }} />
-                    </div>
-                    <p>{trip.title}</p>
-                </Grid.Column>
-            </div>
-        ))
+                this.state.results.length === 0 ?
+                    <NoQueryResult message={"Nie polubiłeś/aś jeszcze żadnej wycieczki"}/>
+                    :
+                    this.state.results.map(trip => (
+                        <div key={trip.id} className={'tripContainer'}>
+                            <Grid.Column style={{padding: '0 2rem'}} onClick={() => {
+                                this.setState({
+                                    selectedTrip: trip
+                                })
+                            }}>
+                                <div style={{position: 'relative'}}>
+                                    <Image
+                                        className="TripImage"
+                                        src={trip.tripImageUrl || defaultImg}
+                                        label={{
+                                            ribbon: true,
+                                            color: "blue",
+                                            content: `${trip.city}`
+                                        }}
+                                        centered={true}
+                                        style={{cursor: 'pointer'}}
+                                    >
+                                    </Image>
+                                    <Icon
+                                        className={'iconFavourites'}
+                                        size={'large'}
+                                        inverted
+                                        name={this.state.favourites[trip.id] ? 'heart' : 'heart outline'}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            this.handleFavIcon(trip.id)
+                                        }}/>
+                                </div>
+                                <p>{trip.title}</p>
+                            </Grid.Column>
+                        </div>
+                    ))
         )
     }
 
     render() {
-        const { selectedTrip } = this.state
+        const {selectedTrip} = this.state
         return (
             <div className="search">
                 <Grid container
-                    style={
-                        {
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                            flexDirection: 'column',
-                            height: '100%',
-                            margin: 'auto !important'
-                        }
-                    }>
+                      style={
+                          {
+                              display: 'flex',
+                              justifyContent: 'flex-start',
+                              flexDirection: 'column',
+                              height: '100%',
+                              margin: 'auto !important'
+                          }
+                      }>
                     <Grid.Row
-                        columns={3} style={{ display: 'flex', height: '100%' }}
+                        columns={3} style={{display: 'flex', height: '100%'}}
                     >
                         {this.queryOutput()}
                     </Grid.Row>
                 </Grid>
-                <Modal
-                    dimmer={"blurring"}
-                    open={this.state.selectedTrip != null}
-                    onClose={() => {
-                        this.setState({
-                            selectedTrip: null
-                        })
-                    }}
-                >
-                    {selectedTrip != null && <Fragment>
-                        <Modal.Header>{selectedTrip.title}</Modal.Header>
-                        <Modal.Content image>
-                            <Image
-                                wrapped
-                                size="large"
-                                src={selectedTrip.tripImageUrl || defaultImg}
-                            />
-                            <Modal.Description>
-                                <Header>{selectedTrip.city}</Header>
-                                <ul style={{ padding: "0 0 0 1.5rem" }}>
-                                    <li>{selectedTrip.continent}</li>
-                                    <li>Cena za dobę za osobę: {selectedTrip.price} PLN</li>
-                                    <li>Data wyjazdu: {selectedTrip.date}</li>
-                                    <li>Opis: {selectedTrip.description}</li>
-                                </ul>
-                            </Modal.Description>
-                        </Modal.Content>
-                        <Modal.Actions>
-                            <Button color="black"
-                                onClick={() => {
-                                    this.setState({
-                                        selectedTrip: null
-                                    })
-                                }}
-                            >
-                                Wyjdź
-                            </Button> 
-                        </Modal.Actions>
-                    </Fragment>}
-                </Modal>
+
             </div>
         );
     };
