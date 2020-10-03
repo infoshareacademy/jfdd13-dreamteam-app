@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
-import {ShowLoader} from "./Loader";
+import { ShowLoader } from "./Loader";
 
 const Secure = props => {
   const [user, setUser] = useState(null);
