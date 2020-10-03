@@ -33,7 +33,7 @@
   flex-direction: column;
   flex: 1;
   min-height: 100vh;
-  margin-left: 150px;
+  margin: 0 0 0 150px;
   font-size: 16px;
 }
 
@@ -109,4 +109,10 @@
   bottom: 1.5rem;
   right: 1.5rem;
   color: #fff;
+}
+
+@media all and (max-width:500px) {
+  .main {
+    margin: 0 0 0 60px
+  }
 }

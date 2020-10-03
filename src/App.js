@@ -20,12 +20,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Navbar/>
-                <main className={'main'} style={{
-                    marginLeft: (window.screen.width < 501) ? '60px':'150px',
-                    marginTop:'0',
-                    marginBottom: '0'
-                }
-                }>
+                <main className={'main'}>
                     <Appbar/>
                     <Switch>
                         <Route exact strict path="/" component={Dashboard}/>
