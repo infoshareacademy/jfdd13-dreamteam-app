@@ -20,36 +20,26 @@ const Search = () => {
   const [favouriteTrip, setFavouriteTrip] = useState(false);
 
   useEffect(() => {
-    if (!fetched) {
-      const f = async () => {
-        const results = await fetchTrips()
-        setResults(results)
-        await fetchFromFavorites(favourites => {
-          setFavourites(favourites)
-          setFetched(true)
-          stopFetching()
-        })
+    const f = async () => {
+      const results = await fetchTrips()
+      setResults(results)
+      if (favouriteTrip) {
+        await handleFavIcon(favouriteTrip)
+        setFavouriteTrip(false)
       }
-      f()
-    }
-    return () => setFetched(false)
-  }, [])
-
-  useEffect(() => {
-    async function f(clickedTripId) {
-      await handleFavIcon(clickedTripId)
-      setFavouriteTrip(false)
       await fetchFromFavorites(favourites => {
         setFavourites(favourites)
+        setFetched(true)
         stopFetching()
       })
     }
-
-    if (favouriteTrip) {
-      f(favouriteTrip)
+    f()
+    return () => {
+      setFetched(true)
+      stopFetching()
     }
-    return () => setFavouriteTrip(false)
-  }, [favouriteTrip])
+  }
+    , [favouriteTrip])
 
   if (!fetched) {
     return null;
