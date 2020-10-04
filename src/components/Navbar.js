@@ -7,25 +7,28 @@ import { signout } from "../services/AuthService";
 function Navbar() {
   const windowWidth = window.screen.width;
 
-  const navStyle = {
-    minWidth: windowWidth > 500 ? '150px' : '60px',
-    height: '100vh',
-    position: 'fixed',
-    border: 0,
-    borderRadius: 0
-  };
-  const menuItem = (elText = '', linkTo = '', iconName = '', iconStyle = {}, elType = 'div', elStyle = {}) => {
+  const MenuItem = (props) => {
+    const { elText, linkTo, iconName, iconStyle, elType, elStyle, click } = props
     return (
       <NavLink to={linkTo} exact>
-        <Menu.Item as={elType} style={elStyle} className={'navItem'}>
+        <Menu.Item as={elType} style={elStyle} className={'navItem'} onClick={click ? () => click() : null}>
           <Icon name={iconName} style={iconStyle} />
           {windowWidth > 500 ? elText : ''}
         </Menu.Item>
       </NavLink>
     )
   };
+  MenuItem.defaultProps = {
+    elText: '',
+    linkTo: '',
+    iconName: '',
+    iconStyle: {},
+    elType: 'div',
+    elStyle: {},
+    click: null
+  }
   return (
-    <Sidebar.Pushable as={Segment} style={navStyle}>
+    <Sidebar.Pushable as={Segment} className={'NavStyles'}>
       <Sidebar
         as={Menu}
         animation='overlay'
@@ -35,31 +38,14 @@ function Navbar() {
         visible
         width={
           windowWidth < 500 ? 'very thin' : 'thin'
-        }>
-
-        {
-          menuItem('Statystyki', '/main', 'chart line', {}, 'div', { marginTop: '60px' })
         }
-        {
-          menuItem('Oferta', '/search', 'search')
-        }
-        {
-          menuItem('Dodaj', '/form/', 'add')
-        }
-        {
-          menuItem('Ulubione', '/favs', 'heart')
-        }
-        {
-          menuItem('Panel', '/panel', 'user')
-
-        }
-
-        <NavLink to="#" exact>
-          <Menu.Item as={'div'} className='navItem' onClick={() => signout()}>
-            <Icon name="sign out" />
-            {windowWidth > 500 ? 'Wyloguj' : ''}
-          </Menu.Item>
-        </NavLink>
+      >
+        <MenuItem elText='Statystyki' linkTo='/main' iconName='chart line' elStyle={{ marginTop: '60px' }} />
+        <MenuItem elText='Oferta' linkTo='/search' iconName='search' />
+        <MenuItem elText='Dodaj' linkTo='/form' iconName='add' />
+        <MenuItem elText='Ulubione' linkTo='/favs' iconName='heart' />
+        <MenuItem elText='Panel' linkTo='/panel' iconName='user' />
+        <MenuItem elText='Wyloguj' linkTo='#' iconName='sign out' click={signout} />
       </Sidebar>
     </Sidebar.Pushable>
   )
