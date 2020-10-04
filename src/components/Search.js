@@ -3,7 +3,7 @@ import { ShowLoader } from "./Loader";
 import { data } from '../data'
 import { fetchTrips, fetchFromFavorites, stopFetching, toggleFavorite } from "../services/TripService";
 import { Continents } from "./Continents";
-import { SearchInputs, FilteredQueryResults, ResultsGrid, NoQueryResult } from "./SearchItems";
+import { SearchInputs, FilteredQueryResult, ResultsGrid, NoQueryResult } from "./SearchItems";
 import TripModal from "./TripModal";
 
 const initialRange = 1999;
@@ -77,7 +77,7 @@ const Search = () => {
         <NoQueryResult />
       )
     }
-    return FilteredResults().map(trip => (<FilteredQueryResults
+    return FilteredResults().map(trip => (<FilteredQueryResult
       trip={trip}
       key={trip.id}
       setFavouriteTrip={setFavouriteTrip}

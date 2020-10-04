@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  FilteredQueryResults,
+  FilteredQueryResult,
   // handleFavIcon,
   NoQueryResult,
   ResultsGrid
@@ -70,7 +70,7 @@ const Favourites = () => {
         <NoQueryResult />
       )
     }
-    return favouritesList.map(trip => (<FilteredQueryResults
+    return favouritesList.map(trip => (<FilteredQueryResult
       trip={trip}
       key={trip.id}
       // handleFavIcon={}

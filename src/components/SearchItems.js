@@ -69,7 +69,7 @@ export const SearchInputs = ({
     </Grid>
   )
 
-export const FilteredQueryResults = ({
+export const FilteredQueryResult = ({
   trip, setSelectedTrip, favourites,
   setFavouriteTrip, defaultImg
 }) => (
