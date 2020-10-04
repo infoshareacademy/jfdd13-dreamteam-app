@@ -12,7 +12,7 @@ export const SearchInputs = ({
         <Grid.Column widescreen={12} largescreen={12} mobile={12}>
           <Input
             onChange={handleInputChange}
-            placeholder={'Dokąd chcesz pojehcać'}
+            placeholder={'Dokąd chcesz pojechać'}
             fluid
             value={searchQuery}
           />
@@ -90,7 +90,6 @@ export const FilteredQueryResults = ({
             }}
             centered={true}
             style={{ cursor: 'pointer' }}
-
           />
           <Icon
             inverted
@@ -107,7 +106,6 @@ export const FilteredQueryResults = ({
         <p>{trip.title}</p>
       </GridColumn>
     </div>
-
   )
 
 export const ResultsGrid = ({ queryOutput }) => (
