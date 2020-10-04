@@ -11,7 +11,6 @@ import TripModal from "./TripModal";
 
 const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDgEOsiQyCYSqiBVVAWAxMkKz8jiz80Qu0U8MuaiGJryGMTVR&s';
 const Favourites = () => {
-  const [data, setData] = useState([])
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [favouritesList, setFavouritesList] = useState([])
   const [favourites, setFavourites] = useState([]);
@@ -19,39 +18,27 @@ const Favourites = () => {
   const [favouriteTrip, setFavouriteTrip] = useState(false);
 
   useEffect(() => {
-    if (!fetched) {
-      const f = async () => {
-        const allTrips = await fetchTrips()
-        await fetchFromFavorites(favourites => {
-          setData(allTrips)
-          const filteredTrips = allTrips.filter((trip) => favourites[trip.id] !== undefined)
-          setFavouritesList(filteredTrips)
-          setFavourites(favourites)
-          setFetched(true)
-          stopFetching()
-        })
+    const f = async () => {
+      if (favouriteTrip) {
+        await handleFavIcon(favouriteTrip)
+        setFavouriteTrip(false)
       }
-      f()
-    }
-    return () => setFetched(true)
-    // eslint-disable-next-line
-  }, [])
-
-  useEffect(() => {
-    async function f(clickedTripId) {
-      await handleFavIcon(clickedTripId)
-      setFavouriteTrip(false)
+      const allTrips = await fetchTrips()
       await fetchFromFavorites(favourites => {
-        const filteredTrips = data.filter((trip) => favourites[trip.id] !== undefined)
+        const filteredTrips = allTrips.filter((trip) => favourites[trip.id] !== undefined)
         setFavouritesList(filteredTrips)
+        setFavourites(favourites)
+        setFetched(true)
         stopFetching()
       })
     }
+    f()
 
-    if (favouriteTrip) {
-      f(favouriteTrip)
+    return () => {
+      setFetched(true)
+      stopFetching()
     }
-    return () => setFavouriteTrip(false)
+    // eslint-disable-next-line
   }, [favouriteTrip])
 
   if (!fetched) {
