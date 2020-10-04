@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./layout/Navbar";
 import Dashboard from "./components/Dashboard";
 import Form from "./components/Form";
 import Favorites from "./components/Favourites";
 import Search from "./components/Search";
-import Appbar from "./components/Appbar";
+import Appbar from "./layout/Appbar";
 import 'semantic-ui-css/semantic.min.css'
 import UserPanel from './components/UserPanel';
 import Register from './screens/Register';
