@@ -14,12 +14,12 @@ export async function fetchTrips() {
 
 const favRefName = 'favorites'
 export async function toggleFavorite(tripId) {
- const userUid = firebase.auth().currentUser.uid
- return await firebase.database()
-  .ref(favRefName)
-  .child(userUid)
-  .child(tripId)
-  .transaction(isFav => isFav ? null : true)
+  const userUid = firebase.auth().currentUser.uid
+  return await firebase.database()
+    .ref(favRefName)
+    .child(userUid)
+    .child(tripId)
+    .transaction(isFav => isFav ? null : true)
 }
 export function fetchFromFavorites(onSuccess) {
   const userUid = firebase.auth().currentUser.uid
