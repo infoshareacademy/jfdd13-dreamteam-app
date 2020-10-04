@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   PieChart,
   Pie,
@@ -20,7 +20,7 @@ const windowWidth = window.screen.width;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#d37736', '#FF8042', '#ff3c42', '#764afe'];
 
 const PieChartComponent = () => {
-  const [ tripsData, setTripsData ] = useState([]);
+  const [tripsData, setTripsData] = useState([]);
 
   useEffect(() => {
     const f = async () => {
