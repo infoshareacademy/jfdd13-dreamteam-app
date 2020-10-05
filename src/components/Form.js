@@ -4,7 +4,7 @@ import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-rea
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
-import {Continents} from "./Continents";
+import { Continents } from "./Continents";
 
 const accountFormSchema = Yup.object().shape({
   title: Yup.string()
@@ -36,10 +36,10 @@ const accountFormSchema = Yup.object().shape({
 
 const truncateDecimals = function (value, digits) {
   const number = parseFloat(value)
-    const multiplier = Math.pow(10, digits),
-        adjustedNum = number * multiplier,
-        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
-    return truncatedNum / multiplier;
+  const multiplier = Math.pow(10, digits),
+    adjustedNum = number * multiplier,
+    truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+  return truncatedNum / multiplier;
 };
 
 class Formularz extends React.Component {
@@ -80,9 +80,9 @@ class Formularz extends React.Component {
               actions.resetForm();
               this.handleThankYouVisible()
             })
-            .then(()=>{
-              localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
-            });
+              .then(() => {
+                localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
+              });
           }}>
           {({
             values,
@@ -131,8 +131,8 @@ class Formularz extends React.Component {
                   <Input placeholder='Wpisz cenę za dobę'
                     type="number"
                     name="price"
-                    onChange={(e)=>{
-                      const {value} = e.target
+                    onChange={(e) => {
+                      const { value } = e.target
                       const price = truncateDecimals(value, 2)
                       setFieldValue('price', price)
                     }}
@@ -160,8 +160,8 @@ class Formularz extends React.Component {
                 <Form.Field>
                   <label>Kontynent</label>
                   <Select placeholder='Wybierz kontynent'
-                   name="continent"
-                   options={Continents}
+                    name="continent"
+                    options={Continents}
                     onChange={(event, data) => setFieldValue('continent', data.value)}
                     onBlur={handleBlur}
                     touched={touched}
@@ -212,15 +212,15 @@ class Formularz extends React.Component {
                       const uploadTask = fileRef.put(firstFile)
 
                       uploadTask.on(
-                          'state_changed',
-                          () => {},
-                          () => {},
-                          () => {
-                            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                              setFieldValue('tripImageUrl', downloadURL)
-                            });
-                          })
-                      }}
+                        'state_changed',
+                        () => { },
+                        () => { },
+                        () => {
+                          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                            setFieldValue('tripImageUrl', downloadURL)
+                          });
+                        })
+                    }}
                   />
                   <div className={styles.error}>
                     {errors.tripImageUrl}
