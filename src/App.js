@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import Navbar from "./layout/Navbar";
 import Dashboard from "./components/Dashboard";
-import Form from "./components/Form";
+import TripForm from "./components/Form";
 import Favorites from "./components/Favourites";
 import Search from "./components/Search";
 import Appbar from "./layout/Appbar";
@@ -30,7 +30,7 @@ function App() {
               <Route exact strict path="/register" component={Register} />
               <Route exact strict path="/login" component={Login} />
               <Route exact strict path="/user" component={LoggedUser} />
-              <Route exact strict path="/form/" component={Form} />
+              <Route exact strict path="/form" component={TripForm} />
               <Route exact strict path="/favs" component={Favorites} />
               <Route component={() => <h1>404 - sadface</h1>} />
             </Switch>
