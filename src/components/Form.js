@@ -155,7 +155,17 @@ return (
                   <Select placeholder='Wybierz kontynent'
                     name="continent"
                     options={Continents}
-                    onChange={(event, data) => setFieldValue('continent', data.value)}
+                    onChange={(event, data) => {
+                      //handleSelect 
+                      //match value with options array and set correct continent name
+                      const allData = data.options
+                      const matchedObject = allData.find(el => el.value === data.value)
+                      if (matchedObject) {
+                        setFieldValue('continent', matchedObject.text)
+                      } else {
+                        console.error('Couldn\'t find matching continent')
+                      }
+                  }}
                     onBlur={handleBlur}
                     touched={touched}
                   />
@@ -436,4 +446,4 @@ class Formularz extends React.Component {
   };
 }
 
-export default Formularz;
+export default TripForm;
