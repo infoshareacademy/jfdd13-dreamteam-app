@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from "../firebase";
 import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-react';
-import styles from './Form.module.css';
+import styles from './Form/Form.module.css';
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Continents } from "./Continents";
@@ -16,7 +16,7 @@ const accountFormSchema = Yup.object().shape({
   price: Yup.number()
     .moreThan(20, "Minimalna cena za dobę to 20 zł.")
     .lessThan(2001, "Maksymalna cena za dobę to 2000 zł.")
-    .positive("Cena musi być liczba dodatnia")
+    .positive("Cena musi być liczbą dodatnią")
     .required("Pole wymagane."),
   city: Yup.string()
     .matches(new RegExp(/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s]+$/), "Używaj wyłącznie liter i spacji.")
@@ -34,7 +34,7 @@ const accountFormSchema = Yup.object().shape({
     .required("Zdjęcie wycieczki jest wymagane")
 });
 
-const truncateDecimals = function (value, digits) {
+const truncateDecimals = (value, digits) => {
   const number = parseFloat(value)
   const multiplier = Math.pow(10, digits),
     adjustedNum = number * multiplier,
@@ -45,37 +45,41 @@ const truncateDecimals = function (value, digits) {
 const TripForm = () => {
   const [tYVisible, setTYVisible] = useState(false)
 
+  const formikInitialValues = {
+    title: "",
+    date: "",
+    price: "",
+    city: "",
+    continent: "",
+    description: "",
+    email: "",
+    terms: false,
+    tripImageUrl: ""
+  }
+
   const handleThankYouVisible = () => {
     setTYVisible(!tYVisible)
   }
 
+  const handleFormSubmit = (values, actions) => {
+    fetch('https://dreamteam-app.firebaseio.com/trips.json', {
+      method: 'POST',
+      body: JSON.stringify({ ...values, active: true })
+    }).then(() => {
+      actions.setSubmitting(false);
+      actions.resetForm();
+      handleThankYouVisible()
+    })
+      .then(() => {
+        localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
+      });
+  }
+
   return (
     <Formik
-      initialValues={{
-        title: "",
-        date: "",
-        price: "",
-        city: "",
-        continent: "",
-        description: "",
-        email: "",
-        terms: false,
-        tripImageUrl: ""
-      }}
+      initialValues={formikInitialValues}
       validationSchema={accountFormSchema}
-      onSubmit={(values, actions) => {
-        fetch('https://dreamteam-app.firebaseio.com/trips.json', {
-          method: 'POST',
-          body: JSON.stringify({ ...values, active: true })
-        }).then(() => {
-          actions.setSubmitting(false);
-          actions.resetForm();
-          handleThankYouVisible()
-        })
-          .then(() => {
-            localStorage.setItem('form', JSON.stringify({ ...values, active: true }))
-          });
-      }}>
+      onSubmit={handleFormSubmit}>
       {({
         values,
         errors,
@@ -85,7 +89,9 @@ const TripForm = () => {
         handleSubmit,
         setFieldValue,
         isSubmitting,
-      }) => (
+      }) => {
+        console.log(touched)
+        return (
           <Form className={styles.formContainer} onSubmit={handleSubmit}>
             <Form.Field>
               <h1> Formularz dodawania wycieczki</h1>
@@ -206,21 +212,17 @@ const TripForm = () => {
                 accept=".jpg, .jpeg, .png"
                 onChange={event => {
                   const firstFile = event.target.files[0]
-
                   const storageRef = firebase.storage().ref('trips')
                   const fileName = 'trip-' + new Date().toISOString()
                   const fileRef = storageRef.child(fileName + '.jpg')
-
                   const uploadTask = fileRef.put(firstFile)
-
                   uploadTask.on(
                     'state_changed',
                     () => { },
                     () => { },
                     () => {
-                      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                        setFieldValue('tripImageUrl', downloadURL)
-                      });
+                      uploadTask.snapshot.ref.getDownloadURL()
+                        .then((downloadURL) => setFieldValue('tripImageUrl', downloadURL));
                     })
                 }}
               />
@@ -229,8 +231,12 @@ const TripForm = () => {
               </div>
             </Form.Field>
             <Form.Field>
-              <Checkbox checked={values.terms} onChange={() => setFieldValue('terms', !values.terms)} label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
-                name="terms" />
+              <Checkbox
+                checked={values.terms}
+                onChange={() => setFieldValue('terms', !values.terms)}
+                label='Zgadzam się na otrzymywanie maili związanych z wprowadzoną przeze mnie ofertą.'
+                name="terms"
+              />
               <div className={styles.error}>
                 {errors.terms && touched.terms && errors.terms}
               </div>
@@ -238,7 +244,8 @@ const TripForm = () => {
             <Button type='submit' disabled={isSubmitting}>Dodaj</Button>
             <p className={tYVisible ? styles.information : styles.invisible}>Dziękujemy za przesłanie wycieczki.</p>
           </Form>
-        )}
+        )
+      }}
     </Formik>
   )
 }
