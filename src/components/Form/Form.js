@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import firebase from "../../firebase";
-import { Form, Input, TextArea, Button, Checkbox, Select } from 'semantic-ui-react';
+import { Form, Input,  Button, Checkbox } from 'semantic-ui-react';
 import styles from './Form.module.css';
 import * as Yup from "yup";
 import { Formik, Field } from "formik";
@@ -95,9 +95,10 @@ const TripForm = () => {
           console.log(touched)
           return (
             <Form className={styles.formContainer} onSubmit={handleSubmit}>
-              <Form.Field>
+              <div className="form__item">
                 <label>Tytuł wycieczki</label>
-                <Input placeholder='Wpisz zaproponowany tytuł wycieczki'
+                <Field
+                  placeholder='Wpisz zaproponowany tytuł wycieczki'
                   type="text"
                   name="title"
                   onChange={handleChange}
@@ -108,24 +109,27 @@ const TripForm = () => {
                 <div className={styles.error}>
                   {errors.title && touched.title && errors.title}
                 </div>
-              </Form.Field>
-              <label>Data wyjazdu</label>
-              <Field
-                type="date"
-                name="date"
-                min="2019-12-01"
-                max="2022-01-01"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.date}
-                touched={touched}
-              />
-              <div className={styles.error}>
-                {errors.date && touched.date && errors.date}
               </div>
-              <Form.Field>
+              <div className="form__item">
+                <label>Data wyjazdu</label>
+                <Field
+                  type="date"
+                  name="date"
+                  min="2019-12-01"
+                  max="2022-01-01"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.date}
+                  touched={touched}
+                />
+                <div className={styles.error}>
+                  {errors.date && touched.date && errors.date}
+                </div>
+              </div>
+              <div className="form__item">
                 <label>Cena w złotówkach za dobę</label>
-                <Input placeholder='Wpisz cenę za dobę'
+                <Field
+                  placeholder='Wpisz cenę za dobę'
                   type="number"
                   name="price"
                   onChange={(e) => {
@@ -140,57 +144,60 @@ const TripForm = () => {
                 <div className={styles.error}>
                   {errors.price && touched.price && errors.price}
                 </div>
-              </Form.Field>
-              <Form.Field>
+              </div>
+              <div className="form__item">
                 <label>Lokalizacja</label>
-                <Input placeholder='Wpisz miasto'
+                <Field
+                  placeholder='Wpisz miasto'
                   type="text"
                   name="city"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.city}
                   touched={touched}
-                  errors={errors} />
-                <div className={styles.error}>
-                  {errors.city && touched.city && errors.city}</div>
-              </Form.Field>
-              <Form.Field>
-                <label>Kontynent</label>
-                <Select placeholder='Wybierz kontynent'
-                  name="continent"
-                  options={Continents}
-                  onChange={(event, data) => {
-                    //handleSelect 
-                    //match value with options array and set correct continent name
-                    const allData = data.options
-                    const matchedObject = allData.find(el => el.value === data.value)
-                    if (matchedObject) {
-                      setFieldValue('continent', matchedObject.text)
-                    } else {
-                      console.error('Couldn\'t find matching continent')
-                    }
-                  }}
-                  onBlur={handleBlur}
+                  errors={errors}
                 />
                 <div className={styles.error}>
-                  {errors.continent && touched.continent && errors.continent}</div>
-              </Form.Field>
-              <Form.Field>
+                  {errors.city && touched.city && errors.city}
+                </div>
+              </div>
+              <div className="form__item">
+                <label>Kontynent</label>
+                <Field
+                  as="select"
+                  name="continent"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                >
+                  <option defaultValue></option>
+                  {Continents.map(continent => (
+                    <option
+                      key={continent.key}
+                      value={continent.value}
+                    >
+                      {continent.text}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+              <div className="form__item">
                 <label>Opis wycieczki</label>
-                <TextArea label='Opis wycieczki' placeholder='Opisz wycieczkę w kilku zdaniach, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
-                  type="text"
+                <Field
+                  as="textarea"
                   name="description"
+                  placeholder='Opisz wycieczkę w kilku zdaniach, uwzględniając średni budzet oraz ciekawe miejsca, które warto odwiedzić.'
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.description}
-                  touched={touched}
-                  errors={errors} />
+                />
                 <div className={styles.error}>
-                  {errors.description && touched.description && errors.description}</div>
-              </Form.Field>
-              <Form.Field>
+                  {errors.description && touched.description && errors.description}
+                </div>
+              </div>
+              <div className="form__item">
                 <label>Twój e-mail</label>
-                <Input placeholder='Wpisz e-mail'
+                <Field
+                  placeholder='Wpisz e-mail'
                   type="email"
                   name="email"
                   onChange={handleChange}
@@ -201,7 +208,8 @@ const TripForm = () => {
                 <div className={styles.error}>
                   {errors.email && touched.email && errors.email}
                 </div>
-              </Form.Field>
+              </div>
+              {/* TODO: change this input to Formik field */}
               <Form.Field>
                 <label>Zdjęcie wycieczki</label>
                 <Input
