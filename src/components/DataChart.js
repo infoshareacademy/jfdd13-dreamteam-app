@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import { date } from 'yup';
 import { fetchUsers } from "../services/TripService";
 
 const windowWidth = window.screen.width;
@@ -17,11 +18,35 @@ const DataBarChart = () => {
   useEffect(() => {
     const f = async () => {
       const result = await fetchUsers()
-      setBarchartData(result)
+      const usersWithDate = result.filter(user => user.date)
+      const usersWithProcessedDate = setUsersDateObject(usersWithDate)
+      setBarchartData(usersWithProcessedDate)
     }
     f()
     // eslint-disable-next-line
-  }, [])
+  },[])
+
+  const getMonthName = (num) => {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return months[num - 1]
+  }
+
+  const setUsersDateObject = (user) => (user.reduce((acc, current) => {
+    const dateFromTimestamp = new Date(current.date)
+    const value = dateFromTimestamp.getMonth()
+    return [
+      ...acc, {
+        ...current,
+        date: {
+          month: {
+            name: getMonthName(dateFromTimestamp.getMonth()),
+            value,
+          },
+          year: dateFromTimestamp.getFullYear()
+        }
+      }
+    ]
+  }, []))
 
   const mockData = [
 
