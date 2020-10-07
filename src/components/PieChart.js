@@ -7,15 +7,6 @@ import {
 } from 'recharts';
 import { fetchTrips } from "../services/TripService";
 
-const data = [
-  { name: 'Azja', value: 423 },
-  { name: 'Europa', value: 313 },
-  { name: 'Ameryka', value: 241 },
-  { name: 'Afryka', value: 87 },
-  { name: 'Ameryka Południowa', value: 328 },
-  { name: 'Antarktyda', value: 56 },
-  { name: 'Australia', value: 81 }
-];
 const windowWidth = window.screen.width;
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#d37736', '#FF8042', '#ff3c42', '#764afe'];
 
@@ -30,7 +21,6 @@ const PieChartComponent = () => {
         return result;
       }, {})
       const trips = Object.entries(distribution).map(([name, value]) => ({ name, value }))
-
       setTripsData(trips)
     }
     f()
@@ -51,7 +41,7 @@ const PieChartComponent = () => {
         label
       >
         {
-          data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+          tripsData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
         }
       </Pie>
       <Tooltip />
