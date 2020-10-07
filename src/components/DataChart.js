@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { date } from 'yup';
 import { fetchUsers } from "../services/TripService";
 
 const windowWidth = window.screen.width;
@@ -24,12 +23,71 @@ const DataBarChart = () => {
     }
     f()
     // eslint-disable-next-line
-  },[])
+  }, [])
 
   const getMonthName = (num) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    return months[num - 1]
+    return months[num]
   }
+
+
+  const mock = [
+    {
+      a: "4qeUoEWmtyVSJfvwf7KKj4K6qB43",
+      date: {
+        month: { name: "October", value: 9 },
+        year: 2020,
+      },
+      email: "super@super.super",
+      name: "KontoZPazdziernika"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "September", value: 8 },
+        year: 2020,
+      },
+      email: "fake@fake",
+      name: "KontoZWrzesnia"
+    },
+    {
+      a: "32323232323",
+      date: {
+        month: { name: "September", value: 8 },
+        year: 2020,
+      },
+      email: "fake@fake",
+      name: "KontoZWrzesnia2"
+    },
+    {
+      a: "2222222",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2019,
+      },
+      email: "August@fake",
+      name: "KontoZAugustowa"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2019,
+      },
+      email: "August@fake",
+      name: "KontoZAugustowa"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2018,
+      },
+      email: "2018@fake",
+      name: "20182018"
+    },
+
+  ]
 
   const setUsersDateObject = (user) => (user.reduce((acc, current) => {
     const dateFromTimestamp = new Date(current.date)
@@ -47,6 +105,21 @@ const DataBarChart = () => {
       }
     ]
   }, []))
+  const getLastTwoYears = (users) => {
+    const latestRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
+    return [
+      {
+        year: latestRegisterYear,
+        data: users.filter(user => user.date.year === latestRegisterYear)
+      },
+      {
+        year: latestRegisterYear - 1,
+        data: users.filter(user => user.date.year === latestRegisterYear - 1)
+      },
+    ]
+  }
+
+  const sortedByMonths = mock.sort((a, b) => a.date.value > b.date.value)
 
   const mockData = [
 
@@ -65,6 +138,8 @@ const DataBarChart = () => {
       amt: 2000,
     }
   ]
+  if (!barChartData) return null
+  console.log(getLastTwoYears(mock))
 
   return (<div>
     <BarChart
