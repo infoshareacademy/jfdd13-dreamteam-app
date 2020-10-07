@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import Navbar from "./layout/Navbar";
 import Dashboard from "./components/Dashboard";
-import TripForm from "./components/Form";
+import TripForm from "./components/Form/Form";
 import Favorites from "./components/Favourites";
 import Search from "./components/Search";
 import Appbar from "./layout/Appbar";
