@@ -109,7 +109,7 @@ const DataBarChart = () => {
     const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
     const lastYear = users.filter(user => user.date.year === lastRegisterYear)
     const hasUniqueMonths = lastYear.find(user => user.date.month.value !== lastYear[0].date.month.value)
-    if (hasUniqueMonths && hasUniqueMonths.length > 1) {
+    if (hasUniqueMonths) {
       return [
         {
           year: lastRegisterYear,
@@ -129,8 +129,17 @@ const DataBarChart = () => {
       },
     ]
   }
+  const sortedByMonths = (data) => data.sort((a, b) => a.date.value > b.date.value)
 
-  const sortedByMonths = mock.sort((a, b) => a.date.value > b.date.value)
+  const createChartData = (array)=> {
+    if(array.length === 1) {
+      const latestMonthValue = sortedByMonths(array[0].data)[0].date.month.value
+      // find previous month 
+      // prepare them as chart data
+      
+    }
+  }
+
 
   const mockData = [
 
@@ -149,8 +158,12 @@ const DataBarChart = () => {
       amt: 2000,
     }
   ]
-  if (!barChartData) return null
-  console.log(getLastYearOrTwo(mock))
+  // if (!barChartData) return null
+  // console.log(getLastYearOrTwo(mock))
+  const dataObj = getLastYearOrTwo(mock)
+  console.log(dataObj)
+  createChartData(dataObj)
+
 
   return (<div>
     <BarChart
