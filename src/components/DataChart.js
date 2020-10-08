@@ -131,12 +131,22 @@ const DataBarChart = () => {
   }
   const sortedByMonths = (data) => data.sort((a, b) => a.date.value > b.date.value)
 
-  const createChartData = (array)=> {
-    if(array.length === 1) {
-      const latestMonthValue = sortedByMonths(array[0].data)[0].date.month.value
+  const createChartData = (array) => {
+    if (array.length === 1) {
+      const sorted = sortedByMonths(array[0].data)
+      const latestMonthValue = sorted[0].date.month.value
+      const prevMonthValue = sorted.find(userData => userData.date.month.value < latestMonthValue).date.month.value
+      const lastTwoMonths = sorted.filter(userData => userData.date.month.value === latestMonthValue || userData.date.month.value === prevMonthValue)
+      console.log(lastTwoMonths)
+
       // find previous month 
       // prepare them as chart data
-      
+
+    }
+    if (array.length < 1) {
+      const latestMonthValueFromPrevYear = sortedByMonths(array[1].data)[0].date.month.value
+      console.log(latestMonthValueFromPrevYear)
+
     }
   }
 
