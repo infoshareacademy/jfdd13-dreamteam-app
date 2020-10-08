@@ -105,16 +105,27 @@ const DataBarChart = () => {
       }
     ]
   }, []))
-  const getLastTwoYears = (users) => {
-    const latestRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
+  const getLastYearOrTwo = (users) => {
+    const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
+    const lastYear = users.filter(user => user.date.year === lastRegisterYear)
+    const hasUniqueMonths = lastYear.find(user => user.date.month.value !== lastYear[0].date.month.value)
+    if (hasUniqueMonths && hasUniqueMonths.length > 1) {
+      return [
+        {
+          year: lastRegisterYear,
+          data: lastYear
+        }
+      ]
+    }
+
     return [
       {
-        year: latestRegisterYear,
-        data: users.filter(user => user.date.year === latestRegisterYear)
+        year: lastRegisterYear,
+        data: lastYear
       },
       {
-        year: latestRegisterYear - 1,
-        data: users.filter(user => user.date.year === latestRegisterYear - 1)
+        year: lastRegisterYear - 1,
+        data: users.filter(user => user.date.year === lastRegisterYear - 1)
       },
     ]
   }
@@ -139,7 +150,7 @@ const DataBarChart = () => {
     }
   ]
   if (!barChartData) return null
-  console.log(getLastTwoYears(mock))
+  console.log(getLastYearOrTwo(mock))
 
   return (<div>
     <BarChart
