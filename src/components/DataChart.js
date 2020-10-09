@@ -129,34 +129,59 @@ const DataBarChart = () => {
       },
     ]
   }
-  const sortedByMonths = (data) => data.sort((a, b) => a.date.value > b.date.value)
+  const sortedByMonthsDESC = (data) => data.sort((a, b) => a.date.value > b.date.value)
 
   const createChartData = (array) => {
+    const latestYearData = array[0]
     if (array.length === 1) {
-      const sorted = sortedByMonths(array[0].data)
+      const sorted = sortedByMonthsDESC(latestYearData.data)
       const latestMonthValue = sorted[0].date.month.value
       const prevMonthValue = sorted.find(userData => userData.date.month.value < latestMonthValue).date.month.value
       const lastTwoMonths = sorted.filter(userData => userData.date.month.value === latestMonthValue || userData.date.month.value === prevMonthValue)
-      console.log(lastTwoMonths)
+      const data = lastTwoMonths.reduce((acc, { date }) => {
+        const { name } = date.month
+        if (typeof acc[name] === 'undefined') {
+          acc[name] = 1
+        }
+        else {
+          acc[name] += 1
+        }
+        return acc
+      }, {})
+      const res = Object.entries(data).map(([name,value]) => ({name, value}))
+      return res.map(({name, value}) => (
+        {
+          name,
+          uv: value,
+          pv: value,
+          amt: value,
+        }
+      ))
 
       // find previous month 
       // prepare them as chart data
 
     }
     if (array.length < 1) {
-      const latestMonthValueFromPrevYear = sortedByMonths(array[1].data)[0].date.month.value
-      console.log(latestMonthValueFromPrevYear)
+      const prevYear = latestYearData.year - 1
+      const prevYearData = array.find(userData => userData.date.year === prevYear)
+      const lastMonth = sortedByMonthsDESC(prevYearData)[0]
+
+      console.log(lastMonth)
 
     }
   }
+  const dataObj = getLastYearOrTwo(mock)
 
+  const chartData = createChartData(dataObj)
+  console.log(chartData)
 
   const mockData = [
 
     {
       name: 'Listopad',
       mobileName: '08',
-      uv: 2,
+      uv: 1,
       pv: 2,
       amt: 2,
     },
@@ -169,11 +194,6 @@ const DataBarChart = () => {
     }
   ]
   // if (!barChartData) return null
-  // console.log(getLastYearOrTwo(mock))
-  const dataObj = getLastYearOrTwo(mock)
-  console.log(dataObj)
-  createChartData(dataObj)
-
 
   return (<div>
     <BarChart
