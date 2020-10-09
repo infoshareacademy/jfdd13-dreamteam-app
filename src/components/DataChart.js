@@ -27,11 +27,13 @@ const DataBarChart = () => {
     // eslint-disable-next-line
   }, [])
 
-  const getMonthName = (num) => {
+  const getMonth = (num) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (typeof num === 'string'){
+      return months.indexOf(num)
+    }
     return months[num]
   }
-
 
   const mock = [
     {
@@ -108,7 +110,7 @@ const DataBarChart = () => {
         ...current,
         date: {
           month: {
-            name: getMonthName(dateFromTimestamp.getMonth()),
+            name: getMonth(dateFromTimestamp.getMonth()),
             value,
           },
           year: dateFromTimestamp.getFullYear()
