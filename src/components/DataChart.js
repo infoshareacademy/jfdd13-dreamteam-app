@@ -59,7 +59,6 @@ const DataBarChart = () => {
     const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
     const lastYear = users.filter(user => user.date.year === lastRegisterYear)
     const hasUniqueMonths = lastYear.find((user, idx) => idx > 0 && user.date.month.value !== lastYear[0].date.month.value)
-    console.log(hasUniqueMonths)
     if (hasUniqueMonths) {
       return [
         {
@@ -81,6 +80,29 @@ const DataBarChart = () => {
   }
   const sortedByMonthsDESC = (data) => data.sort((a, b) => a.date.value > b.date.value)
 
+
+  const processChartDataToRenderableObject = (data) => {
+    const countedMonths = data.reduce((acc, { date }) => {
+      const { month: {name} } = date
+      if (typeof acc[name] === 'undefined') {
+        acc[name] = 1
+      }
+      else {
+        acc[name] += 1
+      }
+      return acc
+    }, {})
+    const res = Object.entries(countedMonths).map(([name, value]) => ({ name, value }))
+
+    return res.map(({ name, value }) => (
+      {
+        name,
+        uv: value,
+        pv: value,
+        amt: value,
+      }
+    ))
+  }
   const createChartData = (array) => {
     if (!array) return
     const latestYearData = array[0]
@@ -89,28 +111,12 @@ const DataBarChart = () => {
       const latestMonthValue = sorted[0].date.month.value
       const prevMonthValue = sorted.find(userData => userData.date.month.value < latestMonthValue).date.month.value
       const lastTwoMonths = sorted.filter(userData => userData.date.month.value === latestMonthValue || userData.date.month.value === prevMonthValue)
-      const data = lastTwoMonths.reduce((acc, { date }) => {
-        const { name } = date.month
-        if (typeof acc[name] === 'undefined') {
-          acc[name] = 1
-        }
-        else {
-          acc[name] += 1
-        }
-        return acc
-      }, {})
-      const res = Object.entries(data).map(([name, value]) => ({ name, value }))
-      return res.map(({ name, value }) => (
-        {
-          name,
-          uv: value,
-          pv: value,
-          amt: value,
-        }
-      ))
+      return processChartDataToRenderableObject(lastTwoMonths)
     }
     else if (typeof array !== 'undefined' && array.length > 1) {
       const prevYear = latestYearData.year - 1
+      const latestYear = latestYearData.year
+      const prevYear2 = array.reduce((acc, current)=>(current.year < latestYear  && current.year > acc ))
       if (prevYear && array) {
         const prevYearObj = array.find(userData => userData.year === prevYear)
         const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
@@ -118,26 +124,7 @@ const DataBarChart = () => {
         const prevYearData = prevYearObj.data.filter(userData => userData.date.month.value === lastMonthValue)
         const currentYearData = latestYearData.data
         const lastTwoMonths = [...currentYearData, ...prevYearData]
-        const data = lastTwoMonths.reduce((acc, { date }) => {
-          const { name } = date.month
-          if (typeof acc[name] === 'undefined') {
-            acc[name] = 1
-          }
-          else {
-            acc[name] += 1
-          }
-          return acc
-        }, {})
-        const res = Object.entries(data).map(([name, value]) => ({ name, value }))
-
-        return res.map(({ name, value }) => (
-          {
-            name,
-            uv: value,
-            pv: value,
-            amt: value,
-          }
-        ))
+        return processChartDataToRenderableObject(lastTwoMonths)
       }
     }
   }
