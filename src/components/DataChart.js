@@ -19,6 +19,8 @@ const DataBarChart = () => {
       const result = await fetchUsers()
       const usersWithDate = result.filter(user => user.date)
       const usersWithProcessedDate = setUsersDateObject(usersWithDate)
+      const data = getLastYearOrTwo(usersWithProcessedDate)
+      const chartData = createChartData(mock)
       setBarchartData(usersWithProcessedDate)
     }
     f()
@@ -35,7 +37,7 @@ const DataBarChart = () => {
     {
       a: "4qeUoEWmtyVSJfvwf7KKj4K6qB43",
       date: {
-        month: { name: "October", value: 9 },
+        month: { name: "October", value: 8 },
         year: 2020,
       },
       email: "super@super.super",
@@ -78,6 +80,15 @@ const DataBarChart = () => {
       name: "KontoZAugustowa"
     },
     {
+      a: "4444",
+      date: {
+        month: { name: "July", value: 6 },
+        year: 2019,
+      },
+      email: "july@fake",
+      name: "KontoZJulyowa"
+    },
+    {
       a: "33333",
       date: {
         month: { name: "August", value: 7 },
@@ -106,6 +117,7 @@ const DataBarChart = () => {
     ]
   }, []))
   const getLastYearOrTwo = (users) => {
+    if (users.length < 1) return
     const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
     const lastYear = users.filter(user => user.date.year === lastRegisterYear)
     const hasUniqueMonths = lastYear.find(user => user.date.month.value !== lastYear[0].date.month.value)
@@ -132,6 +144,7 @@ const DataBarChart = () => {
   const sortedByMonthsDESC = (data) => data.sort((a, b) => a.date.value > b.date.value)
 
   const createChartData = (array) => {
+    if (!array) return
     const latestYearData = array[0]
     if (array.length === 1) {
       const sorted = sortedByMonthsDESC(latestYearData.data)
@@ -148,8 +161,8 @@ const DataBarChart = () => {
         }
         return acc
       }, {})
-      const res = Object.entries(data).map(([name,value]) => ({name, value}))
-      return res.map(({name, value}) => (
+      const res = Object.entries(data).map(([name, value]) => ({ name, value }))
+      return res.map(({ name, value }) => (
         {
           name,
           uv: value,
@@ -157,24 +170,22 @@ const DataBarChart = () => {
           amt: value,
         }
       ))
-
-      // find previous month 
-      // prepare them as chart data
-
     }
-    if (array.length < 1) {
+    else if (typeof array !== 'undefined' && array.length > 1 ) {
       const prevYear = latestYearData.year - 1
-      const prevYearData = array.find(userData => userData.date.year === prevYear)
-      const lastMonth = sortedByMonthsDESC(prevYearData)[0]
-
-      console.log(lastMonth)
-
+      if (prevYear && array) {
+        // console.log(array)
+        const prevYearObj = array.find(userData => userData.year === prevYear)
+        const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
+        const lastMonthValue = lastMonth.date.month.value
+        const prevYearData = prevYearObj.data.filter(userData => userData.date.month.value === lastMonthValue)
+        console.log(prevYearData)
+      }
     }
+    // else {
+    // console.error('wrong data specified', array)
+    // }
   }
-  const dataObj = getLastYearOrTwo(mock)
-
-  const chartData = createChartData(dataObj)
-  console.log(chartData)
 
   const mockData = [
 
@@ -193,13 +204,18 @@ const DataBarChart = () => {
       amt: 2000,
     }
   ]
-  // if (!barChartData) return null
 
+  if (!barChartData || barChartData.length === 0) {
+    return null
+  }
+  const dataObj = getLastYearOrTwo(barChartData)
+  const chartData = createChartData(dataObj).reverse()
+  console.log(createChartData(getLastYearOrTwo(mock)))
   return (<div>
     <BarChart
       width={windowWidth > 500 ? 500 : 300}
       height={windowWidth > 500 ? 300 : 150}
-      data={mockData}
+      data={chartData}
       style={{ margin: '0 auto' }}
     >
       <CartesianGrid strokeDasharray="3 3" />
