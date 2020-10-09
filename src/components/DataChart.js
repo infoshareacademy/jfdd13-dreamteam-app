@@ -19,8 +19,6 @@ const DataBarChart = () => {
       const result = await fetchUsers()
       const usersWithDate = result.filter(user => user.date)
       const usersWithProcessedDate = setUsersDateObject(usersWithDate)
-      // const data = getLastYearOrTwo(usersWithProcessedDate)
-      // const chartData = createChartData(mock)
       setBarchartData(usersWithProcessedDate)
     }
     f()
