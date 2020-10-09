@@ -19,8 +19,8 @@ const DataBarChart = () => {
       const result = await fetchUsers()
       const usersWithDate = result.filter(user => user.date)
       const usersWithProcessedDate = setUsersDateObject(usersWithDate)
-      const data = getLastYearOrTwo(usersWithProcessedDate)
-      const chartData = createChartData(mock)
+      // const data = getLastYearOrTwo(usersWithProcessedDate)
+      // const chartData = createChartData(mock)
       setBarchartData(usersWithProcessedDate)
     }
     f()
@@ -37,7 +37,7 @@ const DataBarChart = () => {
     {
       a: "4qeUoEWmtyVSJfvwf7KKj4K6qB43",
       date: {
-        month: { name: "October", value: 8 },
+        month: { name: "September", value: 8 },
         year: 2020,
       },
       email: "super@super.super",
@@ -120,7 +120,8 @@ const DataBarChart = () => {
     if (users.length < 1) return
     const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
     const lastYear = users.filter(user => user.date.year === lastRegisterYear)
-    const hasUniqueMonths = lastYear.find(user => user.date.month.value !== lastYear[0].date.month.value)
+    const hasUniqueMonths = lastYear.find((user, idx) => idx > 0 && user.date.month.value !== lastYear[0].date.month.value)
+    console.log(hasUniqueMonths)
     if (hasUniqueMonths) {
       return [
         {
@@ -208,14 +209,14 @@ const DataBarChart = () => {
   if (!barChartData || barChartData.length === 0) {
     return null
   }
-  const dataObj = getLastYearOrTwo(barChartData)
-  const chartData = createChartData(dataObj).reverse()
+  // const dataObj = getLastYearOrTwo(barChartData)
+  // const chartData = createChartData(dataObj).reverse()
   console.log(createChartData(getLastYearOrTwo(mock)))
   return (<div>
     <BarChart
       width={windowWidth > 500 ? 500 : 300}
       height={windowWidth > 500 ? 300 : 150}
-      data={chartData}
+      data={mockData}
       style={{ margin: '0 auto' }}
     >
       <CartesianGrid strokeDasharray="3 3" />
