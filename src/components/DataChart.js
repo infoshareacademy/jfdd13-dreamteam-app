@@ -103,6 +103,74 @@ const DataBarChart = () => {
       }
     ))
   }
+
+  const mock = [
+    {
+      a: "4qeUoEWmtyVSJfvwf7KKj4K6qB43",
+      date: {
+        month: { name: "September", value: 8 },
+        year: 2020,
+      },
+      email: "super@super.super",
+      name: "KontoZPazdziernika"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "September", value: 8 },
+        year: 2020,
+      },
+      email: "fake@fake",
+      name: "KontoZWrzesnia"
+    },
+    {
+      a: "32323232323",
+      date: {
+        month: { name: "September", value: 8 },
+        year: 2020,
+      },
+      email: "fake@fake",
+      name: "KontoZWrzesnia2"
+    },
+    {
+      a: "2222222",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2019,
+      },
+      email: "August@fake",
+      name: "KontoZAugustowa"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2019,
+      },
+      email: "August@fake",
+      name: "KontoZAugustowa"
+    },
+    {
+      a: "4444",
+      date: {
+        month: { name: "July", value: 6 },
+        year: 2019,
+      },
+      email: "july@fake",
+      name: "KontoZJulyowa"
+    },
+    {
+      a: "33333",
+      date: {
+        month: { name: "August", value: 7 },
+        year: 2018,
+      },
+      email: "2018@fake",
+      name: "20182018"
+    },
+
+  ]
+
   const createChartData = (array) => {
     if (!array) return
     const latestYearData = array[0]
@@ -118,6 +186,7 @@ const DataBarChart = () => {
       const prevYearsArr = array.filter(data => data.year !== lastYear)
       const prevYearData = prevYearsArr.reduce((acc, current)=>((current.year > acc ? current: acc)))
       const prevYear = prevYearData.year
+      //TODO fix naming and remove condition
       if (prevYear && array) {
         const prevYearObj = array.find(userData => userData.year === prevYear)
         const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
@@ -129,6 +198,8 @@ const DataBarChart = () => {
       }
     }
   }
+
+console.log(createChartData(getLastYearOrTwo(mock)))
 
   const dataObj = getLastYearOrTwo(barChartData)
   const chartData = createChartData(dataObj).reverse()
