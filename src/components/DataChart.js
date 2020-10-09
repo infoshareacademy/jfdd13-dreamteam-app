@@ -114,9 +114,10 @@ const DataBarChart = () => {
       return processChartDataToRenderableObject(lastTwoMonths)
     }
     else if (typeof array !== 'undefined' && array.length > 1) {
-      const prevYear = latestYearData.year - 1
-      const latestYear = latestYearData.year
-      const prevYear2 = array.reduce((acc, current)=>(current.year < latestYear  && current.year > acc ))
+      const lastYear = latestYearData.year
+      const prevYearsArr = array.filter(data => data.year !== lastYear)
+      const prevYearData = prevYearsArr.reduce((acc, current)=>((current.year > acc ? current: acc)))
+      const prevYear = prevYearData.year
       if (prevYear && array) {
         const prevYearObj = array.find(userData => userData.year === prevYear)
         const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
