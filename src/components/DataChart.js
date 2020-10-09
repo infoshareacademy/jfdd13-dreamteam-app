@@ -29,7 +29,7 @@ const DataBarChart = () => {
 
   const getMonth = (num) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    if (typeof num === 'string'){
+    if (typeof num === 'string') {
       return months.indexOf(num)
     }
     return months[num]
@@ -118,6 +118,11 @@ const DataBarChart = () => {
       }
     ]
   }, []))
+
+  if (!barChartData || barChartData.length === 0) {
+    return null
+  }
+
   const getLastYearOrTwo = (users) => {
     if (users.length < 1) return
     const lastRegisterYear = users.sort((a, b) => a.date.year > b.date.year)[0].date.year
@@ -132,7 +137,6 @@ const DataBarChart = () => {
         }
       ]
     }
-
     return [
       {
         year: lastRegisterYear,
@@ -174,20 +178,37 @@ const DataBarChart = () => {
         }
       ))
     }
-    else if (typeof array !== 'undefined' && array.length > 1 ) {
+    else if (typeof array !== 'undefined' && array.length > 1) {
       const prevYear = latestYearData.year - 1
       if (prevYear && array) {
-        // console.log(array)
         const prevYearObj = array.find(userData => userData.year === prevYear)
         const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
         const lastMonthValue = lastMonth.date.month.value
         const prevYearData = prevYearObj.data.filter(userData => userData.date.month.value === lastMonthValue)
-        console.log(prevYearData)
+        const currentYearData = latestYearData.data
+        const lastTwoMonths = [...currentYearData, ...prevYearData]
+        const data = lastTwoMonths.reduce((acc, { date }) => {
+          const { name } = date.month
+          if (typeof acc[name] === 'undefined') {
+            acc[name] = 1
+          }
+          else {
+            acc[name] += 1
+          }
+          return acc
+        }, {})
+        const res = Object.entries(data).map(([name, value]) => ({ name, value }))
+
+        return res.map(({ name, value }) => (
+          {
+            name,
+            uv: value,
+            pv: value,
+            amt: value,
+          }
+        ))
       }
     }
-    // else {
-    // console.error('wrong data specified', array)
-    // }
   }
 
   const mockData = [
