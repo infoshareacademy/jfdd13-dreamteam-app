@@ -229,25 +229,20 @@ const DataBarChart = () => {
     }
   ]
 
-  if (!barChartData || barChartData.length === 0) {
-    return null
-  }
-  // const dataObj = getLastYearOrTwo(barChartData)
-  // const chartData = createChartData(dataObj).reverse()
-  console.log(createChartData(getLastYearOrTwo(mock)))
+  const dataObj = getLastYearOrTwo(barChartData)
+  const chartData = createChartData(dataObj).reverse()
   return (<div>
     <BarChart
       width={windowWidth > 500 ? 500 : 300}
       height={windowWidth > 500 ? 300 : 150}
-      data={mockData}
+      data={chartData}
       style={{ margin: '0 auto' }}
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey={windowWidth > 500 ? "name" : "mobileName"} />
-      <YAxis />
+      <YAxis allowDecimals={false} type="number" />
       <Tooltip />
       <Legend />
-      {/*<Bar dataKey="pv" fill="#8884d8" />*/}
       <Bar dataKey="uv" fill="#82ca9d" name={'Liczba zarejestrowanych użytkowników'} />
     </BarChart>
   </div>
