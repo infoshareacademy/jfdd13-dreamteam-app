@@ -83,7 +83,7 @@ const DataBarChart = () => {
 
   const processChartDataToRenderableObject = (data) => {
     const countedMonths = data.reduce((acc, { date }) => {
-      const { month: {name} } = date
+      const { month: { name } } = date
       if (typeof acc[name] === 'undefined') {
         acc[name] = 1
       }
@@ -184,22 +184,17 @@ const DataBarChart = () => {
     else if (typeof array !== 'undefined' && array.length > 1) {
       const lastYear = latestYearData.year
       const prevYearsArr = array.filter(data => data.year !== lastYear)
-      const prevYearData = prevYearsArr.reduce((acc, current)=>((current.year > acc ? current: acc)))
-      const prevYear = prevYearData.year
-      //TODO fix naming and remove condition
-      if (prevYear && array) {
-        const prevYearObj = array.find(userData => userData.year === prevYear)
-        const lastMonth = sortedByMonthsDESC(prevYearObj.data)[0]
-        const lastMonthValue = lastMonth.date.month.value
-        const prevYearData = prevYearObj.data.filter(userData => userData.date.month.value === lastMonthValue)
-        const currentYearData = latestYearData.data
-        const lastTwoMonths = [...currentYearData, ...prevYearData]
-        return processChartDataToRenderableObject(lastTwoMonths)
-      }
+      const prevYearData = prevYearsArr.reduce((acc, current) => ((current.year > acc ? current : acc)))
+      const lastMonth = sortedByMonthsDESC(prevYearData.data)[0]
+      const lastMonthValue = lastMonth.date.month.value
+      const lastMonthFromprevYearData = prevYearData.data.filter(userData => userData.date.month.value === lastMonthValue)
+      const currentYearData = latestYearData.data
+      const lastTwoMonths = [...currentYearData, ...lastMonthFromprevYearData]
+      return processChartDataToRenderableObject(lastTwoMonths)
     }
   }
 
-console.log(createChartData(getLastYearOrTwo(mock)))
+  console.log(createChartData(getLastYearOrTwo(mock)))
 
   const dataObj = getLastYearOrTwo(barChartData)
   const chartData = createChartData(dataObj).reverse()
