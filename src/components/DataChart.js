@@ -17,7 +17,7 @@ const DataBarChart = () => {
   useEffect(() => {
     const f = async () => {
       const result = await fetchUsers()
-      const usersWithDate = result.filter(user => user.date)
+      const usersWithDate = result.filter(({date}) => date)
       const usersWithProcessedDate = setUsersDateObject(usersWithDate)
       setBarchartData(usersWithProcessedDate)
     }
@@ -25,7 +25,7 @@ const DataBarChart = () => {
     // eslint-disable-next-line
   }, [])
 
-  const getMonth = (num) => {
+  const convertMonth = (num) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     if (typeof num === 'string') {
       return months.indexOf(num)
@@ -41,7 +41,7 @@ const DataBarChart = () => {
         ...current,
         date: {
           month: {
-            name: getMonth(dateFromTimestamp.getMonth()),
+            name: convertMonth(value),
             value,
           },
           year: dateFromTimestamp.getFullYear()
