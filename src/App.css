@@ -144,3 +144,9 @@
     min-width: 60px;
   }
 }
+
+/* UserPanel.js */
+
+.content__wrapper {
+  margin: 20px 0;
+}

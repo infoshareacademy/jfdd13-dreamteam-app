@@ -13,9 +13,9 @@ function UserPanel() {
   fetchUser()
 
   return (
-    <div>
-      <Header>dane z firebase dla usera {firebase.auth().currentUser.uid} </Header>
-    </div>
+    <Container className="content__wrapper">
+      <Header>Your Profile</Header>
+    </Container>
   )
 }
 
