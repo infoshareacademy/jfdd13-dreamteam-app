@@ -22,28 +22,28 @@ function UserPanel() {
     setUserData(user)
   }
 
+  const yearFromTimestamp = (timestamp) => {
+    const date = new Date(timestamp)
+    return date.getFullYear()
+  }
+
   if (!fetched) return null
   console.log(userData)
-
+  const {name, email, date} = userData
+  const registerYear = yearFromTimestamp(date)
   return (
     <Container className="content__wrapper">
       <Header>Your Profile</Header>
       <Card>
         <Image src='https://via.placeholder.com/200x300' wrapped ui={false} />
         <Card.Content>
-          <Card.Header>name</Card.Header>
+          <Card.Header>{name}</Card.Header>
           <Card.Meta>
-            <span className='date'>Joined in 2015</span>
+            <span className='date'>Joined in {registerYear}</span>
           </Card.Meta>
           <Card.Description>
-            Matthew is a musician living in Nashville.
+            Email: {email}
           </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <a>
-            <Icon name='user' />
-        22 Friends
-      </a>
         </Card.Content>
       </Card>
     </Container>
