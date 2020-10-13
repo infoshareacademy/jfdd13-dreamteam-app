@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Container, Header, Image, Icon } from "semantic-ui-react";
 import firebase from "../firebase";
+import { stopUsers } from '../services/UserService';
 
 function UserPanel() {
   const [userData, setUserData] = useState({})
   const [fetched, setFetched] = useState(false)
 
   useEffect(() => {
-    if (!fetched) {
       fetchUser()
       setFetched(true)
-    }
-    return () => setFetched(!fetched)
+    return () => stopUsers()
     // eslint-disable-next-line
   }, [])
 
